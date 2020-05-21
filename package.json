@@ -4,7 +4,8 @@
   "description": "A graduation website by Sean, Russell and Hayley (devs) and Shay, Jacob (designs) to showcase works of Yoobee students graduating in July 2020",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"nodemon index.js\" \"npm run start --prefix client\""
   },
   "repository": {
     "type": "git",
