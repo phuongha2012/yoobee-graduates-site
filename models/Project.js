@@ -6,6 +6,7 @@ const projectSchema = new mongoose.Schema({
     description: String,
     image: String, //could be array?
     type: Array,
+    course: String,
     studentId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Student",
