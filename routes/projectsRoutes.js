@@ -111,3 +111,8 @@ module.exports = (app) => {
         }).catch((err) => res.send(err));
     });
 }; // delete project
+
+// check auth to edit projects
+function auth(req, res, next) {
+    if (req.user.authenticated) return next(); // req.query.loggedIm
+} // check auth to edit projects
