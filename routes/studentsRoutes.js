@@ -4,11 +4,11 @@ const bcryptjs = require("bcryptjs");
 
 const Student = require("../models/Student.js");
 
-module.exports = (app) => {
-    app.get("/students", (req, res) => {
-        res.send("sending all students");
-    });
-};
+// module.exports = (app) => {
+//     app.get("/students", (req, res) => {
+//         res.send("sending all students");
+//     });
+// };
 
 //get all students
 module.exports = (app) => {
@@ -19,7 +19,7 @@ module.exports = (app) => {
     });
 }; // get all students
 
-//get student by ID
+// get student by ID
 module.exports = (app) => {
     app.get("/students/:id", (req, res) => {
         Student.findOne({ _id: req.params.id }, (err, result) => {
