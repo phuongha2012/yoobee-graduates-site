@@ -38,6 +38,7 @@ module.exports = (app) => {
     // get projects by student
 
     //get projects by course
+    // course needs to be URI encoded with %20 encodeURIComponent()
     app.get("/projects/c=:course", (req, res) => {
         Project.find({ course: req.params.course }, (err, result) => {
             if (result) {

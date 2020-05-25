@@ -26,6 +26,7 @@ module.exports = (app) => {
     // get student by ID
 
     //get students by course
+    // course needs to be URI encoded with %20
     app.get("/students/c=:course", (req, res) => {
         Student.find({ course: req.params.course }, (err, result) => {
             if (result) {
