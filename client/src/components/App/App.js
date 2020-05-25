@@ -1,21 +1,19 @@
 import React from 'react';
-import './App.scss';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from "../Home/Home";
+import AllStudents from "../AllStudents/AllStudents";
+
 
 function App() {
   return (
-    <div>
-        <div className="testClass text-center">
-            Welcome to our graduate site!
-        </div>
-        <div className="row">
-            <div className="col-sm-12 col-md-6 text-center">
-                Web and UX
-            </div>
-            <div className="col-sm-12 col-md-6 text-center">
-                Creative Digital Design
-            </div>
-        </div>
-    </div>
+      <div>
+        <BrowserRouter>
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/students" component={AllStudents} />
+            </Switch>
+        </BrowserRouter>
+      </div>
   );
 }
 
