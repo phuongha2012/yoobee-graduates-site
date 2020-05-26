@@ -5,36 +5,41 @@ const bcryptjs = require("bcryptjs");
 const Project = require("../models/Project.js");
 
 module.exports = (app) => {
-    app.get("/projects", (req, res) => {
-        res.send("sending all projects");
-    });
-};
-
-//get all projects
-module.exports = (app) => {
+    //get all projects
     app.get("/projects", (req, res) => {
         Project.find().then((result) => {
             res.send(result);
         });
     });
-}; // get all projects
+    // get all projects
 
-//get student by ID
-module.exports = (app) => {
-    app.get("/projects/:id", (req, res) => {
+    //get project by ID
+    app.get("/projects/p=:id", (req, res) => {
         Project.findOne({ _id: req.params.id }, (err, result) => {
             if (result) {
                 res.send(result);
             } else {
-                res.send("Can't find student with this ID");
+                res.send("Can't find project with this ID");
             }
         }).catch((err) => res.send(err));
     });
-}; // get student by ID
+    // get project by ID
 
-//get projects by course
-module.exports = (app) => {
-    app.get("/projects/:course", (req, res) => {
+    //get projects by student
+    app.get("/projects/s=:student", (req, res) => {
+        Project.find({ studentId: req.params.student }, (err, result) => {
+            if (result) {
+                res.send(result);
+            } else {
+                res.send("Can't find projects by this student");
+            }
+        }).catch((err) => res.send(err));
+    });
+    // get projects by student
+
+    //get projects by course
+    // course needs to be URI encoded with %20 encodeURIComponent()
+    app.get("/projects/c=:course", (req, res) => {
         Project.find({ course: req.params.course }, (err, result) => {
             if (result) {
                 res.send(result);
@@ -43,11 +48,10 @@ module.exports = (app) => {
             }
         }).catch((err) => res.send(err));
     });
-}; // get projects by course
+    // get projects by course
 
-// update project
-module.exports = (app) => {
-    app.patch("/projects/:id", (req, res) => {
+    // update project
+    app.patch("/projects/p=:id", (req, res) => {
         Project.findById(req.params.id, (err, result) => {
             const updated = {
                 title: req.body.title,
@@ -69,11 +73,10 @@ module.exports = (app) => {
                 .catch((err) => res.send(err));
         }).catch((err) => res.send("Not found"));
     });
-}; // update project
+    // update project
 
-// add new project
-module.exports = (app) => {
-    app.post("/projects/new", (req, res) => {
+    // add new project
+    app.post("/projects", (req, res) => {
         const project = new Project({
             _id: new mongoose.Types.ObjectId(),
             title: req.body.title,
@@ -95,11 +98,10 @@ module.exports = (app) => {
             })
             .catch((err) => res.send(err));
     });
-}; // add new project
+    // add new project
 
-// delete project
-module.exports = (app) => {
-    app.delete("/projects/:id", (req, res) => {
+    // delete project
+    app.delete("/projects/p=:id", (req, res) => {
         Project.findOne({ _id: req.params.id }, (err, result) => {
             if (result) {
                 Project.deleteOne({ _id: req.params.id }, (err) => {
@@ -110,4 +112,10 @@ module.exports = (app) => {
             }
         }).catch((err) => res.send(err));
     });
-}; // delete project
+    // delete project
+}; //close export module
+
+// check auth to edit projects
+function auth(req, res, next) {
+    if (req.user.authenticated) return next(); // req.query.loggedIm
+} // check auth to edit projects
