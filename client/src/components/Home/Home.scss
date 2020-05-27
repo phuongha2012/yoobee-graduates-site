@@ -1,7 +1,7 @@
-@import './index.scss';
+@import "../../index.scss";
 
 .testClass {
-  color: red;
+    color: red;
 
-  background-color: $color-pink--light;
+    background-color: $color-pink--light;
 }
