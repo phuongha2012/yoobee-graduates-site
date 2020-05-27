@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <>
             <div className="testClass text-center">
-                Welcome to our graduate site!
+                <h1 className="text-danger my-auto">Welcome to our graduate site!</h1>
             </div>
             <div className="row">
                 <div className="col-6 col-md-3 text-center">

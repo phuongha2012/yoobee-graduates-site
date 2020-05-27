@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 
 const NavBar = () => {
-    const context = useContext(UserContext);
-    console.log(context);
+    const userContext = useContext(UserContext);
     return (
         <div className="d-flex justify-content-around">
+            <Link to="/">Home</Link>
             <Link to='/students'>Students</Link>
             <Link to='/projects'>Projects</Link>
             <Link to='/'>About</Link>
             <div>
-                { context.state.user ? 
+                { userContext.state.user ? 
                 <div>
                     <span>
-                        Hello {context.state.user.name}
+                        Hello {userContext.state.user.name}
                     </span>
                     <span>
                         <Link to='/account'>Manage Account</Link>

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
@@ -9,6 +9,7 @@ const LoginPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { setAuthenticatedUser } = useContext(UserContext);
+    const history = useHistory();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -22,8 +23,10 @@ const LoginPage = () => {
                 ) {
                     setHasLoginError(true);
                     setErrorMessage(response.data);
+
                 } else {
                     setAuthenticatedUser(response.data);
+                    history.push('/account');
                 }
             });
     };
@@ -35,7 +38,7 @@ const LoginPage = () => {
     return (
         <form className="login-form" onSubmit={onSubmitHandler}>
             <h1>Login Page</h1>
-            <Link to="/">Home</Link>
+            
             <fieldset>
                 <label>
                     <span>Username</span>
@@ -43,7 +46,6 @@ const LoginPage = () => {
                         type="text"
                         value={username}
                         onChange={onInputChange(setUsername)}
-                        placeholder="dev"
                         required
                     />
                 </label>
@@ -53,7 +55,6 @@ const LoginPage = () => {
                         type="password"
                         value={password}
                         onChange={onInputChange(setPassword)}
-                        placeholder="password"
                         required
                     />
                 </label>
