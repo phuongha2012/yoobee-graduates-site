@@ -2,3 +2,10 @@
 
 // Colors
 $color-pink--light: #ece1f1;
+
+// resets
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
