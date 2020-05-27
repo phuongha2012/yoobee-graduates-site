@@ -1,10 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const ProjectCard = () => {
+export const ProjectCard = ({ projects }) => {
     return (
         <div>
-            I am a project <Link to={`/projects/1`}>View my page</Link>
+            {projects
+                ? projects.map((project) => (
+                      <div className="col-3" key={project._id}>
+                          <p>{project.title}</p>
+                          <Link to={`/projects/${project._id}`}>
+                              View my page
+                          </Link>
+                      </div>
+                  ))
+                : ""}
         </div>
     );
 };
