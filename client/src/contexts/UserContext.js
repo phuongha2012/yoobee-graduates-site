@@ -1,11 +1,34 @@
-import { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
+import UserReducer from './UserReducer';
 
-const UserContext = createContext({
+const initialState = {
     user: null,
     hasLoginError: false,
     login: () => null,
     logout: () => null
-});
+}
 
-export default UserContext;
+const UserContext = createContext(initialState);
+
+const UserContextProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(UserReducer, initialState);
+
+    function setAuthenticatedUser(user) {
+        dispatch({
+            type: 'SET_USER',
+            payload: user
+        })
+    }
+
+    return (
+        <UserContext.Provider value={ {state, setAuthenticatedUser} }>
+            {children}
+        </UserContext.Provider>
+    )
+}
+
+export { UserContext, UserContextProvider };
+
+
+
 
