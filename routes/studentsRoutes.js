@@ -4,24 +4,17 @@ const bcryptjs = require("bcryptjs");
 
 const Student = require("../models/Student.js");
 
-// module.exports = (app) => {
-//     app.get("/students", (req, res) => {
-//         res.send("sending all students");
-//     });
-// };
-
-//get all students
 module.exports = (app) => {
+    //get all students
     app.get("/students", (req, res) => {
         Student.find().then((result) => {
             res.send(result);
         });
     });
-}; // get all students
+    // get all students
 
-// get student by ID
-module.exports = (app) => {
-    app.get("/students/:id", (req, res) => {
+    //get student by ID
+    app.get("/students/s=:id", (req, res) => {
         Student.findOne({ _id: req.params.id }, (err, result) => {
             if (result) {
                 res.send(result);
@@ -30,11 +23,11 @@ module.exports = (app) => {
             }
         }).catch((err) => res.send(err));
     });
-}; // get student by ID
+    // get student by ID
 
-//get student by course
-module.exports = (app) => {
-    app.get("/students/:course", (req, res) => {
+    //get students by course
+    // course needs to be URI encoded with %20
+    app.get("/students/c=:course", (req, res) => {
         Student.find({ course: req.params.course }, (err, result) => {
             if (result) {
                 res.send(result);
@@ -43,11 +36,10 @@ module.exports = (app) => {
             }
         }).catch((err) => res.send(err));
     });
-}; // get student by course
+    // get students by course
 
-// update student
-module.exports = (app) => {
-    app.patch("/students/:id", (req, res) => {
+    // update student
+    app.patch("/students/s=:id", (req, res) => {
         Student.findById(req.params.id, (err, result) => {
             const updated = {
                 username: req.body.username,
@@ -75,10 +67,9 @@ module.exports = (app) => {
                 .catch((err) => res.send(err));
         }).catch((err) => res.send("Not found"));
     });
-}; // update student
+    // update student
 
-//register student
-module.exports = (app) => {
+    //register student
     app.post("/register", (req, res) => {
         Student.findOne({ username: req.body.username }, (err, result) => {
             if (result) {
@@ -117,10 +108,9 @@ module.exports = (app) => {
             }
         });
     });
-}; // register student
+    // register student
 
-//login student
-module.exports = (app) => {
+    //login student
     app.post("/login", (req, res) => {
         Student.findOne({ username: req.body.username }, (err, result) => {
             if (result) {
@@ -134,4 +124,5 @@ module.exports = (app) => {
             }
         });
     });
-}; // login student
+    // login student
+}; // close export module
