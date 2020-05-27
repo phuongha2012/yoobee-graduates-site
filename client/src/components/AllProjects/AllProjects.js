@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import FlipMove from "react-flip-move";
 import { ProjectCard } from "./ProjectCard";
 
 const AllProjects = () => {
-    const [projects, setProjects] = useState([]);
+    const [allProjects, setAllProjects] = useState([]);
+    const [showProjects, setShowProjects] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    useEffect(() => {
+        setShowProjects(allProjects);
+    }, [allProjects]);
 
     const getData = async () => {
         let source = axios.CancelToken.source();
@@ -13,7 +23,7 @@ const AllProjects = () => {
             const response = await axios.get("http://localhost:5000/projects", {
                 cancelToken: source.token,
             });
-            if (!isUnmounted) setProjects(response.data);
+            if (!isUnmounted) setAllProjects(response.data);
         } catch (error) {
             if (!isUnmounted) {
                 if (axios.isCancel(error)) {
@@ -29,15 +39,26 @@ const AllProjects = () => {
         };
     };
 
-    useEffect(() => {
-        getData();
-    }, []);
+    const changeProjects = (e) => {
+        const target = e.target.innerText;
+        if (target === "All") setShowProjects(allProjects);
+        else {
+            const projectsClicked = allProjects.filter((project) => {
+                return project.course === target;
+            });
+            setShowProjects(projectsClicked);
+        }
+    };
+
     return (
-        <div>
+        <>
             <Link to="/">Home</Link>
             <h2>Projects</h2>
-            <ProjectCard projects={projects} />
-        </div>
+            <button onClick={changeProjects}>All</button>
+            <button onClick={changeProjects}>Web and UX</button>
+            <button onClick={changeProjects}>Digital Design</button>
+            <ProjectCard projects={showProjects} />
+        </>
     );
 };
 

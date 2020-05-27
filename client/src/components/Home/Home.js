@@ -4,7 +4,7 @@ import "./Home.scss";
 
 const Home = () => {
     return (
-        <div>
+        <>
             <div className="testClass text-center">
                 Welcome to our graduate site!
             </div>
@@ -22,7 +22,7 @@ const Home = () => {
                     <Link to="/login">Login</Link>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

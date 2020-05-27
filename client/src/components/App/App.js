@@ -10,20 +10,18 @@ import { Project } from "../Project/Project";
 
 function App() {
     return (
-        <div>
-            <UserContextProvider>
-                <BrowserRouter>
-                    <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/login" component={LoginPage} />
-                        <Route path="/students" exact component={AllStudents} />
-                        <Route path="/students/:id" component={Student} />
-                        <Route path="/projects" exact component={AllProjects} />
-                        <Route path="/projects/:id" component={Project} />
-                    </Switch>
-                </BrowserRouter>
-            </UserContextProvider>
-        </div>
+        <UserContextProvider>
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/students" exact component={AllStudents} />
+                    <Route path="/students/:id" component={Student} />
+                    <Route path="/projects" exact component={AllProjects} />
+                    <Route path="/projects/:id" component={Project} />
+                </Switch>
+            </BrowserRouter>
+        </UserContextProvider>
     );
 }
 

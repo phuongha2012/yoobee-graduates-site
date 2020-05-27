@@ -5,8 +5,17 @@ import "./AllStudents.scss";
 import { StudentCard } from "./StudentCard";
 
 const AllStudents = () => {
-    const [students, setStudents] = useState([]);
+    const [allStudents, setAllStudents] = useState([]);
+    const [showStudents, setShowStudents] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    useEffect(() => {
+        setShowStudents(allStudents);
+    }, [allStudents]);
 
     const getData = async () => {
         let source = axios.CancelToken.source();
@@ -14,7 +23,7 @@ const AllStudents = () => {
             const response = await axios.get("http://localhost:5000/students", {
                 cancelToken: source.token,
             });
-            if (!isUnmounted) setStudents(response.data);
+            if (!isUnmounted) setAllStudents(response.data);
         } catch (error) {
             if (!isUnmounted) {
                 if (axios.isCancel(error)) {
@@ -30,15 +39,25 @@ const AllStudents = () => {
         };
     };
 
-    useEffect(() => {
-        getData();
-    }, []);
+    const changeStudents = (e) => {
+        const target = e.target.innerText;
+        if (target === "All") setShowStudents(allStudents);
+        else {
+            const studentsClicked = allStudents.filter((student) => {
+                return student.course === target;
+            });
+            setShowStudents(studentsClicked);
+        }
+    };
 
     return (
         <>
             <Link to="/">Home</Link>
             <h2>Students</h2>
-            <StudentCard students={students} />
+            <button onClick={changeStudents}>All</button>
+            <button onClick={changeStudents}>Web and UX Design</button>
+            <button onClick={changeStudents}>Digital Design</button>
+            <StudentCard students={showStudents} />
         </>
     );
 };
