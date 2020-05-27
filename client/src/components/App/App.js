@@ -7,12 +7,14 @@ import AllStudents from "../AllStudents/AllStudents";
 import { Student } from "../Student/Student";
 import AllProjects from "../AllProjects/AllProjects";
 import { Project } from "../Project/Project";
+import NavBar from "../NavBar/NavBar";
 
 function App() {
   return (
       <div>
           <UserContextProvider>
             <BrowserRouter>
+                <Route path="/" component={NavBar} />
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/login" component={LoginPage} />

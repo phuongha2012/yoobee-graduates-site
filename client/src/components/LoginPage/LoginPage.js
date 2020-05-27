@@ -7,7 +7,7 @@ const LoginPage = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { user, setAuthenticatedUser } = useContext(UserContext);
+    const { setAuthenticatedUser } = useContext(UserContext);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
