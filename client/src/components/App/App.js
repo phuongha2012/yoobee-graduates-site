@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { UserContext, UserContextProvider } from "../../contexts/UserContext";
 import Home from "../Home/Home";
 import LoginPage from "../LoginPage/LoginPage";
+import AccountPage from "../AccountPage/AccountPage";
 import AllStudents from "../AllStudents/AllStudents";
 import { Student } from "../Student/Student";
 import AllProjects from "../AllProjects/AllProjects";
@@ -17,6 +18,7 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/login" component={LoginPage} />
+                    <Route path="/account" component={AccountPage} />
                     <Route path="/students" exact component={AllStudents} />
                     <Route path="/students/:id" component={Student} />
                     <Route path="/projects" exact component={AllProjects} />
