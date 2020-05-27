@@ -1,42 +1,36 @@
-import React, { useReducer, useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { UserContext } from '../../contexts/UserContext'
-// import UserReducer from '../../contexts/UserReducer';
+import { UserContext } from '../../contexts/UserContext';
 
 const LoginPage = () => {
     const [hasLoginError, setHasLoginError] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const context = useContext(UserContext);
-
-    // useEffect(() => {
-    //     console.log(user);
-    //   }, []);
+    const { user, setAuthenticatedUser } = useContext(UserContext);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios.post('http://localhost:5000/login', { username, password })
             .then(response => {
                 console.log(response);
-                console.log(context);
+                if (response.data === 'Student not found' || response.data === 'Not authorised. Incorrect password') {
+                    setHasLoginError(true);
+                    setErrorMessage(response.data);
+                } else {
+                    setAuthenticatedUser(response.data);
+                }
             })
     };
 
     const onInputChange = setter => e => {
         setter(e.target.value);
-      };
-
+    };
 
     return (
 
         <form className="login-form" onSubmit={onSubmitHandler}>
             <h1>Login Page</h1>
-            {hasLoginError && (
-                <div className="login-form-error">
-                Login Failed: Incorrect Credentials
-                </div>
-            )}
             <fieldset>
                 <label>
                 <span>Username</span>
@@ -59,6 +53,11 @@ const LoginPage = () => {
                 />
                 </label>
             </fieldset>
+            {hasLoginError && (
+                <div className="login-form-error text-danger">
+                {errorMessage}
+                </div>
+            )}
         <button>Login</button>
     </form>
     );

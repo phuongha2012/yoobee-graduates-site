@@ -1,13 +1,15 @@
+const logInfo = () => {
+    console.log('got to reducer')
+}
+
 const UserReducer = (state, action) => {
+    logInfo();
     switch (action.type) {
-        case 'SET_USER': {
-            const { user } = action.payload;
+        case 'SET_USER': 
             return {
                 ...state,
-                hasLoginError: false,
-                user: user
-            }
-        }
+                user: action.payload
+            };
         default:
             return state;
     }

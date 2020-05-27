@@ -14,6 +14,7 @@ const UserContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(UserReducer, initialState);
 
     function setAuthenticatedUser(user) {
+        console.log(user);
         dispatch({
             type: 'SET_USER',
             payload: user
