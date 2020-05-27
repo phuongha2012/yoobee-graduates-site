@@ -5,10 +5,28 @@ import { ProjectCard } from "./ProjectCard";
 
 const AllProjects = () => {
     const [projects, setProjects] = useState([]);
+    const [isUnmounted, setIsUnmounted] = useState(false);
 
     const getData = async () => {
-        const response = await axios.get("http://localhost:5000/projects");
-        setProjects(response.data);
+        let source = axios.CancelToken.source();
+        try {
+            const response = await axios.get("http://localhost:5000/projects", {
+                cancelToken: source.token,
+            });
+            if (!isUnmounted) setProjects(response.data);
+        } catch (error) {
+            if (!isUnmounted) {
+                if (axios.isCancel(error)) {
+                    console.log(`Request cancelled: ${error.message}`);
+                } else {
+                    console.log(`Error: ${error.message}`);
+                }
+            }
+        }
+        return () => {
+            setIsUnmounted(true);
+            source.cancel("Cancelling in cleanup");
+        };
     };
 
     useEffect(() => {

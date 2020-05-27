@@ -9,7 +9,7 @@ export const ProjectCard = ({ projects }) => {
                       <div className="col-3" key={project._id}>
                           <p>{project.title}</p>
                           <Link to={`/projects/${project._id}`}>
-                              View my page
+                              View project
                           </Link>
                       </div>
                   ))
