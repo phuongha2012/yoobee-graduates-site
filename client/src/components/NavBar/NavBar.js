@@ -1,35 +1,43 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 
 const NavBar = () => {
     const userContext = useContext(UserContext);
+    const history = useHistory();
+
+    const logoutHandler = () => {
+        userContext.logout();
+        history.push('/');
+    };
+
     return (
         <div className="d-flex justify-content-around">
-            <Link to="/">Home</Link>
-            <Link to='/students'>Students</Link>
-            <Link to='/projects'>Projects</Link>
-            <Link to='/'>About</Link>
-            <div>
+            <div className="col-md-3">
+                <Link to="/">Logo/Home</Link>
+            </div>
+            <div className="col-md-6 d-flex justify-content-around">
+                <Link to='/students'>Students</Link>
+                <Link to='/projects'>Projects</Link>
+                <Link to='/'>About</Link>
+            </div>
+            <div className="col-md-3">
                 { userContext.state.user ? 
-                <div>
-                    <span>
-                        Hello {userContext.state.user.name}
-                    </span>
-                    <span>
-                        <Link to='/account'>Manage Account</Link>
-                    </span> 
+                <div className="d-flex justify-content-around">
+                    <div>
+                        <Link to='/account'>My Account</Link>
+                    </div>
+                    <div onClick={logoutHandler}>
+                        Logout
+                    </div> 
                 </div> :
-                <div>
-                    <span>
-                        Have an account?
-                    </span>
-                    <span>
+                <div className="d-flex justify-content-around">
+                    <div>
                         <Link to='/login'>Login</Link>
-                    </span>
-                    <span>
+                    </div>
+                    <div>
                         <Link to='/register'>Register</Link>
-                    </span>
+                    </div>
                 </div>
                 }
             </div>

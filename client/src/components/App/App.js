@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { UserContext, UserContextProvider } from "../../contexts/UserContext";
 import Home from "../Home/Home";
-import LoginPage from "../LoginPage/LoginPage";
+import LoginPage from "../Auth/LoginPage";
 import AccountPage from "../AccountPage/AccountPage";
 import AllStudents from "../AllStudents/AllStudents";
 import { Student } from "../Student/Student";

@@ -3,9 +3,7 @@ import UserReducer from './UserReducer';
 
 const initialState = {
     user: null,
-    hasLoginError: false,
-    login: () => null,
-    logout: () => null
+    hasLoginError: false
 }
 
 const UserContext = createContext(initialState);
@@ -20,8 +18,14 @@ const UserContextProvider = ({ children }) => {
         })
     }
 
+    function logout() {
+        dispatch({
+            type: 'LOGOUT'
+        })
+    }
+
     return (
-        <UserContext.Provider value={ {state, setAuthenticatedUser} }>
+        <UserContext.Provider value={ {state, setAuthenticatedUser, logout } }>
             {children}
         </UserContext.Provider>
     )
