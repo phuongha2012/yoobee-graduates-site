@@ -16,7 +16,6 @@ const LoginPage = () => {
         axios
             .post("http://localhost:5000/login", { username, password })
             .then((response) => {
-                console.log(response);
                 if (
                     response.data === "Student not found" ||
                     response.data === "Not authorised. Incorrect password"
