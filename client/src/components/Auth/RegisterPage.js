@@ -16,7 +16,6 @@ const RegisterPage = () => {
         axios
             .post(process.env.REACT_APP_BASE_URL + '/register',  { username, email, password })
             .then((response) => {
-                console.log(response);
                 if (response.data === 'Username taken. Try another one!') {
                     setHasError(true);
                     setErrorMessage(response.data);
@@ -31,11 +30,9 @@ const RegisterPage = () => {
     };
 
     return (
-        <form 
-            id="registerForm" 
+        <form
             className="col-lg-8 col-md-10 col-sm-10 mx-auto"
-            onSubmit={onSubmitHandler} 
-            >
+            onSubmit={onSubmitHandler}>
             <h2 
                 className="text-center mb-5 pt-5">
                 Register

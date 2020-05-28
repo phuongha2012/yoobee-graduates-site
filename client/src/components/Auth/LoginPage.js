@@ -14,7 +14,7 @@ const LoginPage = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:5000/login", { username, password })
+            .post(process.env.REACT_APP_BASE_URL + '/login', { username, password })
             .then((response) => {
                 if (
                     response.data === "Student not found" ||
@@ -35,37 +35,51 @@ const LoginPage = () => {
     };
 
     return (
-        <form 
-            className="login-form" 
+        <form
+            className="col-lg-8 col-md-10 col-sm-10 mx-auto"
             onSubmit={onSubmitHandler}>
-            <h2>Login</h2>
-            <fieldset>
+            <h2
+                className="text-center mb-5 pt-5">
+                Login
+            </h2>
+            <div 
+                className="form-group col-sm-12 col-md-6 mx-auto">
                 <label>
-                    <span>Username</span>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={onInputChange(setUsername)}
-                        required
-                    />
+                    Username
                 </label>
+                <input 
+                    type="text" 
+                    className="form-control rounded"
+                    value={username}
+                    onChange={onInputChange(setUsername)}
+                    required
+                />
+            </div>
+            <div 
+                className="form-group col-sm-12 col-md-6 mb-5 mx-auto">
                 <label>
-                    <span>Password</span>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={onInputChange(setPassword)}
-                        required
-                    />
+                    Password
                 </label>
-            </fieldset>
-            {hasLoginError && (
-                <div 
-                    className="login-form-error text-danger">
+                <input 
+                    type="password" 
+                    className="form-control rounded" 
+                    autoComplete="new-password" 
+                    value={password}
+                    onChange={onInputChange(setPassword)}
+                    required 
+                />
+            </div>
+            {hasLoginError 
+                ? <div 
+                    className="col-sm-12 col-md-6 mb-5 mx-auto text-danger text-center">
                     {errorMessage}
                 </div>
-            )}
-            <button>Login</button>
+                : ''
+            }
+            <div
+                className="text-center mt-3">
+                <button>Login</button>
+            </div>
         </form>
     );
 };
