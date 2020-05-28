@@ -31,7 +31,7 @@ const NavBar = () => {
                         Logout
                     </div> 
                 </div> :
-                <div className="d-flex justify-content-around">
+                <div className="d-flex justify-content-end">
                     <div>
                         <Link to='/login'>Login</Link>
                     </div>

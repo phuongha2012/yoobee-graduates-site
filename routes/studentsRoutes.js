@@ -71,33 +71,19 @@ module.exports = (app) => {
 
     //register student
     app.post("/register", (req, res) => {
-        Student.findOne({ username: req.body.username }, (err, result) => {
+        const { username, email, password } = req.body;
+        Student.findOne({ username }, (err, result) => {
             if (result) {
                 res.send(
-                    "This username is already taken. Please try another one"
+                    "Username taken. Try another one!"
                 );
             } else {
                 const hash = bcryptjs.hashSync(req.body.password);
                 const student = new Student({
                     _id: new mongoose.Types.ObjectId(),
-                    username: req.body.username,
+                    username,
                     password: hash,
-                    name: req.body.name,
-                    email: req.body.email,
-                    siteUrl: req.body.siteUrl,
-                    course: req.body.course,
-                    blurb: req.body.blurb,
-                    $push: {
-                        skills: { $each: req.body.skills },
-                    }, //array
-                    careermotivation: req.body.careermotivation,
-                    $push: {
-                        projects: { $each: req.body.projects },
-                    }, // array
-                    github: req.body.github,
-                    behance: req.body.behance,
-                    linkedIn: req.body.linkedIn,
-                    instagram: req.body.instagram,
+                    email
                 });
                 student
                     .save()

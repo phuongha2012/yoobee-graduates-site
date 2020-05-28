@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
@@ -35,9 +35,10 @@ const LoginPage = () => {
     };
 
     return (
-        <form className="login-form" onSubmit={onSubmitHandler}>
-            <h1>Login Page</h1>
-            
+        <form 
+            className="login-form" 
+            onSubmit={onSubmitHandler}>
+            <h2>Login</h2>
             <fieldset>
                 <label>
                     <span>Username</span>
@@ -59,7 +60,8 @@ const LoginPage = () => {
                 </label>
             </fieldset>
             {hasLoginError && (
-                <div className="login-form-error text-danger">
+                <div 
+                    className="login-form-error text-danger">
                     {errorMessage}
                 </div>
             )}
