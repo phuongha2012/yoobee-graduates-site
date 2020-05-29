@@ -49,7 +49,7 @@ const LoginPage = () => {
                 </label>
                 <input 
                     type="text" 
-                    className="form-control rounded"
+                    className="form-control"
                     value={username}
                     onChange={onInputChange(setUsername)}
                     required
@@ -62,7 +62,7 @@ const LoginPage = () => {
                 </label>
                 <input 
                     type="password" 
-                    className="form-control rounded" 
+                    className="form-control" 
                     autoComplete="new-password" 
                     value={password}
                     onChange={onInputChange(setPassword)}

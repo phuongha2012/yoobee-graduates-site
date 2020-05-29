@@ -44,7 +44,7 @@ const RegisterPage = () => {
                 </label>
                 <input 
                     type="text" 
-                    className="form-control rounded"
+                    className="form-control"
                     value={username}
                     onChange={onInputChange(setUsername)}
                     required
@@ -57,7 +57,7 @@ const RegisterPage = () => {
                 </label>
                 <input 
                     type="email"
-                    className="form-control rounded" 
+                    className="form-control" 
                     value={email}
                     onChange={onInputChange(setEmail)}
                     required
@@ -70,7 +70,7 @@ const RegisterPage = () => {
                 </label>
                 <input 
                     type="password" 
-                    className="form-control rounded" 
+                    className="form-control" 
                     autoComplete="new-password" 
                     value={password}
                     onChange={onInputChange(setPassword)}
