@@ -20,9 +20,12 @@ const AllStudents = () => {
     const getData = async () => {
         let source = axios.CancelToken.source();
         try {
-            const response = await axios.get("http://localhost:5000/students", {
-                cancelToken: source.token,
-            });
+            const response = await axios.get(
+                process.env.REACT_APP_BASE_URL + "/students",
+                {
+                    cancelToken: source.token,
+                }
+            );
             if (!isUnmounted) setAllStudents(response.data);
         } catch (error) {
             if (!isUnmounted) {
@@ -52,7 +55,6 @@ const AllStudents = () => {
 
     return (
         <>
-            <Link to="/">Home</Link>
             <h2>Students</h2>
             <button onClick={changeStudents}>All</button>
             <button onClick={changeStudents}>Web and UX Design</button>

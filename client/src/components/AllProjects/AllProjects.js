@@ -20,9 +20,12 @@ const AllProjects = () => {
     const getData = async () => {
         let source = axios.CancelToken.source();
         try {
-            const response = await axios.get("http://localhost:5000/projects", {
-                cancelToken: source.token,
-            });
+            const response = await axios.get(
+                process.env.REACT_APP_BASE_URL + "/projects",
+                {
+                    cancelToken: source.token,
+                }
+            );
             if (!isUnmounted) setAllProjects(response.data);
         } catch (error) {
             if (!isUnmounted) {
@@ -52,7 +55,6 @@ const AllProjects = () => {
 
     return (
         <>
-            <Link to="/">Home</Link>
             <h2>Projects</h2>
             <button onClick={changeProjects}>All</button>
             <button onClick={changeProjects}>Web and UX</button>

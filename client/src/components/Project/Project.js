@@ -11,7 +11,7 @@ export const Project = ({ match }) => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/projects/p=${match.params.id}`,
+                `${process.env.REACT_APP_BASE_URL}/projects/p=${match.params.id}`,
                 {
                     cancelToken: source.token,
                 }
@@ -36,7 +36,7 @@ export const Project = ({ match }) => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/students/s=${project.studentId}`,
+                `${process.env.REACT_APP_BASE_URL}/students/s=${project.studentId}`,
                 {
                     cancelToken: source.token,
                 }
@@ -66,9 +66,10 @@ export const Project = ({ match }) => {
     }, [project]);
     return (
         <div>
-            <Link to="/">Home</Link>
-            {project ? <h3>{project.title}</h3> : ""}
-            {student ? <p>By: {student.name}</p> : ""}
+            <h3>{project.title}</h3>
+            <p>{project.course}</p>
+            <p>{project.duration}</p>
+            <p>By: {student.name}</p>
         </div>
     );
 };
