@@ -1,0 +1,22 @@
+@import '../../index.scss';
+
+.accountPage__banner {
+    height: 10vh;
+    background-color: $color-grey--light;
+}
+
+.accountPage__memberPhoto {
+    background-image: url('../../assets/avatar-placeholder.png');
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-top: -80px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
