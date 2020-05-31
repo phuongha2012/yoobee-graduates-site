@@ -3,10 +3,12 @@ import { useHistory } from 'react-router-dom';
 import './EditProfilePage.scss';
 import { UserContext } from '../../contexts/UserContext';
 import avatarPlaceholder from '../../assets/avatar-placeholder.png';
+import EditProfilePhoto from './EditProfilePhoto';
 
 const EditProfilePage = (props) => {
     const history = useHistory();
     const userContext = useContext(UserContext);
+    const [ onPhotoEdit, setOnPhotoEdit ] = useState(false);
     const [ user, setUser ] = useState({
         username: '',
         name: '',
@@ -26,7 +28,6 @@ const EditProfilePage = (props) => {
     }, []);
 
     useEffect(() => console.log(user));
-    useEffect(() => console.log(user.skills));
 
     const onLoad = () => {
         if (!userContext.state.user) {
@@ -69,6 +70,12 @@ const EditProfilePage = (props) => {
         })
     }
 
+    const togglePhotoEditMode = () => {
+        setOnPhotoEdit(!onPhotoEdit);
+    }
+
+    console.log(onPhotoEdit);
+
     return (
         
             <div 
@@ -84,8 +91,15 @@ const EditProfilePage = (props) => {
                 style={{backgroundImage: `url(${avatarPlaceholder})`}}>
             </div>
             <div className="text-center mt-2">
-                <button>Edit photo</button>
+                <button
+                    onClick={togglePhotoEditMode}>
+                    Edit photo
+                </button>
             </div> 
+            {onPhotoEdit 
+                ? <EditProfilePhoto cancelHandler={togglePhotoEditMode}></EditProfilePhoto>
+                : ''
+            }
 
             <form 
                 className="mt-5">
