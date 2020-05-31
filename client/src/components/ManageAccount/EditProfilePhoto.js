@@ -14,9 +14,9 @@ const EditProfilePhoto = (props) => {
         formData.append('profilePhoto', file);
         formData.append('profilePhotoUrl', url);
 
-        console.log(formData.get('profilePhotoUrl'));
-        console.log(formData.get('profilePhoto'));
-        console.log(file);
+        // console.log(formData.get('profilePhotoUrl'));
+        // console.log(formData.get('profilePhoto'));
+        // console.log(file);
     }
 
     return (

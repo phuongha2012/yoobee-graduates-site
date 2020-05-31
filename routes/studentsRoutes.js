@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
-// const upload = require('../middlewares/multer');
+const upload = require('../middlewares/multer');
 
 const Student = require("../models/Student.js");
 
@@ -111,4 +111,24 @@ module.exports = (app) => {
         });
     });
     // login student
+
+    // change profile photo
+    app.patch('/members/:id/photo/update/', upload.single('profilePhoto'), (req, res, next) => {
+        const _memberId = req.params.id;
+
+        let newPhoto = req.file ? req.file.path : req.body.profilePhotoUrl;
+
+        let updatedInfo = { photoUrl: newPhoto };
+
+        Member.findByIdAndUpdate(_memberId, 
+                                            { $set: updatedInfo },
+                                            { useFindAndModify: false, upsert: true, new: true },
+                                            ( err, result ) => {
+                                                                if (err) res.send(err);
+                                                                res.send(result);
+                                            })
+                .catch(err => console.log(err));
+    })
+    // change profile photo
+
 }; // close export module
