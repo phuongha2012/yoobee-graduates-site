@@ -79,7 +79,7 @@ const EditProfilePage = (props) => {
     return (
         
             <div 
-            className="col-lg-8 col-md-10 col-sm-10 mx-auto">
+                className="col-lg-8 col-md-10 col-sm-10 mx-auto">
             <h2 
                 className="text-center mb-5 pt-5">
                 Edit Profile
@@ -88,9 +88,13 @@ const EditProfilePage = (props) => {
                 className="accountPage__banner"></div>
             <div 
                 className="accountPage__memberPhoto"
-                style={{backgroundImage: `url(${avatarPlaceholder})`}}>
+                style={
+                        user.photoUrl 
+                        ? {backgroundImage: `url(${user.photoUrl})`}
+                        : {backgroundImage: `url(${avatarPlaceholder})`}}>
             </div>
-            <div className="text-center mt-2">
+            <div 
+                className="text-center mt-2">
                 <button
                     onClick={togglePhotoEditMode}>
                     Edit photo
