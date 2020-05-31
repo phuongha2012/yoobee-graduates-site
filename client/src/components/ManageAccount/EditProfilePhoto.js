@@ -1,18 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 
 const EditProfilePhoto = (props) => {
     const userContext = useContext(UserContext);
+    const [file, setFile] = useState('');
+    const [url, setUrl] = useState('')
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.profilePhotoUrl.value)
 
         let formData = new FormData();
 
-        formData.append('profilePhotoUrl', e.target.profilePhotoUrl.value);
+        formData.append('profilePhoto', file);
+        formData.append('profilePhotoUrl', url);
 
         console.log(formData.get('profilePhotoUrl'));
+        console.log(formData.get('profilePhoto'));
+        console.log(file);
     }
 
     return (
@@ -27,6 +31,7 @@ const EditProfilePhoto = (props) => {
                         type="file" 
                         name="profilePhoto" 
                         class="form-control-file" 
+                        onChange={(e) => setFile(e.target.files)}
                     />
                     <small>
                         PNG/JPG files under 500Mb and no space in name
@@ -38,6 +43,7 @@ const EditProfilePhoto = (props) => {
                         class="form-control" 
                         name="profilePhotoUrl" 
                         placeholder="Or enter photo's url" 
+                        onChange={(e) => setUrl(e.target.value)}
                     />
                 </div>
             </div>
