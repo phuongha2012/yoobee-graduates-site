@@ -1,10 +1,67 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './EditProfilePage.scss';
+import { UserContext } from '../../contexts/UserContext';
 import avatarPlaceholder from '../../assets/avatar-placeholder.png';
 
-const EditProfilePage = () => {
+const EditProfilePage = (props) => {
+    const history = useHistory();
+    const userContext = useContext(UserContext);
+    const [ user, setUser ] = useState({
+        username: '',
+        name: '',
+        email: '',
+        siteUrl: '',
+        course: '',
+        blurb: '',
+        skills: [],
+        github: '',
+        behance: '',
+        linkedIn: '',
+        instagram: ''
+    });
+
+    useEffect(() => {
+        onLoad();
+    }, []);
+
+    useEffect(() => console.log(user));
+
+    const onLoad = () => {
+        if (!userContext.state.user) {
+            history.push('/login');
+        } else {
+            setUser(userContext.state.user)
+        }
+    }
+
+    const onTextInputChange = (e) => {
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const onCheckboxChecked = (e) => {
+        setUser({
+            ...user,
+            skills: [
+                ...user.skills,
+                e.target.value
+            ]
+        })
+    }
+
+    const onSelectHandler = (e) => {
+        setUser({
+            ...user,
+            course: e.target.value
+        })
+    }
+
     return (
-        <div 
+        
+            <div 
             className="col-lg-8 col-md-10 col-sm-10 mx-auto">
             <h2 
                 className="text-center mb-5 pt-5">
@@ -23,45 +80,63 @@ const EditProfilePage = () => {
             <form 
                 className="mt-5">
                 <div 
-                    class="form-row">
+                    className="form-row">
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>Full Name</label>
                         <input 
                             type="text" 
-                            class="form-control" />
+                            className="form-control"
+                            name="name"
+                            value={user.name} 
+                            onChange={onTextInputChange}
+                        />
                     </div>
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>Username</label>
                         <input 
                             type="text" 
-                            class="form-control" />
+                            className="form-control"
+                            name="username"
+                            value={user.username}
+                            onChange={onTextInputChange}  
+                        />
                     </div>
                 </div>
                 <div 
-                    class="form-row">
+                    className="form-row">
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>Email</label>
                         <input 
-                            type="email" 
-                            class="form-control" />
+                            type="email"
+                            name="email" 
+                            className="form-control"
+                            value={user.email} 
+                            onChange={onTextInputChange}
+                        />
                     </div>
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>Portfolio Link</label>
                         <input 
                             type="text" 
-                            class="form-control" />
+                            name="siteUrl"
+                            className="form-control"
+                            value={user.siteUrl} 
+                            onChange={onTextInputChange}
+                        />
                     </div>
                 </div>
                 <label 
-                    class="my-1 mr-2">
+                    className="my-1 mr-2">
                         Course
                 </label>
                 <select 
-                    class="custom-select my-1 mr-sm-2">
+                    className="custom-select my-1 mr-sm-2"
+                    value={user.course}
+                    onChange={onSelectHandler}>
                     <option 
                         selected>
                             Choose...
@@ -87,11 +162,20 @@ const EditProfilePage = () => {
                         Level 7 Diploma in Advanced 3D Production
                     </option>
                 </select>
-                <div class="form-row">
+                <div className="form-row">
                     <div 
-                        class="form-group col">
-                        <label class="mt-3 mb-2 mr-2">Blurb, include your career inspiration</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        className="form-group col">
+                        <label 
+                            className="mt-3 mb-2 mr-2">
+                            Blurb, include your career inspiration
+                        </label>
+                        <textarea 
+                            className="form-control" 
+                            rows="3"
+                            value={user.blurb} 
+                            onChange={onTextInputChange}
+                        >   
+                        </textarea>
                     </div>
                 </div>
                 <h4 
@@ -99,54 +183,62 @@ const EditProfilePage = () => {
                     Highlighted skills
                 </h4>
                 <div className="form-row justify-content-between">
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Front-end web development')}
+                                value="Front-end web development"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Front-end web development
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Prototyping')}
+                                value="Prototyping"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Prototyping
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Illustrations')}
+                                value="Illustrations"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Illustrations
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Photography')}
+                                value="Photography"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Photography
                             </label>
                         </div>
@@ -154,218 +246,248 @@ const EditProfilePage = () => {
                     
                 </div>
                 <div className="form-row justify-content-between">
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Backend web development')}
+                                value="Backend web development"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Backend web development
                             </label>
                         </div>
                     </div>
                     
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes("Branding")}
+                                value="Branding"
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Branding
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
-                                type="checkbox" 
-                                value=""
+                                className="form-check-input" 
+                                checked={user.skills.includes('Packaging')}
+                                value="Packaging"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Packaging
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Image manipulation')}
+                                value="Image manipulation"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Image manipulation
                             </label>
                         </div>
                     </div>
                 </div>
                 <div className="form-row justify-content-between">
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('User experience design')}
+                                value="User experience design"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 User experience design
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Typography')}
+                                value="Typography"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Typography
                             </label>
                         </div>
                     </div>
-                   
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Video editing')}
+                                value="Video editing"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Video editing
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Animation (2D - After Effects)')}
+                                value="Animation (2D - After Effects)"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Animation (2D - After Effects)
                             </label>
                         </div>
                     </div>
                 </div>
                 <div className="form-row justify-content-between">
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Model production')}
+                                value="Model production"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Model production
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('3D Modelling')}
+                                value="3D Modelling"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 3D Modelling
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Data management')}
+                                value="Data management"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Data management
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('CG')}
+                                value="CG"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 CG
                             </label>
                         </div>
                     </div>
                 </div>
                 <div className="form-row justify-content-between">
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Commercial studio')}
+                                value="Commercial studio"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Commercial studio
                             </label>
                         </div>
                     </div> 
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('VFX Studio')}
+                                value="VFX Studio"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 VFX Studio
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Narrative Studio')}
+                                value="Narrative Studio"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Narrative Studio
                             </label>
                         </div>
                     </div>
-                    <div classname="col-sm-6 col-md-3">
-                        <div class="form-check">
+                    <div className="col-sm-6 col-md-3">
+                        <div className="form-check">
                             <input 
-                                class="form-check-input" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                value=""
+                                checked={user.skills.includes('Production Studio')}
+                                value="Production Studio"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
-                                class="form-check-label">
+                                className="form-check-label">
                                 Production Studio
                             </label>
                         </div>
@@ -373,34 +495,50 @@ const EditProfilePage = () => {
                 </div>
                 <h4 className="my-3">Social Media</h4>
                 <div 
-                    class="form-row">
+                    className="form-row">
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>Github</label>
                         <input 
                             type="text" 
-                            class="form-control" />
+                            name="github"
+                            className="form-control"
+                            value={user.github} 
+                            onChange={onTextInputChange} 
+                        />
                     </div>
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>Instagram</label>
                         <input 
                             type="text" 
-                            class="form-control" />
+                            name="instagram"
+                            className="form-control" 
+                            value={user.instagram} 
+                            onChange={onTextInputChange}
+                        />
                     </div>
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>LinkedIn</label>
                         <input 
                             type="text" 
-                            class="form-control" />
+                            name="linkedIn"
+                            className="form-control"
+                            value={user.linkedIn} 
+                            onChange={onTextInputChange} 
+                        />
                     </div>
                     <div 
-                        class="form-group col-md-6">
+                        className="form-group col-md-6">
                         <label>Behance</label>
                         <input 
                             type="text" 
-                            class="form-control" />
+                            name="behance"
+                            className="form-control" 
+                            value={user.behance} 
+                            onChange={onTextInputChange}
+                        />
                     </div>
                 </div>
                 <div
@@ -409,6 +547,7 @@ const EditProfilePage = () => {
                 </div>
             </form>
         </div>
+        
     )
 }
 
