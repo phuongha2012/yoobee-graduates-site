@@ -26,6 +26,7 @@ const EditProfilePage = (props) => {
     }, []);
 
     useEffect(() => console.log(user));
+    useEffect(() => console.log(user.skills));
 
     const onLoad = () => {
         if (!userContext.state.user) {
@@ -43,13 +44,22 @@ const EditProfilePage = (props) => {
     }
 
     const onCheckboxChecked = (e) => {
+        let skills = [...user.skills];
+        let updatedSkills;
+
+        if (user.skills.includes(e.target.value)) {
+            // remove item if skills array contains this value
+            updatedSkills = skills.filter(skill => skill !== e.target.value);
+        } else {
+            // add item if skills array does not contain this value
+            skills.push(e.target.value);
+            updatedSkills = [...skills];
+        }
+
         setUser({
             ...user,
-            skills: [
-                ...user.skills,
-                e.target.value
-            ]
-        })
+            skills: updatedSkills
+        })        
     }
 
     const onSelectHandler = (e) => {
@@ -269,6 +279,7 @@ const EditProfilePage = (props) => {
                                 type="checkbox" 
                                 checked={user.skills.includes("Branding")}
                                 value="Branding"
+                                onChange={onCheckboxChecked}
                             />
                             <label 
                                 className="form-check-label">
@@ -280,6 +291,7 @@ const EditProfilePage = (props) => {
                         <div className="form-check">
                             <input 
                                 className="form-check-input" 
+                                type="checkbox"
                                 checked={user.skills.includes('Packaging')}
                                 value="Packaging"
                                 onChange={onCheckboxChecked}
