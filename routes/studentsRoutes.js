@@ -40,33 +40,34 @@ module.exports = (app) => {
 
     // update student
     app.patch("/students/s=:id", (req, res) => {
-        Student.findById(req.params.id, (err, result) => {
-            const updated = {
-                username: req.body.username,
-                name: req.body.name,
-                email: req.body.email,
-                siteUrl: req.body.siteUrl,
-                course: req.body.course,
-                blurb: req.body.blurb,
-                $push: {
-                    skills: { $each: req.body.skills },
-                }, //array
-                careermotivation: req.body.careermotivation,
-                $push: {
-                    projects: { $each: req.body.projects },
-                }, // array
-                github: req.body.github,
-                behance: req.body.behance,
-                linkedIn: req.body.linkedIn,
-                instagram: req.body.instagram,
-            };
-            Student.updateOne({ _id: req.params.id }, updated)
-                .then((result) => {
-                    res.send(result);
+        const _id = req.params.id;
+    
+        const updated = {
+            username: req.body.username,
+            name: req.body.name,
+            email: req.body.email,
+            siteUrl: req.body.siteUrl,
+            course: req.body.course,
+            blurb: req.body.blurb,
+            skills: req.body.skills,
+            careermotivation: req.body.careermotivation,
+            projects: req.body.projects,
+            github: req.body.github,
+            behance: req.body.behance,
+            linkedIn: req.body.linkedIn,
+            instagram: req.body.instagram,
+        };
+
+            Student.findByIdAndUpdate(_id, 
+                { $set: updated }, 
+                { useFindAndModify: false, upsert: true, new: true },
+                ( err, result ) => {
+                                    if (err) res.send(err);
+                                    res.send(result);
                 })
-                .catch((err) => res.send(err));
-        }).catch((err) => res.send("Not found"));
-    });
+                    .catch(err => console.log(err));
+    
+    });              
     // update student
 
     //register student

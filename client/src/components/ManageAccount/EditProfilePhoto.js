@@ -10,12 +10,10 @@ const EditProfilePhoto = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // generate formData object to send file
         let formData = new FormData();
-
         formData.append('profilePhoto', file);
         formData.append('profilePhotoUrl', url);
-
-        console.log(userContext.state.user.photoUrl);
 
         axios
             .patch(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id + '/photo/update/',
@@ -25,7 +23,6 @@ const EditProfilePhoto = (props) => {
                 userContext.setProfilePhoto(response.data.photoUrl);
             })
             .finally(() => {
-                console.log(userContext.state.user.photoUrl);
                 props.cancelHandler(); 
             })   
     }

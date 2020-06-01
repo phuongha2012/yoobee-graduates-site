@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import './EditProfilePage.scss';
 import { UserContext } from '../../contexts/UserContext';
 import avatarPlaceholder from '../../assets/avatar-placeholder.png';
@@ -25,11 +26,7 @@ const EditProfilePage = (props) => {
 
     useEffect(() => {
         onLoad();
-    }, [userContext.state.user]);
-
-    useEffect(() => {
-        console.log(userContext.state.user);
-    })
+    }, [userContext.state.user]); //trigger reload if userContext changes
 
     const onLoad = () => {
         if (!userContext.state.user) {
@@ -47,6 +44,7 @@ const EditProfilePage = (props) => {
     }
 
     const onCheckboxChecked = (e) => {
+
         let skills = [...user.skills];
         let updatedSkills;
 
@@ -62,7 +60,7 @@ const EditProfilePage = (props) => {
         setUser({
             ...user,
             skills: updatedSkills
-        })        
+        })    
     }
 
     const onSelectHandler = (e) => {
@@ -74,6 +72,17 @@ const EditProfilePage = (props) => {
 
     const togglePhotoEditMode = () => {
         setOnPhotoEdit(!onPhotoEdit);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        axios
+            .patch(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id,
+                user)
+            .then(response => {
+                userContext.setAuthenticatedUser(response.data);
+            })
     }
 
     return (
@@ -106,7 +115,8 @@ const EditProfilePage = (props) => {
             }
 
             <form 
-                className="mt-5">
+                className="mt-5"
+                onSubmit={handleSubmit}>
                 <div 
                     className="form-row">
                     <div 
@@ -573,7 +583,7 @@ const EditProfilePage = (props) => {
                 </div>
                 <div
                     className="text-center mt-3">
-                    <button>Submit</button>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
         </div>
