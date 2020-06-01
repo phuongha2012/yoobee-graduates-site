@@ -25,9 +25,11 @@ const EditProfilePage = (props) => {
 
     useEffect(() => {
         onLoad();
-    }, []);
+    }, [userContext.state.user]);
 
-    useEffect(() => console.log(user));
+    useEffect(() => {
+        console.log(userContext.state.user);
+    })
 
     const onLoad = () => {
         if (!userContext.state.user) {
@@ -73,8 +75,6 @@ const EditProfilePage = (props) => {
     const togglePhotoEditMode = () => {
         setOnPhotoEdit(!onPhotoEdit);
     }
-
-    console.log(onPhotoEdit);
 
     return (
         

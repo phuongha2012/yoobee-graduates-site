@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../contexts/UserContext';
 
@@ -9,26 +9,27 @@ const EditProfilePhoto = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('handle submit called');
 
         let formData = new FormData();
 
         formData.append('profilePhoto', file);
         formData.append('profilePhotoUrl', url);
 
-        console.log(formData.get('profilePhoto'));
-        console.log(userContext);
+        console.log(userContext.state.user.photoUrl);
 
         axios
             .patch(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id + '/photo/update/',
                 formData,
                 { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } )
             .then((response) => {
-                userContext.setAuthenthenticatedUser(response.data.photoUrl);
-                props.cancelHandler();
+                userContext.setProfilePhoto(response.data.photoUrl);
             })
-        
+            .finally(() => {
+                console.log(userContext.state.user.photoUrl);
+                props.cancelHandler(); 
+            })   
     }
+
 
     return (
         <form
