@@ -24,9 +24,11 @@ db.once("open", function () {
 // APP SET-UPS
 app.use((req, res, next) => {
     console.log(`${req.method} request for ${req.url}`);
+    console.log(server.address().address);
     next();
 });
 
+app.use(express.static('client'));
 app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -50,4 +52,6 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}!`));
+const server = app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!`);
+});

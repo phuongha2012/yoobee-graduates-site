@@ -114,11 +114,10 @@ module.exports = (app) => {
 
     // change profile photo
     app.patch('/students/s=:id/photo/update/', upload.single('profilePhoto'), (req, res, next) => {
-        console.log(req.file);
-        console.log(req.body.profilePhotoUrl);
         const _studentId = req.params.id;
+        const base_url = 'http://' + req.headers.host + '/';
 
-        let newPhoto = req.file ? req.file.path : req.body.profilePhotoUrl;
+        let newPhoto = req.file ? (base_url + req.file.path) : req.body.profilePhotoUrl;
 
         let updatedInfo = { photoUrl: newPhoto };
 
