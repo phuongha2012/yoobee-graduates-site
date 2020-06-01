@@ -113,14 +113,16 @@ module.exports = (app) => {
     // login student
 
     // change profile photo
-    app.patch('/members/:id/photo/update/', upload.single('profilePhoto'), (req, res, next) => {
-        const _memberId = req.params.id;
+    app.patch('/students/s=:id/photo/update/', upload.single('profilePhoto'), (req, res, next) => {
+        console.log(req.file);
+        console.log(req.body.profilePhotoUrl);
+        const _studentId = req.params.id;
 
         let newPhoto = req.file ? req.file.path : req.body.profilePhotoUrl;
 
         let updatedInfo = { photoUrl: newPhoto };
 
-        Member.findByIdAndUpdate(_memberId, 
+        Student.findByIdAndUpdate(_studentId, 
                                             { $set: updatedInfo },
                                             { useFindAndModify: false, upsert: true, new: true },
                                             ( err, result ) => {

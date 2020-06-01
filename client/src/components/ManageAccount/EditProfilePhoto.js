@@ -1,28 +1,39 @@
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
 import { UserContext } from '../../contexts/UserContext';
 
 const EditProfilePhoto = (props) => {
     const userContext = useContext(UserContext);
     const [file, setFile] = useState('');
-    const [url, setUrl] = useState('')
+    const [url, setUrl] = useState('');
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('handle submit called');
 
         let formData = new FormData();
 
         formData.append('profilePhoto', file);
         formData.append('profilePhotoUrl', url);
 
-        // console.log(formData.get('profilePhotoUrl'));
-        // console.log(formData.get('profilePhoto'));
-        // console.log(file);
+        console.log(formData.get('profilePhoto'));
+        console.log(userContext);
+
+        axios
+            .patch(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id + '/photo/update/',
+                formData,
+                { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } )
+            .then((response) => {
+                userContext.setAuthenthenticatedUser(response.data.photoUrl);
+                props.cancelHandler();
+            })
+        
     }
 
     return (
         <form
             id="editProfilePhotoForm" 
-            enctype="multipart/form-data" 
+            encType="multipart/form-data" 
             className="mt-5"
             onSubmit={handleSubmit}>
             <div class="form-row mb-3">
@@ -31,7 +42,7 @@ const EditProfilePhoto = (props) => {
                         type="file" 
                         name="profilePhoto" 
                         class="form-control-file" 
-                        onChange={(e) => setFile(e.target.files)}
+                        onChange={(e) => setFile(e.target.files[0])}
                     />
                     <small>
                         PNG/JPG files under 500Mb and no space in name

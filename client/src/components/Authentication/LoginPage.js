@@ -14,7 +14,8 @@ const LoginPage = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
-            .post(process.env.REACT_APP_BASE_URL + '/login', { username, password })
+            .post(process.env.REACT_APP_BASE_URL + '/login', 
+                { username, password })
             .then((response) => {
                 if (
                     response.data === "Student not found" ||
