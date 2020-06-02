@@ -72,6 +72,12 @@ export const Student = ({ match }) => {
             <a href={student.linkedIn}>LinkedIn</a>{" "}
             <a href={student.siteUrl}>Portfolio</a>
             <p>Blurb: {student.blurb}</p>
+            <p>Skils:</p>
+            <ul>
+                {student.skills
+                    ? student.skills.map((skill) => <li>{skill}</li>)
+                    : ""}
+            </ul>
             <h4>Projects</h4>
             {projects ? (
                 projects.length > 0 ? (

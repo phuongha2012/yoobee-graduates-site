@@ -8,6 +8,7 @@ const AllStudents = () => {
     const [allStudents, setAllStudents] = useState([]);
     const [showStudents, setShowStudents] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+    const [activeItem, setActiveItem] = useState("0");
 
     useEffect(() => {
         getData();
@@ -43,6 +44,7 @@ const AllStudents = () => {
     };
 
     const changeStudents = (e) => {
+        const index = e.target.attributes[1].value;
         const target = e.target.innerText;
         if (target === "All") setShowStudents(allStudents);
         else {
@@ -51,14 +53,68 @@ const AllStudents = () => {
             });
             setShowStudents(studentsClicked);
         }
+        setActive(index);
+    };
+
+    const setActive = (i) => {
+        setActiveItem(i);
     };
 
     return (
         <>
-            <h2>Students</h2>
-            <button onClick={changeStudents}>All</button>
-            <button onClick={changeStudents}>Web and UX Design</button>
-            <button onClick={changeStudents}>Digital Design</button>
+            <h2 className="jumbotron bg-transparent text-center">Students</h2>
+            <ul className="sorting-nav">
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "0" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="0"
+                    onClick={changeStudents}
+                >
+                    All
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "1" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="1"
+                    onClick={changeStudents}
+                >
+                    Web and UX Design
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "2" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="2"
+                    onClick={changeStudents}
+                >
+                    Digital Design
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "3" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="3"
+                    onClick={changeStudents}
+                >
+                    3D Production
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "4" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="4"
+                    onClick={changeStudents}
+                >
+                    Screen Production
+                </li>
+            </ul>
             <StudentCard students={showStudents} />
         </>
     );

@@ -1,8 +1,19 @@
 @import "../../index.scss";
 
-.testClass {
-    color: red;
+.page-menu {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
 
-    background-color: $color-grey--light;
-    height: 400px;
+.page-menu-div {
+    margin: 0 3rem;
+    background: #ccc;
+    padding: 1rem 1.5rem;
+    border-radius: 10rem;
+    font-size: 1.6rem;
+    a {
+        color: #000;
+        text-decoration: none;
+    }
 }

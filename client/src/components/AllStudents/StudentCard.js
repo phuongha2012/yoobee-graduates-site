@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./AllStudents.scss";
 
 export const StudentCard = ({ students }) => {
     return (
-        <div className="row">
+        <div className="card-grid container">
             {students
                 ? students.map((student) => (
-                      <div className="col-3" key={student._id}>
+                      <div className="card-grid-card" key={student._id}>
                           {student.name ? (
                               <p>{student.name}</p>
                           ) : (
                               <p>{student.username}</p>
                           )}
+                          <p>{student.course}</p>
 
                           <Link to={`/students/${student._id}`}>
                               View my page

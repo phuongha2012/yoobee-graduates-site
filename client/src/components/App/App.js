@@ -11,6 +11,7 @@ import { Student } from "../Student/Student";
 import AllProjects from "../AllProjects/AllProjects";
 import { Project } from "../Project/Project";
 import NavBar from "../NavBar/NavBar";
+import { Footer } from "../Footer/Footer";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/projects" exact component={AllProjects} />
                     <Route path="/projects/:id" component={Project} />
                 </Switch>
+                <Route path="/" component={Footer} />
             </BrowserRouter>
         </UserContextProvider>
     );

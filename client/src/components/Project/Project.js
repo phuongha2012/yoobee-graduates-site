@@ -69,7 +69,9 @@ export const Project = ({ match }) => {
             <h3>{project.title}</h3>
             <p>{project.course}</p>
             <p>{project.duration}</p>
-            <p>By: {student.name}</p>
+            <p>
+                By: <Link to={`/students/${student._id}`}>{student.name}</Link>
+            </p>
         </div>
     );
 };
