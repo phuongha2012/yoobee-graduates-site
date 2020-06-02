@@ -24,8 +24,15 @@ const UserContextProvider = ({ children }) => {
         })
     }
 
+    function setProfilePhoto(url) {
+        dispatch({
+            type: 'SET_PROFILE_PHOTO',
+            payload: url
+        })
+    }
+
     return (
-        <UserContext.Provider value={ {state, setAuthenticatedUser, logout } }>
+        <UserContext.Provider value={ {state, setAuthenticatedUser, logout, setProfilePhoto } }>
             {children}
         </UserContext.Provider>
     )

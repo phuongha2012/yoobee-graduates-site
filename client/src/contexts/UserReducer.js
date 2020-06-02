@@ -10,6 +10,14 @@ const UserReducer = (state, action) => {
                 ...state,
                 user: null
             }
+        case 'SET_PROFILE_PHOTO':
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    photoUrl: action.payload
+                }
+            }
         default:
             return state;
     }

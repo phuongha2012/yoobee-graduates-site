@@ -14,7 +14,8 @@ const LoginPage = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
-            .post(process.env.REACT_APP_BASE_URL + '/login', { username, password })
+            .post(process.env.REACT_APP_BASE_URL + '/login', 
+                { username, password })
             .then((response) => {
                 if (
                     response.data === "Student not found" ||
@@ -49,7 +50,7 @@ const LoginPage = () => {
                 </label>
                 <input 
                     type="text" 
-                    className="form-control rounded"
+                    className="form-control"
                     value={username}
                     onChange={onInputChange(setUsername)}
                     required
@@ -62,7 +63,7 @@ const LoginPage = () => {
                 </label>
                 <input 
                     type="password" 
-                    className="form-control rounded" 
+                    className="form-control" 
                     autoComplete="new-password" 
                     value={password}
                     onChange={onInputChange(setPassword)}
