@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import FlipMove from "react-flip-move";
 import { ProjectCard } from "./ProjectCard";
+import "../AllStudents/AllStudents.scss";
 
 const AllProjects = () => {
     const [allProjects, setAllProjects] = useState([]);
     const [showProjects, setShowProjects] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+    const [activeItem, setActiveItem] = useState("0");
 
     useEffect(() => {
         getData();
@@ -20,9 +22,12 @@ const AllProjects = () => {
     const getData = async () => {
         let source = axios.CancelToken.source();
         try {
-            const response = await axios.get("http://localhost:5000/projects", {
-                cancelToken: source.token,
-            });
+            const response = await axios.get(
+                process.env.REACT_APP_BASE_URL + "/projects",
+                {
+                    cancelToken: source.token,
+                }
+            );
             if (!isUnmounted) setAllProjects(response.data);
         } catch (error) {
             if (!isUnmounted) {
@@ -40,6 +45,7 @@ const AllProjects = () => {
     };
 
     const changeProjects = (e) => {
+        const index = e.target.attributes[1].value;
         const target = e.target.innerText;
         if (target === "All") setShowProjects(allProjects);
         else {
@@ -48,15 +54,68 @@ const AllProjects = () => {
             });
             setShowProjects(projectsClicked);
         }
+        setActive(index);
+    };
+
+    const setActive = (i) => {
+        setActiveItem(i);
     };
 
     return (
         <>
-            <Link to="/">Home</Link>
-            <h2>Projects</h2>
-            <button onClick={changeProjects}>All</button>
-            <button onClick={changeProjects}>Web and UX</button>
-            <button onClick={changeProjects}>Digital Design</button>
+            <h2 className="jumbotron bg-transparent text-center">Projects</h2>
+            <ul className="sorting-nav">
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "0" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="0"
+                    onClick={changeProjects}
+                >
+                    All
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "1" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="1"
+                    onClick={changeProjects}
+                >
+                    Web and UX Design
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "2" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="2"
+                    onClick={changeProjects}
+                >
+                    Digital Design
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "3" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="3"
+                    onClick={changeProjects}
+                >
+                    3D Production
+                </li>
+                <li
+                    className={
+                        "sorting-nav-item " +
+                        (activeItem === "4" ? "sorting-nav-item--active" : "")
+                    }
+                    data-index="4"
+                    onClick={changeProjects}
+                >
+                    Screen Production
+                </li>
+            </ul>
             <ProjectCard projects={showProjects} />
         </>
     );

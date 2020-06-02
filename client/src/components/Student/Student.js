@@ -12,7 +12,7 @@ export const Student = ({ match }) => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/students/s=${match.params.id}`,
+                `${process.env.REACT_APP_BASE_URL}/students/s=${match.params.id}`,
                 {
                     cancelToken: source.token,
                 }
@@ -37,7 +37,7 @@ export const Student = ({ match }) => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/projects/s=${match.params.id}`,
+                `${process.env.REACT_APP_BASE_URL}/projects/s=${match.params.id}`,
                 {
                     cancelToken: source.token,
                 }
@@ -65,8 +65,19 @@ export const Student = ({ match }) => {
 
     return (
         <div>
-            <Link to="/">Home</Link>
-            {student ? <h3>{student.name}</h3> : ""}
+            <h3>{student.name}</h3>
+            <p>{student.course}</p>
+            <p>{student.email}</p>
+            <a href={student.github}>GitHub</a>{" "}
+            <a href={student.linkedIn}>LinkedIn</a>{" "}
+            <a href={student.siteUrl}>Portfolio</a>
+            <p>Blurb: {student.blurb}</p>
+            <p>Skils:</p>
+            <ul>
+                {student.skills
+                    ? student.skills.map((skill) => <li>{skill}</li>)
+                    : ""}
+            </ul>
             <h4>Projects</h4>
             {projects ? (
                 projects.length > 0 ? (
