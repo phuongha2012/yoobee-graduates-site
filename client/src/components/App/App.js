@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { UserContext, UserContextProvider } from "../../contexts/UserContext";
 import Home from "../Home/Home";
@@ -29,7 +30,12 @@ function App() {
                     <Route path="/projects" exact component={AllProjects} />
                     <Route path="/projects/:id" component={Project} />
                 </Switch>
-                <Route path="/" component={Footer} />
+                <Route
+                    path="/"
+                    render={(props) =>
+                        props.location.pathname !== "/" && <Footer />
+                    }
+                />
             </BrowserRouter>
         </UserContextProvider>
     );
