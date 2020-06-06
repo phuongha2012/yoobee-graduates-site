@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import FlipMove from "react-flip-move";
 import { ProjectCard } from "./ProjectCard";
 import "../AllStudents/AllStudents.scss";
 
@@ -45,12 +43,13 @@ const AllProjects = () => {
     };
 
     const changeProjects = (e) => {
-        const index = e.target.attributes[1].value;
         const target = e.target.innerText;
+        const index = e.target.attributes[1].value;
+        const course = e.target.attributes[2].value;
         if (target === "All") setShowProjects(allProjects);
         else {
             const projectsClicked = allProjects.filter((project) => {
-                return project.course === target;
+                return project.course === course;
             });
             setShowProjects(projectsClicked);
         }
@@ -71,6 +70,7 @@ const AllProjects = () => {
                         (activeItem === "0" ? "sorting-nav-item--active" : "")
                     }
                     data-index="0"
+                    data-course="All"
                     onClick={changeProjects}
                 >
                     All
@@ -81,6 +81,7 @@ const AllProjects = () => {
                         (activeItem === "1" ? "sorting-nav-item--active" : "")
                     }
                     data-index="1"
+                    data-course="Level 6 Web Development and UX Design"
                     onClick={changeProjects}
                 >
                     Web and UX Design
@@ -91,6 +92,7 @@ const AllProjects = () => {
                         (activeItem === "2" ? "sorting-nav-item--active" : "")
                     }
                     data-index="2"
+                    data-course="Level 6 Creative Digital Design"
                     onClick={changeProjects}
                 >
                     Digital Design
@@ -101,6 +103,7 @@ const AllProjects = () => {
                         (activeItem === "3" ? "sorting-nav-item--active" : "")
                     }
                     data-index="3"
+                    data-course="Level 6 3D Production"
                     onClick={changeProjects}
                 >
                     3D Production
@@ -111,6 +114,7 @@ const AllProjects = () => {
                         (activeItem === "4" ? "sorting-nav-item--active" : "")
                     }
                     data-index="4"
+                    data-course="Level 6 Screen Production"
                     onClick={changeProjects}
                 >
                     Screen Production
