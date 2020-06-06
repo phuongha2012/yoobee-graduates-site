@@ -6,6 +6,7 @@ export const Project = ({ match }) => {
     const [project, setProject] = useState([]);
     const [student, setStudent] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+    const { title, course, duration } = project;
 
     const getProject = async () => {
         let source = axios.CancelToken.source();
@@ -65,10 +66,10 @@ export const Project = ({ match }) => {
         getStudent();
     }, [project]);
     return (
-        <div>
-            <h3>{project.title}</h3>
-            <p>{project.course}</p>
-            <p>{project.duration}</p>
+        <div className="container">
+            <h3>{title}</h3>
+            <p>{course}</p>
+            <p>{duration}</p>
             <p>
                 By: <Link to={`/students/${student._id}`}>{student.name}</Link>
             </p>

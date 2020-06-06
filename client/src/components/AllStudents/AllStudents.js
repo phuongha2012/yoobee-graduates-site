@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "./AllStudents.scss";
 import { StudentCard } from "./StudentCard";
@@ -9,6 +8,7 @@ const AllStudents = () => {
     const [showStudents, setShowStudents] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
     const [activeItem, setActiveItem] = useState("0");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         getData();
@@ -19,6 +19,7 @@ const AllStudents = () => {
     }, [allStudents]);
 
     const getData = async () => {
+        setIsLoading(true);
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
@@ -27,7 +28,10 @@ const AllStudents = () => {
                     cancelToken: source.token,
                 }
             );
-            if (!isUnmounted) setAllStudents(response.data);
+            if (!isUnmounted) {
+                setAllStudents(response.data);
+                setIsLoading(false);
+            }
         } catch (error) {
             if (!isUnmounted) {
                 if (axios.isCancel(error)) {
@@ -44,12 +48,13 @@ const AllStudents = () => {
     };
 
     const changeStudents = (e) => {
-        const index = e.target.attributes[1].value;
         const target = e.target.innerText;
+        const index = e.target.attributes[1].value;
+        const course = e.target.attributes[2].value;
         if (target === "All") setShowStudents(allStudents);
         else {
             const studentsClicked = allStudents.filter((student) => {
-                return student.course === target;
+                return student.course === course;
             });
             setShowStudents(studentsClicked);
         }
@@ -70,6 +75,7 @@ const AllStudents = () => {
                         (activeItem === "0" ? "sorting-nav-item--active" : "")
                     }
                     data-index="0"
+                    data-course="All"
                     onClick={changeStudents}
                 >
                     All
@@ -80,6 +86,7 @@ const AllStudents = () => {
                         (activeItem === "1" ? "sorting-nav-item--active" : "")
                     }
                     data-index="1"
+                    data-course="Level 6 Web Development and UX Design"
                     onClick={changeStudents}
                 >
                     Web and UX Design
@@ -90,6 +97,7 @@ const AllStudents = () => {
                         (activeItem === "2" ? "sorting-nav-item--active" : "")
                     }
                     data-index="2"
+                    data-course="Level 6 Creative Digital Design"
                     onClick={changeStudents}
                 >
                     Digital Design
@@ -100,6 +108,7 @@ const AllStudents = () => {
                         (activeItem === "3" ? "sorting-nav-item--active" : "")
                     }
                     data-index="3"
+                    data-course="Level 6 3D Production"
                     onClick={changeStudents}
                 >
                     3D Production
@@ -110,12 +119,17 @@ const AllStudents = () => {
                         (activeItem === "4" ? "sorting-nav-item--active" : "")
                     }
                     data-index="4"
+                    data-course="Level 6 Screen Production"
                     onClick={changeStudents}
                 >
                     Screen Production
                 </li>
             </ul>
-            <StudentCard students={showStudents} />
+            {isLoading ? (
+                <p>Loading</p>
+            ) : (
+                <StudentCard students={showStudents} />
+            )}
         </>
     );
 };
