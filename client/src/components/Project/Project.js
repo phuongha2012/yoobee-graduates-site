@@ -6,12 +6,13 @@ export const Project = ({ match }) => {
     const [project, setProject] = useState([]);
     const [student, setStudent] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+    const { title, course, duration } = project;
 
     const getProject = async () => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/projects/p=${match.params.id}`,
+                `${process.env.REACT_APP_BASE_URL}/projects/p=${match.params.id}`,
                 {
                     cancelToken: source.token,
                 }
@@ -36,7 +37,7 @@ export const Project = ({ match }) => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/students/s=${project.studentId}`,
+                `${process.env.REACT_APP_BASE_URL}/students/s=${project.studentId}`,
                 {
                     cancelToken: source.token,
                 }
@@ -65,10 +66,13 @@ export const Project = ({ match }) => {
         getStudent();
     }, [project]);
     return (
-        <div>
-            <Link to="/">Home</Link>
-            {project ? <h3>{project.title}</h3> : ""}
-            {student ? <p>By: {student.name}</p> : ""}
+        <div className="container">
+            <h3>{title}</h3>
+            <p>{course}</p>
+            <p>{duration}</p>
+            <p>
+                By: <Link to={`/students/${student._id}`}>{student.name}</Link>
+            </p>
         </div>
     );
 };

@@ -1,8 +1,46 @@
 @import "../../index.scss";
 
-.testClass {
-    color: red;
+.home-wrapper {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 
-    background-color: $color-grey--light;
-    height: 400px;
+.page-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.page-menu-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background: #ccc;
+    font-size: 1.6rem;
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    &:hover {
+        background: rgba($color: #ededed, $alpha: 1);
+    }
+}
+
+.page-menu-div-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    .page-menu {
+        flex-direction: row;
+    }
 }

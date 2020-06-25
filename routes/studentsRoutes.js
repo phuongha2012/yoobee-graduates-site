@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
-const upload = require('../middlewares/multer');
+const upload = require("../middlewares/multer");
 
 const Student = require("../models/Student.js");
 
@@ -41,7 +41,7 @@ module.exports = (app) => {
     // update student
     app.patch("/students/s=:id", (req, res) => {
         const _id = req.params.id;
-    
+
         const updated = {
             username: req.body.username,
             name: req.body.name,
@@ -50,24 +50,22 @@ module.exports = (app) => {
             course: req.body.course,
             blurb: req.body.blurb,
             skills: req.body.skills,
-            careermotivation: req.body.careermotivation,
-            projects: req.body.projects,
             github: req.body.github,
             behance: req.body.behance,
             linkedIn: req.body.linkedIn,
             instagram: req.body.instagram,
         };
 
-            Student.findByIdAndUpdate(_id, 
-                { $set: updated }, 
-                { useFindAndModify: false, upsert: true, new: true },
-                ( err, result ) => {
-                                    if (err) res.send(err);
-                                    res.send(result);
-                })
-                    .catch(err => console.log(err));
-    
-    });              
+        Student.findByIdAndUpdate(
+            _id,
+            { $set: updated },
+            { useFindAndModify: false, upsert: true, new: true },
+            (err, result) => {
+                if (err) res.send(err);
+                res.send(result);
+            }
+        ).catch((err) => console.log(err));
+    });
     // update student
 
     //register student
@@ -75,16 +73,14 @@ module.exports = (app) => {
         const { username, email, password } = req.body;
         Student.findOne({ username }, (err, result) => {
             if (result) {
-                res.send(
-                    "Username taken. Try another one!"
-                );
+                res.send("Username taken. Try another one!");
             } else {
-                const hash = bcryptjs.hashSync(req.body.password);
+                const hash = bcryptjs.hashSync(password);
                 const student = new Student({
                     _id: new mongoose.Types.ObjectId(),
                     username,
                     password: hash,
-                    email
+                    email,
                 });
                 student
                     .save()
@@ -114,23 +110,29 @@ module.exports = (app) => {
     // login student
 
     // change profile photo
-    app.patch('/students/s=:id/photo/update/', upload.single('profilePhoto'), (req, res, next) => {
-        const _studentId = req.params.id;
-        const base_url = 'http://' + req.headers.host + '/';
+    app.patch(
+        "/students/s=:id/photo/update/",
+        upload.single("profilePhoto"),
+        (req, res, next) => {
+            const _studentId = req.params.id;
+            const base_url = "http://" + req.headers.host + "/";
 
-        let newPhoto = req.file ? (base_url + req.file.path) : req.body.profilePhotoUrl;
+            let newPhoto = req.file
+                ? base_url + req.file.path
+                : req.body.profilePhotoUrl;
 
-        let updatedInfo = { photoUrl: newPhoto };
+            let updatedInfo = { photoUrl: newPhoto };
 
-        Student.findByIdAndUpdate(_studentId, 
-                                            { $set: updatedInfo },
-                                            { useFindAndModify: false, upsert: true, new: true },
-                                            ( err, result ) => {
-                                                                if (err) res.send(err);
-                                                                res.send(result);
-                                            })
-                .catch(err => console.log(err));
-    })
+            Student.findByIdAndUpdate(
+                _studentId,
+                { $set: updatedInfo },
+                { useFindAndModify: false, upsert: true, new: true },
+                (err, result) => {
+                    if (err) res.send(err);
+                    res.send(result);
+                }
+            ).catch((err) => console.log(err));
+        }
+    );
     // change profile photo
-
 }; // close export module

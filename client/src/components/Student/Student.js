@@ -7,12 +7,22 @@ export const Student = ({ match }) => {
     const [student, setStudent] = useState([]);
     const [projects, setProjects] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+    const {
+        name,
+        course,
+        email,
+        github,
+        linkedIn,
+        siteUrl,
+        blurb,
+        skills,
+    } = student;
 
     const getStudent = async () => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/students/s=${match.params.id}`,
+                `${process.env.REACT_APP_BASE_URL}/students/s=${match.params.id}`,
                 {
                     cancelToken: source.token,
                 }
@@ -37,7 +47,7 @@ export const Student = ({ match }) => {
         let source = axios.CancelToken.source();
         try {
             const response = await axios.get(
-                `http://localhost:5000/projects/s=${match.params.id}`,
+                `${process.env.REACT_APP_BASE_URL}/projects/s=${match.params.id}`,
                 {
                     cancelToken: source.token,
                 }
@@ -64,9 +74,22 @@ export const Student = ({ match }) => {
     }, [match.params]);
 
     return (
-        <div>
-            <Link to="/">Home</Link>
-            {student ? <h3>{student.name}</h3> : ""}
+        <div className="container">
+            <h3>{name}</h3>
+            <p>{course}</p>
+            <p>{email}</p>
+            <a href={github} target="_blank">
+                GitHub
+            </a>{" "}
+            <a href={linkedIn} target="_blank">
+                LinkedIn
+            </a>{" "}
+            <a href={siteUrl} target="_blank">
+                Portfolio
+            </a>
+            <p>Blurb: {blurb}</p>
+            <p>Skills:</p>
+            <ul>{skills ? skills.map((skill) => <li>{skill}</li>) : ""}</ul>
             <h4>Projects</h4>
             {projects ? (
                 projects.length > 0 ? (

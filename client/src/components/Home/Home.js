@@ -4,25 +4,23 @@ import "./Home.scss";
 
 const Home = () => {
     return (
-        <>
-            <div className="testClass text-center">
-                <h1 className="text-danger my-auto">Welcome to our graduate site!</h1>
-            </div>
-            <div className="row">
-                <div className="col-6 col-md-3 text-center">
-                    <Link to="/students">Web and UX</Link>
+        <div className="home-wrapper">
+            {/* <h1 className="text-center text-danger my-auto">
+                Welcome to our graduate site!
+            </h1> */}
+            <div className="page-menu">
+                <div className="page-menu-div">
+                    <Link className="page-menu-div-inner" to="/students">
+                        Students
+                    </Link>
                 </div>
-                <div className="col-6 col-md-3 text-center">
-                    <Link to="/students">Creative Digital Design</Link>
-                </div>
-                <div className="col-6 col-md-3 text-center">
-                    <Link to="/projects">Projects</Link>
-                </div>
-                <div className="col-6 col-md-3 text-center">
-                    <Link to="/login">Login</Link>
+                <div className="page-menu-div">
+                    <Link className="page-menu-div-inner" to="/projects">
+                        Projects
+                    </Link>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { UserContextProvider } from "../../contexts/UserContext";
 import Home from "../Home/Home";
@@ -11,6 +12,7 @@ import { Student } from "../Student/Student";
 import AllProjects from "../AllProjects/AllProjects";
 import { Project } from "../Project/Project";
 import NavBar from "../NavBar/NavBar";
+import { Footer } from "../Footer/Footer";
 
 function App() {
     return (
@@ -28,6 +30,12 @@ function App() {
                     <Route path="/projects" exact component={AllProjects} />
                     <Route path="/projects/:id" component={Project} />
                 </Switch>
+                <Route
+                    path="/"
+                    render={(props) =>
+                        props.location.pathname !== "/" && <Footer />
+                    }
+                />
             </BrowserRouter>
         </UserContextProvider>
     );
