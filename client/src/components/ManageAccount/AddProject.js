@@ -29,6 +29,11 @@ const AddProject = (props) => {
     return (
         <div 
             className="col-lg-8 col-md-10 col-sm-10 mx-auto">
+            <h2 
+                className="text-center mb-5 pt-5">
+                Add a Project
+            </h2>
+
             Edit Photo Section
 
             <form
