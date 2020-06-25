@@ -210,6 +210,7 @@ const EditProfilePage = (props) => {
                         <textarea 
                             className="form-control" 
                             rows="3"
+                            name="blurb"
                             value={user.blurb} 
                             onChange={onTextInputChange}
                         >   
