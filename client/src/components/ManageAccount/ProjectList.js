@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import { Link } from "react-router-dom";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from './ProjectCard';
 
 const ProjectList = ({ projects }) => {
     let content;
@@ -29,5 +29,6 @@ const ProjectList = ({ projects }) => {
         </div>
     );
 };
+
 
 export default ProjectList;

@@ -22,8 +22,8 @@ const AccountPage = () => {
             setProjects(userContext.state.user.projects);
         }
     };
-    console.log(user);
-    useEffect(() => console.log("user projects are:", projects));
+
+    useEffect(() => console.log('user projects are:', projects));
 
     return (
         <div>

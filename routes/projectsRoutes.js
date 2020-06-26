@@ -103,6 +103,7 @@ module.exports = (app) => {
     // save uploaded photo and return file url
     app.post(
         "/projects/photo/getUrl",
+    app.post("/projects/photo/getUrl", 
         upload.single("projectPhoto"),
         (req, res) => {
             const base_url = "http://" + req.headers.host + "/";
