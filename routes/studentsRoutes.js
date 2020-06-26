@@ -3,6 +3,7 @@ const bcryptjs = require("bcryptjs");
 const upload = require("../middlewares/multer");
 
 const Student = require("../models/Student.js");
+const Project = require("../models/Project");
 
 module.exports = (app) => {
     //get all students
@@ -14,7 +15,19 @@ module.exports = (app) => {
     // get all students
 
     //get student by ID
-    app.get("/students/s=:id", (req, res) => {
+    app.get("/students/s=:id", async (req, res) => {
+        let query = await Student.aggregate([
+            { $match: { _id: mongoose.Types.ObjectId(req.params.id)}},
+            { $lookup: {
+                from: "projects",
+                localField: "projects",
+                foreignField: "_id",
+                as: "projectsDetail"
+            }}
+        ]);
+
+        res.send(query);
+
         Student.findOne({ _id: req.params.id }, (err, result) => {
             if (result) {
                 res.send(result);
@@ -95,10 +108,23 @@ module.exports = (app) => {
 
     //login student
     app.post("/login", (req, res) => {
-        Student.findOne({ username: req.body.username }, (err, result) => {
+        Student.findOne({ username: req.body.username }, async (err, result) => {
             if (result) {
+                console.log(result);
                 if (bcryptjs.compareSync(req.body.password, result.password)) {
-                    res.send(result);
+                    // res.send(result);
+                    let query = await Student.aggregate([
+                        { $match: { _id: mongoose.Types.ObjectId(result._id)}},
+                        { $lookup: {
+                            from: "projects",
+                            localField: "projects",
+                            foreignField: "_id",
+                            as: "projectsDetail"
+                        }}
+                    ]);   
+                    
+                    // console.log(query);
+                    res.send(query[0]);
                 } else {
                     res.send("Not authorised. Incorrect password");
                 }
