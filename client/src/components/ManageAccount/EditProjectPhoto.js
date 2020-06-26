@@ -18,9 +18,11 @@ const EditProjectPhoto = (props) => {
                 formData,
                 { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } )
             .then((response) => {
-                console.log(response);
+                props.savePhoto(response.data);
             })
-
+            .finally(() => {
+                props.cancelHandler(); 
+            }) 
     }
 
     return (

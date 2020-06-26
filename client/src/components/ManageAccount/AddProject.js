@@ -1,19 +1,38 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import './ManageAccount.scss';
 import EditProjectPhoto from './EditProjectPhoto';
 import imagePlaceholder from '../../assets/image-placeholder.png';
 
 const AddProject = (props) => {
+    const history = useHistory();
     const userContext = useContext(UserContext);
     const [ onPhotoEdit, setOnPhotoEdit ] = useState(false);
     const [ project, setProject ] = useState({
         title: '',
+        image: '',
         description: '',
         category: '',
         live: '',
         github: ''
     });
+
+    useEffect(() => {
+        onLoad();
+    }, [userContext.state.user]); //trigger reload if userContext changes
+
+    const onLoad = () => {
+        if (!userContext.state.user) {
+            history.push('/login');
+        } 
+        return;
+    }
+
+    useEffect(() => {
+        console.log(project);
+        console.log(userContext.state.user);
+    })
 
     const onTextInputChange = (e) => {
         setProject({
@@ -31,6 +50,13 @@ const AddProject = (props) => {
 
     const togglePhotoEditMode = () => {
         setOnPhotoEdit(!onPhotoEdit);
+    }
+
+    const savePhotoUrl = (photoUrl) => {
+        setProject({
+            ...project,
+            image: photoUrl
+        })
     }
 
     return (
@@ -56,7 +82,7 @@ const AddProject = (props) => {
                 </button>
             </div> 
             {onPhotoEdit 
-                ? <EditProjectPhoto cancelHandler={togglePhotoEditMode}></EditProjectPhoto>
+                ? <EditProjectPhoto cancelHandler={togglePhotoEditMode} savePhoto={savePhotoUrl}></EditProjectPhoto>
                 : ''
             }
 
