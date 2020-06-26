@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const bcryptjs = require("bcryptjs");
-const upload = require('../middlewares/multer');
+const upload = require("../middlewares/multer");
 
 const Project = require("../models/Project.js");
 
@@ -102,6 +101,8 @@ module.exports = (app) => {
     // add new project
 
     // save uploaded photo and return file url
+    app.post(
+        "/projects/photo/getUrl",
     app.post("/projects/photo/getUrl", 
         upload.single("projectPhoto"),
         (req, res) => {
@@ -110,7 +111,7 @@ module.exports = (app) => {
             let newPhoto = req.file
                 ? base_url + req.file.path
                 : req.body.projectPhotoUrl;
-           
+
             res.send(newPhoto);
         }
     );

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { UserContext } from '../../contexts/UserContext';
-import AccountSummary from './AccountSummary';
-import ProjectList from './ProjectList';
+import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
+import AccountSummary from "./AccountSummary";
+import ProjectList from "./ProjectList";
 
 const AccountPage = () => {
     const userContext = useContext(UserContext);
@@ -16,7 +16,7 @@ const AccountPage = () => {
 
     const onLoad = () => {
         if (!userContext.state.user) {
-            history.push('/login');
+            history.push("/login");
         } else {
             setUser(userContext.state.user);
             setProjects(userContext.state.user.projects);
@@ -25,14 +25,13 @@ const AccountPage = () => {
 
     useEffect(() => console.log('user projects are:', projects));
 
-
     return (
         <div>
             <h1>Manage Account</h1>
             <AccountSummary user={user} />
             <ProjectList projects={user.projects} />
         </div>
-    )
-}
+    );
+};
 
 export default AccountPage;
