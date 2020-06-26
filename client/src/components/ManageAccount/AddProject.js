@@ -1,5 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
+import './ManageAccount.scss';
+import EditProjectPhoto from './EditProjectPhoto';
+import imagePlaceholder from '../../assets/image-placeholder.png';
 
 const AddProject = (props) => {
     const userContext = useContext(UserContext);
@@ -26,6 +29,10 @@ const AddProject = (props) => {
         })
     }
 
+    const togglePhotoEditMode = () => {
+        setOnPhotoEdit(!onPhotoEdit);
+    }
+
     return (
         <div 
             className="col-lg-8 col-md-10 col-sm-10 mx-auto">
@@ -34,7 +41,24 @@ const AddProject = (props) => {
                 Add a Project
             </h2>
 
-            Edit Photo Section
+            <div 
+                className="addProjectPage__photo"
+                style={
+                        project.image 
+                        ? {backgroundImage: `url(${project.image})`}
+                        : {backgroundImage: `url(${imagePlaceholder})`}}>
+            </div>
+            <div 
+                className="text-center mt-2">
+                <button
+                    onClick={togglePhotoEditMode}>
+                    Add a photo
+                </button>
+            </div> 
+            {onPhotoEdit 
+                ? <EditProjectPhoto cancelHandler={togglePhotoEditMode}></EditProjectPhoto>
+                : ''
+            }
 
             <form
                 className="mt-5"

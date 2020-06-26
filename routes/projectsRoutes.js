@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
-// const upload = require('../middlewares/multer');
+const upload = require('../middlewares/multer');
 
 const Project = require("../models/Project.js");
 
@@ -76,7 +76,7 @@ module.exports = (app) => {
     // update project
 
     // add new project
-    app.post("/projects", (req, res) => {
+    app.post("/projects/add", (req, res) => {
         const project = new Project({
             _id: new mongoose.Types.ObjectId(),
             title: req.body.title,
@@ -99,6 +99,20 @@ module.exports = (app) => {
             .catch((err) => res.send(err));
     });
     // add new project
+
+    // save uploaded photo and return file url
+    app.post("/projects/photo/getUrl", 
+        upload.single("projectPhoto"),
+        (req, res) => {
+            const base_url = "http://" + req.headers.host + "/";
+
+            let newPhoto = req.file
+                ? base_url + req.file.path
+                : req.body.projectPhotoUrl;
+           
+            res.send(newPhoto);
+        }
+    );
 
     // delete project
     app.delete("/projects/p=:id", (req, res) => {

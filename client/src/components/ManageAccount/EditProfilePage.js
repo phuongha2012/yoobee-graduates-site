@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './EditProfilePage.scss';
+import './ManageAccount.scss';
 import { UserContext } from '../../contexts/UserContext';
 import avatarPlaceholder from '../../assets/avatar-placeholder.png';
 import EditProfilePhoto from './EditProfilePhoto';
@@ -93,8 +93,8 @@ const EditProfilePage = (props) => {
                 className="text-center mb-5 pt-5">
                 Edit Profile
             </h2>
-            <div 
-                className="accountPage__banner"></div>
+            <div className="accountPage__banner">
+            </div>
             <div 
                 className="accountPage__memberPhoto"
                 style={
