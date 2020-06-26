@@ -3,7 +3,6 @@ const bcryptjs = require("bcryptjs");
 const upload = require("../middlewares/multer");
 
 const Student = require("../models/Student.js");
-const Project = require("../models/Project");
 
 module.exports = (app) => {
     //get all students
@@ -15,19 +14,7 @@ module.exports = (app) => {
     // get all students
 
     //get student by ID
-    app.get("/students/s=:id", async (req, res) => {
-        let query = await Student.aggregate([
-            { $match: { _id: mongoose.Types.ObjectId(req.params.id)}},
-            { $lookup: {
-                from: "projects",
-                localField: "projects",
-                foreignField: "_id",
-                as: "projectsDetail"
-            }}
-        ]);
-
-        res.send(query);
-
+    app.get("/students/s=:id", (req, res) => {
         Student.findOne({ _id: req.params.id }, (err, result) => {
             if (result) {
                 res.send(result);
@@ -117,8 +104,12 @@ module.exports = (app) => {
                         { $match: { _id: mongoose.Types.ObjectId(result._id)}},
                         { $lookup: {
                             from: "projects",
-                            localField: "projects",
-                            foreignField: "_id",
+                            let: { "studentId": "$_id" },
+                            pipeline: [
+                                { $match: {
+                                    $expr: { $eq: [ '$studentId', { $toObjectId: '$$studentId'} ]}
+                                }}
+                            ],
                             as: "projectsDetail"
                         }}
                     ]);   

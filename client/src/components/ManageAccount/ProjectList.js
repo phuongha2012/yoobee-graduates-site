@@ -10,7 +10,7 @@ const ProjectList = ( props ) => {
             <div className="row">
             {(props.projects.length === 0)
                 ? <div>You have not uploaded any project</div> 
-                : props.user.projects.map((project, i) => <ProjectCard key="i" project={project} />)
+                : props.projects.map((project, i) => <ProjectCard key="i" project={project} />)
             }
             </div>
     } else {

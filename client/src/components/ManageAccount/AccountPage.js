@@ -31,7 +31,7 @@ const AccountPage = () => {
         <div>
             <h1>Manage Account</h1>
             <AccountSummary user={user} />
-            <ProjectList projects={user.projects} />
+            <ProjectList projects={user.projectsDetail} />
         </div>
     )
 }
