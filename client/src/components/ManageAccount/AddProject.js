@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import './ManageAccount.scss';
@@ -15,7 +16,9 @@ const AddProject = (props) => {
         description: '',
         category: '',
         live: '',
-        github: ''
+        github: '',
+        studentId: '',
+        course: ''
     });
 
     useEffect(() => {
@@ -25,8 +28,13 @@ const AddProject = (props) => {
     const onLoad = () => {
         if (!userContext.state.user) {
             history.push('/login');
-        } 
-        return;
+        } else {
+            setProject({
+                ...project,
+                studentId: userContext.state.user._id,
+                course: userContext.state.user.course
+            })
+        }
     }
 
     useEffect(() => {
@@ -59,6 +67,17 @@ const AddProject = (props) => {
         })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        axios
+            .post(process.env.REACT_APP_BASE_URL + '/projects/add',
+                    project)
+            .then(response => {
+                console.log(response);
+            })
+    }
+
     return (
         <div 
             className="col-lg-8 col-md-10 col-sm-10 mx-auto">
@@ -88,7 +107,7 @@ const AddProject = (props) => {
 
             <form
                 className="mt-5"
-                onSubmit>
+                onSubmit={handleSubmit}>
                 <div 
                     className="form-row">
                     <div 

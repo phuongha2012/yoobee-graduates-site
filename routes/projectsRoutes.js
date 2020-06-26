@@ -91,6 +91,7 @@ module.exports = (app) => {
             github: req.body.github,
             live: req.body.live,
         });
+
         project
             .save()
             .then((result) => {
