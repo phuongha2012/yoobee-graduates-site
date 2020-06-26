@@ -8,13 +8,10 @@ const ProjectList = ({ projects }) => {
     if (projects) {
         content = (
             <div className="row">
-                {projects.length === 0 ? (
-                    <div>You have not uploaded any project</div>
-                ) : (
-                    projects.map((project, i) => (
-                        <ProjectCard key={i} project={project} />
-                    ))
-                )}
+            {(projects.length === 0)
+                ? <div>You have not uploaded any project</div> 
+                : projects.map((project, i) => <ProjectCard key="i" project={project} />)
+            }
             </div>
         );
     } else {

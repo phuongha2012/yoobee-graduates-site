@@ -101,8 +101,6 @@ module.exports = (app) => {
     // add new project
 
     // save uploaded photo and return file url
-    app.post(
-        "/projects/photo/getUrl",
     app.post("/projects/photo/getUrl", 
         upload.single("projectPhoto"),
         (req, res) => {
