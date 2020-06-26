@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { UserContext, UserContextProvider } from "../../contexts/UserContext";
+import { UserContextProvider } from "../../contexts/UserContext";
 import Home from "../Home/Home";
 import LoginPage from "../Authentication/LoginPage";
 import RegisterPage from "../Authentication/RegisterPage";
 import AccountPage from "../ManageAccount/AccountPage";
 import EditProfilePage from "../ManageAccount/EditProfilePage";
+import AddProject from "../ManageAccount/AddProject";
 import AllStudents from "../AllStudents/AllStudents";
 import { Student } from "../Student/Student";
 import AllProjects from "../AllProjects/AllProjects";
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/account" exact component={AccountPage} />
                     <Route path="/account/edit" component={EditProfilePage} />
+                    <Route path="/account/projects/add" component={AddProject} />>
                     <Route path="/students" exact component={AllStudents} />
                     <Route path="/students/:id" component={Student} />
                     <Route path="/projects" exact component={AllProjects} />

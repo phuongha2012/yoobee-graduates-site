@@ -1,36 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { UserContext } from '../../contexts/UserContext';
 
-const EditProfilePhoto = (props) => {
-    const userContext = useContext(UserContext);
+const EditProjectPhoto = (props) => {
     const [file, setFile] = useState('');
     const [url, setUrl] = useState('');
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // generate formData object to send file
         let formData = new FormData();
-        formData.append('profilePhoto', file);
-        formData.append('profilePhotoUrl', url);
+        formData.append('projectPhoto', file);
+        formData.append('projectPhotoUrl', url);
 
         axios
-            .patch(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id + '/photo/update/',
+            .post(process.env.REACT_APP_BASE_URL + '/projects/photo/getUrl',
                 formData,
                 { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } )
             .then((response) => {
-                userContext.setProfilePhoto(response.data.photoUrl);
+                props.savePhoto(response.data);
             })
             .finally(() => {
                 props.cancelHandler(); 
-            })   
+            }) 
     }
-
 
     return (
         <form
-            id="editProfilePhotoForm" 
+            id="addProjectPhotoForm" 
             encType="multipart/form-data" 
             className="mt-5"
             onSubmit={handleSubmit}>
@@ -38,7 +35,7 @@ const EditProfilePhoto = (props) => {
                 <div class="form-group col-6">
                     <input 
                         type="file" 
-                        name="profilePhoto" 
+                        name="projectPhoto" 
                         class="form-control-file" 
                         onChange={(e) => setFile(e.target.files[0])}
                     />
@@ -50,7 +47,7 @@ const EditProfilePhoto = (props) => {
                     <input 
                         type="text" 
                         class="form-control" 
-                        name="profilePhotoUrl" 
+                        name="projectPhotoUrl" 
                         placeholder="Or enter photo's url" 
                         onChange={(e) => setUrl(e.target.value)}
                     />
@@ -72,4 +69,4 @@ const EditProfilePhoto = (props) => {
     )
 }
 
-export default EditProfilePhoto
+export default EditProjectPhoto;

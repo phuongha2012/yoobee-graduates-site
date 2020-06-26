@@ -19,9 +19,12 @@ const AccountPage = () => {
             history.push('/login');
         } else {
             setUser(userContext.state.user);
-            setProjects(userContext.state.user.projects)
+            setProjects(userContext.state.user.projects);
         }
-    }
+    };
+
+    useEffect(() => console.log('user projects are:', projects));
+
 
     return (
         <div>

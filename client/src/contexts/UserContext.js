@@ -32,7 +32,7 @@ const UserContextProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={ {state, setAuthenticatedUser, logout, setProfilePhoto } }>
+        <UserContext.Provider value={ { state, setAuthenticatedUser, logout, setProfilePhoto } }>
             {children}
         </UserContext.Provider>
     )

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import ProjectCard from './ProjectCard';
 
 const ProjectList = ( props ) => {
@@ -20,6 +21,7 @@ const ProjectList = ( props ) => {
         <div>
             <h2>My Projects</h2>
             {content}
+            <Link to="/account/projects/add">Upload a project</Link>
         </div> 
     )
 }
