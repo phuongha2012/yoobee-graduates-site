@@ -120,7 +120,9 @@ const AllProjects = () => {
                     Screen Production
                 </li>
             </ul>
-            <ProjectCard projects={showProjects} />
+            <div className="container">
+                <ProjectCard projects={showProjects} />
+            </div>
         </>
     );
 };

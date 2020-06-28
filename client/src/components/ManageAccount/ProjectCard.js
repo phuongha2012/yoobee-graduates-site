@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import "./ManageAccount.scss";
 
-const ProjectCard = () => {
-    return (
-        <div>
-            Project Card
-        </div>
-    )
-}
+const ProjectCard = ({ project }) => {
+    return <div className="card-grid">{project.title}</div>;
+};
 
 export default ProjectCard;
