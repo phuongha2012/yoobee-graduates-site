@@ -95,10 +95,27 @@ module.exports = (app) => {
 
     //login student
     app.post("/login", (req, res) => {
-        Student.findOne({ username: req.body.username }, (err, result) => {
+        Student.findOne({ username: req.body.username }, async (err, result) => {
             if (result) {
+                console.log(result);
                 if (bcryptjs.compareSync(req.body.password, result.password)) {
-                    res.send(result);
+                    // res.send(result);
+                    let query = await Student.aggregate([
+                        { $match: { _id: mongoose.Types.ObjectId(result._id)}},
+                        { $lookup: {
+                            from: "projects",
+                            let: { "studentId": "$_id" },
+                            pipeline: [
+                                { $match: {
+                                    $expr: { $eq: [ '$studentId', { $toObjectId: '$$studentId'} ]}
+                                }}
+                            ],
+                            as: "projectsDetail"
+                        }}
+                    ]);   
+                    
+                    // console.log(query);
+                    res.send(query[0]);
                 } else {
                     res.send("Not authorised. Incorrect password");
                 }
