@@ -23,7 +23,11 @@ const AccountPage = () => {
         }
     };
 
+<<<<<<< HEAD
     useEffect(() => console.log("user projects are:", projects));
+=======
+    useEffect(() => console.log('user projects are:', projects));
+>>>>>>> 7db0116f3def17a36983849eda60a18c6e49af13
 
     return (
         <div className="container">
