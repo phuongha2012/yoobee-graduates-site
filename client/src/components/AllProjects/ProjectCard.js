@@ -1,9 +1,9 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export const ProjectCard = ({ projects }) => {
     return (
-        <div className="card-grid container">
+        <div className="card-grid">
             {projects
                 ? projects.map((project) => (
                       <div className="card-grid-card" key={project._id}>

@@ -93,9 +93,7 @@ export const Student = ({ match }) => {
             <h4>Projects</h4>
             {projects ? (
                 projects.length > 0 ? (
-                    projects.map((project) => (
-                        <ProjectCard key={project._id} projects={projects} />
-                    ))
+                    <ProjectCard projects={projects} />
                 ) : (
                     <p>No projects for this student</p>
                 )

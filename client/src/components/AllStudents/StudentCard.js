@@ -4,7 +4,7 @@ import "./AllStudents.scss";
 
 export const StudentCard = ({ students }) => {
     return (
-        <div className="card-grid container">
+        <div className="card-grid">
             {students
                 ? students.map((student) => (
                       <div className="card-grid-card" key={student._id}>

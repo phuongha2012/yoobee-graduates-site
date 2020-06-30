@@ -19,14 +19,14 @@ const AccountPage = () => {
             history.push("/login");
         } else {
             setUser(userContext.state.user);
-            setProjects(userContext.state.user.projects);
+            setProjects(userContext.state.user.projectsDetail);
         }
     };
 
-    useEffect(() => console.log('user projects are:', projects));
+    useEffect(() => console.log("user projects are:", projects));
 
     return (
-        <div>
+        <div className="container">
             <h1>Manage Account</h1>
             <AccountSummary user={user} />
             <ProjectList projects={user.projectsDetail} />

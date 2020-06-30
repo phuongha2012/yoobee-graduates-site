@@ -26,7 +26,10 @@ function App() {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/account" exact component={AccountPage} />
                     <Route path="/account/edit" component={EditProfilePage} />
-                    <Route path="/account/projects/add" component={AddProject} />>
+                    <Route
+                        path="/account/projects/add"
+                        component={AddProject}
+                    />
                     <Route path="/students" exact component={AllStudents} />
                     <Route path="/students/:id" component={Student} />
                     <Route path="/projects" exact component={AllProjects} />

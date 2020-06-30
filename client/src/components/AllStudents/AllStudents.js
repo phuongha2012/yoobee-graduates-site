@@ -125,11 +125,13 @@ const AllStudents = () => {
                     Screen Production
                 </li>
             </ul>
-            {isLoading ? (
-                <p>Loading</p>
-            ) : (
-                <StudentCard students={showStudents} />
-            )}
+            <div className="container">
+                {isLoading ? (
+                    <p>Loading</p>
+                ) : (
+                    <StudentCard students={showStudents} />
+                )}
+            </div>
         </>
     );
 };
