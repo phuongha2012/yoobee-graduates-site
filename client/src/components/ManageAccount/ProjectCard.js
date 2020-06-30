@@ -7,9 +7,15 @@ const ProjectCard = ({ project }) => {
         <div className="card-grid">
             <div className="card-grid-card" key={project._id}>
                 <p>{project.title}</p>
-                <Link to={`/projects/${project._id}`}>
-                    View project
-                </Link>
+                <div className="d-flex flex-row justify-content-between">
+                    <Link to={`/projects/${project._id}`}>
+                        View project
+                    </Link>
+                    <Link to={`/account/projects/${project._id}/edit`}>
+                        Edit Project
+                    </Link>
+                </div>
+                
             </div>
         </div>
     );
