@@ -10,9 +10,7 @@ const ProjectList = ({ projects }) => {
                 projects.length === 0 ? (
                     <h3>You have not uploaded any project</h3>
                 ) : (
-                    projects.map((project, i) => (
-                        <ProjectCard key={i} project={project} />
-                    ))
+                    <ProjectCard projects={projects} />
                 )
             ) : (
                 ""
