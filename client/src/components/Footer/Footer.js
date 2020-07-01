@@ -13,47 +13,47 @@ export const Footer = () => {
     };
 
     return (
-        <div className="footer-grid">
-            <div className="footer-grid-section">
-                <ul>
-                    <li>
-                        <Link to="/">Logo/Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/students">Students</Link>
-                    </li>
-                    <li>
-                        <Link to="/projects">Projects</Link>
-                    </li>
-                    <li>
-                        <Link to="/">About</Link>
-                    </li>
-                </ul>
+        <footer>
+        <div className="footer-grid">  
+        <ul className="footer-grid-section">
+        <li>
+        <Link to="/">Logo/Home</Link>
+        </li>
+        <li>
+        <Link to="/students">Students</Link>
+        </li>
+        <li>
+        <Link to="/projects">Projects</Link>
+        </li>
+        <li>
+        <Link to="/">About</Link>
+        </li>
+        </ul>
+        <div className="footer-grid-section">
+        {userContext.state.user ? (
+            <div className="d-flex justify-content-around">
+            <div>
+            <Link to="/account">My Account</Link>
             </div>
-            <div className="footer-grid-section">
-                {userContext.state.user ? (
-                    <div className="d-flex justify-content-around">
-                        <div>
-                            <Link to="/account">My Account</Link>
-                        </div>
-                        <div onClick={logoutHandler}>Logout</div>
-                    </div>
-                ) : (
-                    <ul>
-                        <li>
-                            <Link to="/login">Login</Link>
-                        </li>
-                        <li>
-                            <Link to="/register">Register</Link>
-                        </li>
-                    </ul>
-                )}
+            <div onClick={logoutHandler}>Logout</div>
             </div>
-            <div className="footer-grid-section">
-                &copy; Yoobee Schools 2020 | All Rights Reserved | Designed &
-                Developed by Jacob Preston, Chikaylah Wellington, Sean Reilly,
-                Russel Johnson & Hayley Ha
+            ) : (
+            <ul>
+            <li>
+            <Link to="/login">Login</Link>
+            </li>
+            <li>
+            <Link to="/register">Register</Link>
+            </li>
+            </ul>
+            )}
             </div>
-        </div>
-    );
+            <div className="footer-grid-section text-center">
+            &copy; Yoobee Colleges 2020 | All Rights Reserved | Designed &
+            Developed by Jacob Preston, Chikaylah Wellington, Sean Reilly,
+            Russel Johnson & Hayley Ha
+            </div>
+            </div>
+            </footer>
+            );
 };

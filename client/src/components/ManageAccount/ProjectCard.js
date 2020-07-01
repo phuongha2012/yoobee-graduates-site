@@ -4,8 +4,7 @@ import "./ManageAccount.scss";
 
 const ProjectCard = ({ project }) => {
     return (
-        <div className="card-grid">
-            <div className="card-grid-card" key={project._id}>
+            <div className="card-grid-card">
                 <p>{project.title}</p>
                 <div className="d-flex flex-row justify-content-between">
                     <Link to={`/projects/${project._id}`}>
@@ -17,7 +16,6 @@ const ProjectCard = ({ project }) => {
                 </div>
                 
             </div>
-        </div>
     );
 };
 

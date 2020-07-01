@@ -121,7 +121,14 @@ const AllProjects = () => {
                 </li>
             </ul>
             <div className="container">
-                <ProjectCard projects={showProjects} />
+            <div className="card-grid">
+            {showProjects
+                ? showProjects.map((project, i) => (
+                      <ProjectCard key={i} project={project} />
+                  ))
+                : ""}
+                
+                </div>
             </div>
         </>
     );

@@ -75,7 +75,7 @@ export const Student = ({ match }) => {
 
     return (
         <div className="container">
-            <h3>{name}</h3>
+            <h2 className="jumbotron bg-transparent text-center">{name}</h2>
             <p>{course}</p>
             <p>{email}</p>
             <a href={github} target="_blank">
@@ -89,17 +89,16 @@ export const Student = ({ match }) => {
             </a>
             <p>Blurb: {blurb}</p>
             <p>Skills:</p>
-            <ul>{skills ? skills.map((skill) => <li>{skill}</li>) : ""}</ul>
+            <ul>{skills ? skills.map((skill,i) => <li key={i}>{skill}</li>) : ""}</ul>
             <h4>Projects</h4>
-            {projects ? (
-                projects.length > 0 ? (
-                    <ProjectCard projects={projects} />
-                ) : (
-                    <p>No projects for this student</p>
-                )
-            ) : (
-                ""
-            )}
+            <div className="card-grid">
+            {projects
+                ? projects.map((project, i) => (
+                      <ProjectCard key={i} project={project} />
+                  ))
+                : "No projects for this student"}
+                
+                </div>
         </div>
     );
 };

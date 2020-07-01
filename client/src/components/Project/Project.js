@@ -67,7 +67,7 @@ export const Project = ({ match }) => {
     }, [project]);
     return (
         <div className="container">
-            <h3>{title}</h3>
+            <h2 className="jumbotron bg-transparent text-center">{title}</h2>
             <p>{course}</p>
             <p>{duration}</p>
             <p>

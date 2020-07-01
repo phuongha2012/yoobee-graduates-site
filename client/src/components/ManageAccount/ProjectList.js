@@ -10,7 +10,7 @@ const ProjectList = ({ projects }) => {
                 projects.length === 0 ? (
                     <h3>You have not uploaded any project</h3>
                 ) : (
-                    <div className="cards">
+                    <div className="card-grid">
                         {projects.map(project =>
                             <ProjectCard key={project._id} project={project} />)
                         }
