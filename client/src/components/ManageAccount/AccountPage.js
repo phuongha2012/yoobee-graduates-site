@@ -12,7 +12,7 @@ const AccountPage = () => {
 
     useEffect(() => {
         onLoad(); //redirect to login page if user is not authenticated
-    }, []);
+    });
 
     const onLoad = () => {
         if (!userContext.state.user) {
