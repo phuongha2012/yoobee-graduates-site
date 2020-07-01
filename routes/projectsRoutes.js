@@ -64,6 +64,7 @@ module.exports = (app) => {
                 duration: req.body.duration,
                 github: req.body.github,
                 live: req.body.live,
+                category: req.body.category
             };
             Project.updateOne({ _id: req.params.id }, updated)
                 .then((result) => {

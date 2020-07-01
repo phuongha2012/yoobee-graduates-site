@@ -13,6 +13,7 @@ const projectSchema = new mongoose.Schema({
     },
     github: String,
     live: String,
+    category: String
 });
 
 module.exports = mongoose.model("Project", projectSchema);
