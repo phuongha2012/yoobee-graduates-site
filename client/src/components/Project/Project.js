@@ -6,7 +6,7 @@ export const Project = ({ match }) => {
     const [project, setProject] = useState([]);
     const [student, setStudent] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
-    const { title, course, duration } = project;
+    const { title, course, duration, category } = project;
 
     const getProject = async () => {
         let source = axios.CancelToken.source();
@@ -65,14 +65,17 @@ export const Project = ({ match }) => {
     useEffect(() => {
         getStudent();
     }, [project]);
+
+    console.log(project);
     return (
         <div className="container">
-            <h2 className="jumbotron bg-transparent text-center">{title}</h2>
-            <p>{course}</p>
-            <p>{duration}</p>
-            <p>
+            <div className="jumbotron bg-transparent">
+                <h1 className="single-heading">{title}</h1>
+            </div>
+            <div className="project-content"></div>
+            {/* <p>
                 By: <Link to={`/students/${student._id}`}>{student.name}</Link>
-            </p>
+            </p> */}
         </div>
     );
 };

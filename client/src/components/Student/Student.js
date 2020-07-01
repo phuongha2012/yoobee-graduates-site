@@ -89,16 +89,21 @@ export const Student = ({ match }) => {
             </a>
             <p>Blurb: {blurb}</p>
             <p>Skills:</p>
-            <ul>{skills ? skills.map((skill,i) => <li key={i}>{skill}</li>) : ""}</ul>
+            <ul>
+                {skills
+                    ? skills.map((skill, i) => <li key={i}>{skill}</li>)
+                    : ""}
+            </ul>
             <h4>Projects</h4>
             <div className="card-grid">
-            {projects
-                ? projects.map((project, i) => (
-                      <ProjectCard key={i} project={project} />
-                  ))
-                : "No projects for this student"}
-                
-                </div>
+                {projects ? (
+                    projects.map((project, i) => (
+                        <ProjectCard key={i} project={project} />
+                    ))
+                ) : (
+                    <p>No projects for this student</p>
+                )}
+            </div>
         </div>
     );
 };

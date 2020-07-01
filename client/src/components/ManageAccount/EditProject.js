@@ -6,7 +6,7 @@ import "./ManageAccount.scss";
 import EditProjectPhoto from "./EditProjectPhoto";
 import imagePlaceholder from "../../assets/image-placeholder.png";
 
-const EditProject = ( {match} ) => {
+const EditProject = ({ match }) => {
     const history = useHistory();
     const userContext = useContext(UserContext);
     const [project, setProject] = useState([]);
@@ -30,7 +30,7 @@ const EditProject = ( {match} ) => {
                 `${process.env.REACT_APP_BASE_URL}/projects/p=${match.params.id}`,
                 {
                     cancelToken: source.token,
-                }            
+                }
             );
             if (!isUnmounted) setProject(response.data);
         } catch (error) {
@@ -81,13 +81,16 @@ const EditProject = ( {match} ) => {
         e.preventDefault();
 
         axios
-            .patch(process.env.REACT_APP_BASE_URL + "/projects/p=" + match.params.id, project)
+            .patch(
+                process.env.REACT_APP_BASE_URL +
+                    "/projects/p=" +
+                    match.params.id,
+                project
+            )
             .then((response) => {
                 history.push('/account');
             });
     };
-
-
 
     return (
         <div className="col-lg-8 col-10 mx-auto">
@@ -187,8 +190,7 @@ const EditProject = ( {match} ) => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default EditProject;
-
