@@ -18,6 +18,13 @@ const UserContextProvider = ({ children }) => {
         })
     }
 
+    function updateUserInfo(user) {
+        dispatch({
+            type: 'UPDATE_USER_INFO',
+            payload: user
+        })
+    }
+
     function logout() {
         dispatch({
             type: 'LOGOUT'
@@ -32,7 +39,7 @@ const UserContextProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={ { state, setAuthenticatedUser, logout, setProfilePhoto } }>
+        <UserContext.Provider value={ { state, setAuthenticatedUser, updateUserInfo, logout, setProfilePhoto } }>
             {children}
         </UserContext.Provider>
     )
