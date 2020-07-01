@@ -17,7 +17,6 @@ const LoginPage = () => {
             .post(process.env.REACT_APP_BASE_URL + '/login', 
                 { username, password })
             .then((response) => {
-                console.log(response.data);
                 if (
                     response.data === "Student not found" ||
                     response.data === "Not authorised. Incorrect password"

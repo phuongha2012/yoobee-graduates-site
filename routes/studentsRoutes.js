@@ -97,7 +97,6 @@ module.exports = (app) => {
     app.post("/login", (req, res) => {
         Student.findOne({ username: req.body.username }, async (err, result) => {
             if (result) {
-                console.log(result);
                 if (bcryptjs.compareSync(req.body.password, result.password)) {
                     // res.send(result);
                     let query = await Student.aggregate([

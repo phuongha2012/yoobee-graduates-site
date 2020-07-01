@@ -23,8 +23,6 @@ const AccountPage = () => {
         }
     };
 
-    useEffect(() => console.log("user projects are:", projects));
-
     return (
         <div className="container">
             <h1>Manage Account</h1>

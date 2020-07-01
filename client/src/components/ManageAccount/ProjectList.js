@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
 
 const ProjectList = ({ projects }) => {
-    console.log(projects);
     return (
         <div>
             <h2>My Projects</h2>
@@ -13,7 +12,7 @@ const ProjectList = ({ projects }) => {
                 ) : (
                     <div className="cards">
                         {projects.map(project =>
-                            <ProjectCard project={project} />)
+                            <ProjectCard key={project._id} project={project} />)
                         }
                     </div>
                     
