@@ -37,11 +37,6 @@ const AddProject = (props) => {
         }
     };
 
-    useEffect(() => {
-        console.log(project);
-        console.log(userContext.state.user);
-    });
-
     const onTextInputChange = (e) => {
         setProject({
             ...project,
@@ -73,7 +68,7 @@ const AddProject = (props) => {
         axios
             .post(process.env.REACT_APP_BASE_URL + "/projects/add", project)
             .then((response) => {
-                console.log(response);
+                history.push("/account");
             });
     };
 

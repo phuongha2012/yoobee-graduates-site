@@ -177,7 +177,7 @@ const EditProfilePage = (props) => {
                     value={user.course}
                     onChange={onSelectHandler}>
                     <option 
-                        selected>
+                        defaultValue>
                             Choose...
                     </option>
                     <option 
