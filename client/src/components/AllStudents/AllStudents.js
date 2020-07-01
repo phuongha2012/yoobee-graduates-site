@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AllStudents.scss";
 import { StudentCard } from "./StudentCard";
+import { SortingNav } from "../SortingNav/SortingNav";
 
 const AllStudents = () => {
     const [allStudents, setAllStudents] = useState([]);
@@ -47,7 +48,7 @@ const AllStudents = () => {
         };
     };
 
-    const changeStudents = (e) => {
+    const filterCards = (e) => {
         const target = e.target.innerText;
         const index = e.target.attributes[1].value;
         const course = e.target.attributes[2].value;
@@ -67,70 +68,22 @@ const AllStudents = () => {
 
     return (
         <>
-            <h2 className="jumbotron bg-transparent text-center">Students</h2>
-            <ul className="sorting-nav">
-                <li
-                    className={
-                        "sorting-nav-item " +
-                        (activeItem === "0" ? "sorting-nav-item--active" : "")
-                    }
-                    data-index="0"
-                    data-course="All"
-                    onClick={changeStudents}
-                >
-                    All
-                </li>
-                <li
-                    className={
-                        "sorting-nav-item " +
-                        (activeItem === "1" ? "sorting-nav-item--active" : "")
-                    }
-                    data-index="1"
-                    data-course="Level 6 Web Development and UX Design"
-                    onClick={changeStudents}
-                >
-                    Web and UX Design
-                </li>
-                <li
-                    className={
-                        "sorting-nav-item " +
-                        (activeItem === "2" ? "sorting-nav-item--active" : "")
-                    }
-                    data-index="2"
-                    data-course="Level 6 Creative Digital Design"
-                    onClick={changeStudents}
-                >
-                    Digital Design
-                </li>
-                <li
-                    className={
-                        "sorting-nav-item " +
-                        (activeItem === "3" ? "sorting-nav-item--active" : "")
-                    }
-                    data-index="3"
-                    data-course="Level 6 3D Production"
-                    onClick={changeStudents}
-                >
-                    3D Production
-                </li>
-                <li
-                    className={
-                        "sorting-nav-item " +
-                        (activeItem === "4" ? "sorting-nav-item--active" : "")
-                    }
-                    data-index="4"
-                    data-course="Level 6 Screen Production"
-                    onClick={changeStudents}
-                >
-                    Screen Production
-                </li>
-            </ul>
+            <div className="jumbotron bg-transparent text-center">
+                <h1 className="single-heading">Students</h1>
+            </div>
+            <SortingNav filter={filterCards} />
             <div className="container">
-                {isLoading ? (
-                    <p>Loading</p>
-                ) : (
-                    <StudentCard students={showStudents} />
-                )}
+                <div className="card-grid">
+                    {isLoading ? (
+                        <p>Loading</p>
+                    ) : showStudents ? (
+                        showStudents.map((student, i) => (
+                            <StudentCard key={i} student={student} />
+                        ))
+                    ) : (
+                        ""
+                    )}
+                </div>
             </div>
         </>
     );
