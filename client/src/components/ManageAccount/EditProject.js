@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
@@ -8,9 +7,21 @@ import EditProjectPhoto from "./EditProjectPhoto";
 import imagePlaceholder from "../../assets/image-placeholder.png";
 
 const EditProject = ( {match} ) => {
+    const history = useHistory();
+    const userContext = useContext(UserContext);
     const [project, setProject] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
     const [onPhotoEdit, setOnPhotoEdit] = useState(false);
+
+    useEffect(() => {
+        onLoad();
+    }, [userContext.state.user]); //trigger reload if userContext changes
+
+    const onLoad = () => {
+        if (!userContext.state.user) {
+            history.push("/login");
+        }
+    };
 
     const getProject = async () => {
         let source = axios.CancelToken.source();
@@ -72,7 +83,7 @@ const EditProject = ( {match} ) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         axios
             .patch(process.env.REACT_APP_BASE_URL + "/projects/p=" + match.params.id, project)
             .then((response) => {
@@ -95,7 +106,7 @@ const EditProject = ( {match} ) => {
                 }
             ></div>
             <div className="text-center mt-2">
-                <button onClick={togglePhotoEditMode}>Add a photo</button>
+                <button onClick={togglePhotoEditMode}>Edit Photo</button>
             </div>
             {onPhotoEdit ? (
                 <EditProjectPhoto
