@@ -51,27 +51,32 @@ module.exports = (app) => {
 
     // update project
     app.patch("/projects/p=:id", (req, res) => {
-        Project.findById(req.params.id, (err, result) => {
-            const updated = {
-                title: req.body.title,
-                description: req.body.description,
-                image: req.body.image,
-                $push: {
-                    type: { $each: req.body.type },
-                }, //array
-                course: req.body.course,
-                studentId: req.body.studentId,
-                duration: req.body.duration,
-                github: req.body.github,
-                live: req.body.live,
-                category: req.body.category
-            };
-            Project.updateOne({ _id: req.params.id }, updated)
-                .then((result) => {
-                    res.send(result);
-                })
-                .catch((err) => res.send(err));
-        }).catch((err) => res.send("Not found"));
+        const _id = req.params.id;
+
+        const updated = {
+            title: req.body.title,
+            description: req.body.description,
+            image: req.body.image,
+            $push: {
+                type: { $each: req.body.type },
+            }, //array
+            course: req.body.course,
+            studentId: req.body.studentId,
+            duration: req.body.duration,
+            github: req.body.github,
+            live: req.body.live,
+            category: req.body.category
+        };
+
+        Project.findByIdAndUpdate(
+            _id,
+            { $set: updated },
+            { useFindAndModify: false, upsert: true, new: true },
+            (err, result) => {
+                if (err) res.send(err);
+                res.send(result);
+            }
+        ).catch((err) => console.log(err));
     });
     // update project
 

@@ -72,7 +72,7 @@ const EditProject = ( {match} ) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         axios
             .patch(process.env.REACT_APP_BASE_URL + "/projects/p=" + match.params.id, project)
             .then((response) => {
