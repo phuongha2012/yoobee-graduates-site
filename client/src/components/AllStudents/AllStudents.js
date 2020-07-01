@@ -8,7 +8,6 @@ const AllStudents = () => {
     const [allStudents, setAllStudents] = useState([]);
     const [showStudents, setShowStudents] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
-    const [activeItem, setActiveItem] = useState("0");
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -59,11 +58,6 @@ const AllStudents = () => {
             });
             setShowStudents(studentsClicked);
         }
-        setActive(index);
-    };
-
-    const setActive = (i) => {
-        setActiveItem(i);
     };
 
     return (
