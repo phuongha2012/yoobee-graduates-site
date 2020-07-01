@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import AccountSummary from "./AccountSummary";
@@ -12,18 +13,19 @@ const AccountPage = () => {
 
     useEffect(() => {
         onLoad(); //redirect to login page if user is not authenticated
-    });
-
-    useEffect(() => {
-        console.log(userContext.state);
-    });
+    }, []);
 
     const onLoad = () => {
         if (!userContext.state.user) {
             history.push("/login");
         } else {
-            setUser(userContext.state.user);
-            setProjects(userContext.state.user.projectsDetail);
+            axios
+                .get(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id)
+                .then(response => {
+                    setUser(response.data);
+                    setProjects(response.data.projectsDetail);
+                })
+            
         }
     };
 
