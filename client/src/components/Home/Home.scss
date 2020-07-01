@@ -6,6 +6,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    background: blue;
 }
 
 .page-menu {
@@ -20,14 +21,15 @@
     justify-content: center;
     align-items: center;
     flex: 1;
-    background: #ccc;
+    background: rgba($color: #ccc, $alpha: 0.2);
     font-size: 1.6rem;
+    transition: background 350ms ease-in-out;
     a {
         color: #000;
         text-decoration: none;
     }
     &:hover {
-        background: rgba($color: #ededed, $alpha: 1);
+        background: rgba($color: #ededed, $alpha: 0.8);
     }
 }
 
