@@ -14,14 +14,24 @@ module.exports = (app) => {
     // get all students
 
     //get student by ID
-    app.get("/students/s=:id", (req, res) => {
-        Student.findOne({ _id: req.params.id }, (err, result) => {
-            if (result) {
-                res.send(result);
-            } else {
-                res.send("Can't find student with this ID");
-            }
-        }).catch((err) => res.send(err));
+    app.get("/students/s=:id", async (req, res) => {
+        const _id = req.params.id;
+        
+        let query = await Student.aggregate([
+            { $match: { _id: mongoose.Types.ObjectId(_id)}},
+            { $lookup: {
+                from: "projects",
+                let: { "studentId": "$_id" },
+                pipeline: [
+                    { $match: {
+                        $expr: { $eq: [ '$studentId', { $toObjectId: '$$studentId'} ]}
+                    }}
+                ],
+                as: "projectsDetail"
+            }}
+        ]);   
+
+        res.send(query[0]);
     });
     // get student by ID
 
@@ -98,7 +108,6 @@ module.exports = (app) => {
         Student.findOne({ username: req.body.username }, async (err, result) => {
             if (result) {
                 if (bcryptjs.compareSync(req.body.password, result.password)) {
-                    // res.send(result);
                     let query = await Student.aggregate([
                         { $match: { _id: mongoose.Types.ObjectId(result._id)}},
                         { $lookup: {

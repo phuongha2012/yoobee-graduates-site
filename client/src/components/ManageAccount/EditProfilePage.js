@@ -81,7 +81,8 @@ const EditProfilePage = (props) => {
             .patch(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id,
                 user)
             .then(response => {
-                userContext.setAuthenticatedUser(response.data);
+                userContext.updateUserInfo(response.data);
+                history.push('/account');
             })
     }
 

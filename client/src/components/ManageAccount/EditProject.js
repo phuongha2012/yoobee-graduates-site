@@ -52,8 +52,6 @@ const EditProject = ({ match }) => {
         getProject();
     }, [match.params]);
 
-    console.log(project);
-
     const onTextInputChange = (e) => {
         setProject({
             ...project,
@@ -90,7 +88,7 @@ const EditProject = ({ match }) => {
                 project
             )
             .then((response) => {
-                console.log(response);
+                history.push('/account');
             });
     };
 
