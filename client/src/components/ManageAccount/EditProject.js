@@ -52,10 +52,6 @@ const EditProject = ( {match} ) => {
         getProject();
     }, [match.params]);
 
-    useEffect(() => {
-        console.log(project);
-    });
-
     const onTextInputChange = (e) => {
         setProject({
             ...project,
@@ -87,7 +83,7 @@ const EditProject = ( {match} ) => {
         axios
             .patch(process.env.REACT_APP_BASE_URL + "/projects/p=" + match.params.id, project)
             .then((response) => {
-                console.log(response);
+                history.push('/account');
             });
     };
 
