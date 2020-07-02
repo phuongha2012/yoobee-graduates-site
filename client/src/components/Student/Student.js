@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { ProjectCard } from "../AllProjects/ProjectCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +20,7 @@ export const Student = ({ match }) => {
     const [isUnmounted, setIsUnmounted] = useState(false);
     const {
         name,
+        username,
         course,
         email,
         github,
@@ -95,7 +95,7 @@ export const Student = ({ match }) => {
     return (
         <>
             <div className="heading-banner student-banner">
-                <h1 className="single-heading">{name}</h1>
+                <h1 className="single-heading">{name ? name : username}</h1>
                 <p className="heading-course">{course}</p>
             </div>
             <div className="student-container pt-5">

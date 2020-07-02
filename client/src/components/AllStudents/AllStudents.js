@@ -76,7 +76,7 @@ const AllStudents = () => {
                             <StudentCard key={i} student={student} />
                         ))
                     ) : (
-                        ""
+                        <p>No students in this course</p>
                     )}
                 </div>
             </div>

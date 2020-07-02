@@ -6,20 +6,22 @@ import "../AllStudents/AllStudents.scss";
 export const ProjectCard = ({ project }) => {
     console.log(project);
     return (
-        <div className="card-grid-card card">
-            {project.image ? (
-                <img
-                    className="card-img-top"
-                    src={project.image}
-                    alt={project.username}
-                />
-            ) : (
-                <img
-                    className="card-img-top"
-                    src={placeholder}
-                    alt={project.username}
-                />
-            )}
+        <div className="card">
+            <Link to={`/projects/${project._id}`}>
+                {project.image ? (
+                    <img
+                        className="card-img-top"
+                        src={project.image}
+                        alt={project.username}
+                    />
+                ) : (
+                    <img
+                        className="card-img-top"
+                        src={placeholder}
+                        alt={project.username}
+                    />
+                )}
+            </Link>
 
             <div className="card-body">
                 <h4 className="card-name">
