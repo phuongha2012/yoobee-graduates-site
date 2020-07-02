@@ -36,3 +36,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1rem;
 }
+
+.card-grid-card {
+    border: 1px solid black;
+}

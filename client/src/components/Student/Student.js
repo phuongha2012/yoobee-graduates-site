@@ -88,7 +88,10 @@ export const Student = ({ match }) => {
         getProjects();
     }, [match.params]);
 
-    console.log(student);
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <>
             <div className="heading-banner student-banner">
