@@ -1,23 +1,24 @@
-import React from 'react';
-import './Home.scss';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Home.scss";
 
 const Home = () => {
-  return (
-    <div>
-        <div className="testClass text-center">
-            Welcome to our graduate site!
-        </div>
-        <div className="row">
-            <div className="col-sm-12 col-md-6 text-center">
-                Web and UX
+    return (
+        <div className="home-wrapper">
+            <div className="page-menu">
+                <div className="page-menu-div">
+                    <Link className="page-menu-div-inner single-heading" to="/students">
+                        Students
+                    </Link>
+                </div>
+                <div className="page-menu-div">
+                    <Link className="page-menu-div-inner single-heading" to="/projects">
+                        Projects
+                    </Link>
+                </div>
             </div>
-            <div className="col-sm-12 col-md-6 text-center">
-                Creative Digital Design
-            </div>
         </div>
-    </div>
-  );
-}
+    );
+};
 
 export default Home;

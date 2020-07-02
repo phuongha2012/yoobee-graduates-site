@@ -1,40 +1,43 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
-// const upload = require('../middlewares/multer');
+const upload = require("../middlewares/multer");
 
 const Student = require("../models/Student.js");
 
-// module.exports = (app) => {
-//     app.get("/students", (req, res) => {
-//         res.send("sending all students");
-//     });
-// };
-
-//get all students
 module.exports = (app) => {
+    //get all students
     app.get("/students", (req, res) => {
         Student.find().then((result) => {
             res.send(result);
         });
     });
-}; // get all students
+    // get all students
 
-// get student by ID
-module.exports = (app) => {
-    app.get("/students/:id", (req, res) => {
-        Student.findOne({ _id: req.params.id }, (err, result) => {
-            if (result) {
-                res.send(result);
-            } else {
-                res.send("Can't find student with this ID");
-            }
-        }).catch((err) => res.send(err));
+    //get student by ID
+    app.get("/students/s=:id", async (req, res) => {
+        const _id = req.params.id;
+        
+        let query = await Student.aggregate([
+            { $match: { _id: mongoose.Types.ObjectId(_id)}},
+            { $lookup: {
+                from: "projects",
+                let: { "studentId": "$_id" },
+                pipeline: [
+                    { $match: {
+                        $expr: { $eq: [ '$studentId', { $toObjectId: '$$studentId'} ]}
+                    }}
+                ],
+                as: "projectsDetail"
+            }}
+        ]);   
+
+        res.send(query[0]);
     });
-}; // get student by ID
+    // get student by ID
 
-//get student by course
-module.exports = (app) => {
-    app.get("/students/:course", (req, res) => {
+    //get students by course
+    // course needs to be URI encoded with %20
+    app.get("/students/c=:course", (req, res) => {
         Student.find({ course: req.params.course }, (err, result) => {
             if (result) {
                 res.send(result);
@@ -43,70 +46,51 @@ module.exports = (app) => {
             }
         }).catch((err) => res.send(err));
     });
-}; // get student by course
+    // get students by course
 
-// update student
-module.exports = (app) => {
-    app.patch("/students/:id", (req, res) => {
-        Student.findById(req.params.id, (err, result) => {
-            const updated = {
-                username: req.body.username,
-                name: req.body.name,
-                email: req.body.email,
-                siteUrl: req.body.siteUrl,
-                course: req.body.course,
-                blurb: req.body.blurb,
-                $push: {
-                    skills: { $each: req.body.skills },
-                }, //array
-                careermotivation: req.body.careermotivation,
-                $push: {
-                    projects: { $each: req.body.projects },
-                }, // array
-                github: req.body.github,
-                behance: req.body.behance,
-                linkedIn: req.body.linkedIn,
-                instagram: req.body.instagram,
-            };
-            Student.updateOne({ _id: req.params.id }, updated)
-                .then((result) => {
-                    res.send(result);
-                })
-                .catch((err) => res.send(err));
-        }).catch((err) => res.send("Not found"));
+    // update student
+    app.patch("/students/s=:id", (req, res) => {
+        const _id = req.params.id;
+
+        const updated = {
+            username: req.body.username,
+            name: req.body.name,
+            email: req.body.email,
+            siteUrl: req.body.siteUrl,
+            course: req.body.course,
+            blurb: req.body.blurb,
+            skills: req.body.skills,
+            github: req.body.github,
+            behance: req.body.behance,
+            linkedIn: req.body.linkedIn,
+            instagram: req.body.instagram,
+        };
+
+        Student.findByIdAndUpdate(
+            _id,
+            { $set: updated },
+            { useFindAndModify: false, upsert: true, new: true },
+            (err, result) => {
+                if (err) res.send(err);
+                res.send(result);
+            }
+        ).catch((err) => console.log(err));
     });
-}; // update student
+    // update student
 
-//register student
-module.exports = (app) => {
+    //register student
     app.post("/register", (req, res) => {
-        Student.findOne({ username: req.body.username }, (err, result) => {
+        const { username, email, password } = req.body;
+        Student.findOne({ username }, (err, result) => {
             if (result) {
-                res.send(
-                    "This username is already taken. Please try another one"
-                );
+                res.send("Username taken. Try another one!");
             } else {
-                const hash = bcryptjs.hashSync(req.body.password);
+                const hash = bcryptjs.hashSync(password);
                 const student = new Student({
                     _id: new mongoose.Types.ObjectId(),
-                    username: req.body.username,
+                    username,
                     password: hash,
-                    name: req.body.name,
-                    email: req.body.email,
-                    siteUrl: req.body.siteUrl,
-                    course: req.body.course,
-                    blurb: req.body.blurb,
-                    $push: {
-                        skills: { $each: req.body.skills },
-                    }, //array
-                    careermotivation: req.body.careermotivation,
-                    $push: {
-                        projects: { $each: req.body.projects },
-                    }, // array
-                    github: req.body.github,
-                    behance: req.body.behance,
-                    linkedIn: req.body.linkedIn,
-                    instagram: req.body.instagram,
+                    email,
                 });
                 student
                     .save()
@@ -117,15 +101,29 @@ module.exports = (app) => {
             }
         });
     });
-}; // register student
+    // register student
 
-//login student
-module.exports = (app) => {
+    //login student
     app.post("/login", (req, res) => {
-        Student.findOne({ username: req.body.username }, (err, result) => {
+        Student.findOne({ username: req.body.username }, async (err, result) => {
             if (result) {
                 if (bcryptjs.compareSync(req.body.password, result.password)) {
-                    res.send(result);
+                    let query = await Student.aggregate([
+                        { $match: { _id: mongoose.Types.ObjectId(result._id)}},
+                        { $lookup: {
+                            from: "projects",
+                            let: { "studentId": "$_id" },
+                            pipeline: [
+                                { $match: {
+                                    $expr: { $eq: [ '$studentId', { $toObjectId: '$$studentId'} ]}
+                                }}
+                            ],
+                            as: "projectsDetail"
+                        }}
+                    ]);   
+                    
+                    // console.log(query);
+                    res.send(query[0]);
                 } else {
                     res.send("Not authorised. Incorrect password");
                 }
@@ -134,4 +132,32 @@ module.exports = (app) => {
             }
         });
     });
-}; // login student
+    // login student
+
+    // change profile photo
+    app.patch(
+        "/students/s=:id/photo/update/",
+        upload.single("profilePhoto"),
+        (req, res, next) => {
+            const _studentId = req.params.id;
+            const base_url = "http://" + req.headers.host + "/";
+
+            let newPhoto = req.file
+                ? base_url + req.file.path
+                : req.body.profilePhotoUrl;
+
+            let updatedInfo = { photoUrl: newPhoto };
+
+            Student.findByIdAndUpdate(
+                _studentId,
+                { $set: updatedInfo },
+                { useFindAndModify: false, upsert: true, new: true },
+                (err, result) => {
+                    if (err) res.send(err);
+                    res.send(result);
+                }
+            ).catch((err) => console.log(err));
+        }
+    );
+    // change profile photo
+}; // close export module

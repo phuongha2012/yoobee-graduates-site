@@ -4,16 +4,16 @@ const projectSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     title: String,
     description: String,
-    image: String, //could be array?
+    image: String, 
     type: Array,
     course: String,
     studentId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Student",
     },
-    duration: String,
-    gitub: String,
+    github: String,
     live: String,
+    category: String
 });
 
 module.exports = mongoose.model("Project", projectSchema);

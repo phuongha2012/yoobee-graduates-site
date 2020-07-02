@@ -1,0 +1,47 @@
+.about-banner {
+    background: url("../../assets/Catalyst6-min.png");
+    background-size: initial;
+    background-position: 0 70%;
+}
+
+.about-content {
+    width: 80%;
+    margin: auto;
+}
+
+.about-section {
+    padding: 3rem 0;
+}
+
+.about-heading {
+    text-align: center;
+    font-family: "Girassol", cursive;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    padding-bottom: 2rem;
+    // width: 50%;
+    margin: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .about-banner {
+        background-size: cover;
+        background-position: 0 95%;
+    }
+    .about-content {
+        width: 70%;
+    }
+    .about-heading {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1042px) {
+    .about-heading {
+        width: 50%;
+    }
+    .about-content {
+        width: 50%;
+    }
+}

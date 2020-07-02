@@ -1,0 +1,44 @@
+.authorPhoto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-position: center;
+}
+
+.projectPhoto {
+    width: 100%;
+    height: 600px;
+    position: relative;
+
+    & > img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate((-50%, -50%));
+        width: 100%;
+        height: 600px;
+        object-fit: contain;
+    }
+}
+
+.authorDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projectCategory {
+    margin-bottom: 35px;
+}
+
+@media screen and (max-width: 768px) {
+    
+    .projectDetails {
+        padding: 30px;
+    }
+
+    .projectCategory {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+}
