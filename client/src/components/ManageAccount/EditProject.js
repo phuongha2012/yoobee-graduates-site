@@ -93,6 +93,8 @@ const EditProject = ({ match }) => {
     };
 
     return (
+        <>
+        <div className="position-relative bg-dark py-5 mb-3"></div>
         <div className="col-lg-8 col-10 mx-auto">
             <h2 className="text-center mb-5 pt-5">Edit Project</h2>
 
@@ -190,6 +192,7 @@ const EditProject = ({ match }) => {
                 </div>
             </form>
         </div>
+        </>
     );
 };
 

@@ -87,7 +87,8 @@ const EditProfilePage = (props) => {
     }
 
     return (
-        
+        <>
+        <div className="position-relative bg-dark py-5 mb-3"></div>
             <div 
                 className="col-lg-8 col-md-10 col-sm-10 mx-auto">
             <h2 
@@ -589,7 +590,7 @@ const EditProfilePage = (props) => {
                 </div>
             </form>
         </div>
-        
+        </>
     )
 }
 

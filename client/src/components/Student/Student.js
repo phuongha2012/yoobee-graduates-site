@@ -76,11 +76,10 @@ export const Student = ({ match }) => {
     return (
         <>
             <div className="heading-banner student-banner">
-                <div className="container">
-                    <h1 className="single-heading">{name}</h1>
-                </div>
+                <h1 className="single-heading">{name}</h1>
+                <p className="heading-course">{course}</p>
             </div>
-            <p>{course}</p>
+            
             <p>{email}</p>
             <a href={github} target="_blank">
                 GitHub

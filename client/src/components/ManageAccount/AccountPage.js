@@ -30,11 +30,14 @@ const AccountPage = () => {
     };
 
     return (
+        <>
+        <div className="position-relative bg-dark py-5 mb-3"></div>
         <div className="container">
             <h1>Manage Account</h1>
             <AccountSummary user={user} />
             <ProjectList projects={user.projectsDetail} />
         </div>
+        </>
     );
 };
 
