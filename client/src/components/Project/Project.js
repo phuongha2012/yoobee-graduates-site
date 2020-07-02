@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "../Student/Student.scss";
+import "./Project.scss";
 
 export const Project = ({ match }) => {
+    const history = useHistory();
+    const userContext = useContext(UserContext);
+    const [authorMode, setAuthorMode] = useState(false);
     const [project, setProject] = useState([]);
     const [student, setStudent] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
     const { title, course, duration, category } = project;
-
     const getProject = async () => {
         let source = axios.CancelToken.source();
         try {
@@ -33,7 +37,6 @@ export const Project = ({ match }) => {
             source.cancel("Cancelling in cleanup");
         };
     };
-
     const getStudent = async () => {
         let source = axios.CancelToken.source();
         try {
@@ -58,16 +61,18 @@ export const Project = ({ match }) => {
             source.cancel("Cancelling in cleanup");
         };
     };
-
     useEffect(() => {
         getProject();
     }, [match.params]);
-
     useEffect(() => {
         getStudent();
     }, [project]);
-
-    console.log(project);
+    useEffect(() => {
+        if (userContext.state.user && userContext.state.user._id === project.studentId) {
+            setAuthorMode(true);
+        }
+    }, [project]);
+  
     return (
         <>
             <div className="heading-banner project-banner">
@@ -76,10 +81,29 @@ export const Project = ({ match }) => {
                 </div>
             </div>
             <div className="container">
-            <div className="project-content"></div>
-            {/* <p>
-                By: <Link to={`/students/${student._id}`}>{student.name}</Link>
-            </p> */}
+            <div className="project-content mt-5">
+                <div className="float-right">
+                    {authorMode
+                    ? <Link to={"/account/projects/" + project._id + "/edit"}>Edit Project</Link>
+                    : ''}
+                </div>
+                <div className="projectPhoto">
+                    <img src={project.image} className="mx-auto"></img>
+                </div>
+                <div className="row mt-5">
+                        <div className="col-xs-12 col-md-4 authorDetails mx-auto">
+                            <Link to={"/students/" + student._id}>
+                                <div className="authorPhoto" style={{backgroundImage: "url(" + student.photoUrl + ")"}}></div>
+                            </Link>
+                            <div className="text-uppercase mt-3">{student.name}</div>
+                            <div className="mt-2" >{student.course}</div>
+                        </div>
+                        <div className="col-xs-12 col-md-8 projectDetails">
+                            <h5 className="projectCategory">{project.category} project</h5>
+                            <div>{project.description}</div>
+                        </div>
+                </div>
+            </div>
         </div>
         </>
     );

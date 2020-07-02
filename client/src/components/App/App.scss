@@ -15,7 +15,7 @@ body {
 
 .single-heading {
     font-family: "Girassol", cursive;
-    font-size: 3.2rem;
+    font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: 0.5rem;
     color: #fff;
@@ -35,6 +35,10 @@ body {
 @media screen and (min-width: 768px) {
     .heading-banner {
         padding: 6rem 2rem 5rem;
+    }
+
+    .single-heading {
+        font-size: 3.2rem;
     }
 }
 
