@@ -6,7 +6,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: blue;
+    background: url("../../assets/CatalystImg-min.png");
+    background-position: center;
 }
 
 .page-menu {
@@ -17,19 +18,32 @@
 }
 
 .page-menu-div {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1;
-    background: rgba($color: #ccc, $alpha: 0.2);
     font-size: 1.6rem;
-    transition: background 350ms ease-in-out;
+    background: radial-gradient(rgba($color: #ddd, $alpha: 0.1) 10%,rgba($color: #ddd, $alpha: 0.05) 20%);
+    z-index: 1;
     a {
-        color: #000;
+        color: #fff;
         text-decoration: none;
     }
-    &:hover {
-        background: rgba($color: #ededed, $alpha: 0.8);
+    &::before{
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: radial-gradient(rgba($color: #ededed, $alpha: 0.1) 20%,rgba($color: #ededed, $alpha: 0.001) 40%);
+        z-index: -1;
+        transition: opacity 350ms ease-in-out;
+        opacity: 0;
+    }
+    &:hover::before{
+        opacity: 1;
     }
 }
 

@@ -1,8 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Girassol&family=Open+Sans:wght@400;700&display=swap');
+
 html,
 body {
     height: 100%;
 }
 
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+
 #root {
     height: 100%;
+}
+
+.single-heading{
+    font-family: 'Girassol', cursive;
+    font-size: 3.2rem;
+    text-transform: uppercase;
+    letter-spacing: .5rem;
 }

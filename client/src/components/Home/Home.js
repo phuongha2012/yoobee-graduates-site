@@ -7,12 +7,12 @@ const Home = () => {
         <div className="home-wrapper">
             <div className="page-menu">
                 <div className="page-menu-div">
-                    <Link className="page-menu-div-inner" to="/students">
+                    <Link className="page-menu-div-inner single-heading" to="/students">
                         Students
                     </Link>
                 </div>
                 <div className="page-menu-div">
-                    <Link className="page-menu-div-inner" to="/projects">
+                    <Link className="page-menu-div-inner single-heading" to="/projects">
                         Projects
                     </Link>
                 </div>
