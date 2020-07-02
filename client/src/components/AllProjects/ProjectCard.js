@@ -29,10 +29,10 @@ export const ProjectCard = ({ project }) => {
                 <p>{project.course}</p>
 
                 <Link
-                    className="btn btn-primary"
+                    className="btn btn-outline-info"
                     to={`/projects/${project._id}`}
                 >
-                    View project
+                    View Project
                 </Link>
             </div>
         </div>

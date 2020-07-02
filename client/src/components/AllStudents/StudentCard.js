@@ -5,7 +5,7 @@ import "./AllStudents.scss";
 
 export const StudentCard = ({ student }) => {
     return (
-        <div className="card-grid-card card">
+        <div className="card">
             {student.photoUrl ? (
                 <img
                     className="card-img-top"
@@ -37,10 +37,10 @@ export const StudentCard = ({ student }) => {
                 <p>{student.course}</p>
 
                 <Link
-                    className="btn btn-primary"
+                    className="btn btn-outline-info"
                     to={`/students/${student._id}`}
                 >
-                    View my page
+                    View Student
                 </Link>
             </div>
         </div>
