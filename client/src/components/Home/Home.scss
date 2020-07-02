@@ -8,6 +8,7 @@
     width: 100%;
     background: url("../../assets/CatalystImgB.png");
     background-position: center;
+    background-size: cover;
 }
 
 .page-menu {
@@ -24,25 +25,31 @@
     align-items: center;
     flex: 1;
     font-size: 1.6rem;
-    background: radial-gradient(rgba($color: #ddd, $alpha: 0.1) 10%,rgba($color: #ddd, $alpha: 0.05) 20%);
+    background: radial-gradient(
+        rgba($color: #ddd, $alpha: 0.1) 10%,
+        rgba($color: #ddd, $alpha: 0.05) 20%
+    );
     z-index: 1;
     a {
         color: #fff;
         text-decoration: none;
     }
-    &::before{
+    &::before {
         position: absolute;
         content: "";
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-        background: radial-gradient(rgba($color: #ededed, $alpha: 0.1) 20%,rgba($color: #ededed, $alpha: 0.001) 40%);
+        background: radial-gradient(
+            rgba($color: #ededed, $alpha: 0.1) 20%,
+            rgba($color: #ededed, $alpha: 0.001) 40%
+        );
         z-index: -1;
         transition: opacity 350ms ease-in-out;
         opacity: 0;
     }
-    &:hover::before{
+    &:hover::before {
         opacity: 1;
     }
 }

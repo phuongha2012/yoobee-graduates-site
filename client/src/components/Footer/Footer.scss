@@ -1,19 +1,30 @@
-footer{
-    background: #ccc;
+footer {
+    background: #2d2d2d !important;
+    color: #fff;
 }
+
 .footer-grid {
     display: grid;
+    grid-template-columns: 1fr 1fr;
 }
+
 .footer-grid-section {
     padding: 2rem;
     list-style: none;
+    li {
+        line-height: 2rem;
+        a {
+            color: #fff;
+        }
+    }
+    &:nth-child(3) {
+        grid-column: span 2;
+    }
 }
 
-@media (min-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    .footer-grid-section:nth-child(3) {
-        grid-column: span 2;
+.btn-logout {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
     }
 }

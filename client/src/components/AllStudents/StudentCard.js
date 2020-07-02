@@ -6,19 +6,21 @@ import "./AllStudents.scss";
 export const StudentCard = ({ student }) => {
     return (
         <div className="card">
-            {student.photoUrl ? (
-                <img
-                    className="card-img-top"
-                    src={student.photoUrl}
-                    alt={student.username}
-                />
-            ) : (
-                <img
-                    className="card-img-top"
-                    src={placeholder}
-                    alt={student.username}
-                />
-            )}
+            <Link to={`/students/${student._id}`}>
+                {student.photoUrl ? (
+                    <img
+                        className="card-img-top"
+                        src={student.photoUrl}
+                        alt={student.username}
+                    />
+                ) : (
+                    <img
+                        className="card-img-top"
+                        src={placeholder}
+                        alt={student.username}
+                    />
+                )}
+            </Link>
 
             <div className="card-body">
                 {student.name ? (

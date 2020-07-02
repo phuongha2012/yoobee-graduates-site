@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import AccountSummary from "./AccountSummary";
@@ -20,23 +20,30 @@ const AccountPage = () => {
             history.push("/login");
         } else {
             axios
-                .get(process.env.REACT_APP_BASE_URL + '/students/s=' + userContext.state.user._id)
-                .then(response => {
+                .get(
+                    process.env.REACT_APP_BASE_URL +
+                        "/students/s=" +
+                        userContext.state.user._id
+                )
+                .then((response) => {
                     setUser(response.data);
                     setProjects(response.data.projectsDetail);
-                })
-            
+                });
         }
     };
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <>
-        <div className="position-relative bg-dark py-5 mb-3"></div>
-        <div className="container">
-            <h1>Manage Account</h1>
-            <AccountSummary user={user} />
-            <ProjectList projects={user.projectsDetail} />
-        </div>
+            <div className="position-relative bg-dark py-5 mb-3"></div>
+            <div className="container">
+                <h1>Manage Account</h1>
+                <AccountSummary user={user} />
+                <ProjectList projects={user.projectsDetail} />
+            </div>
         </>
     );
 };

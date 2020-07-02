@@ -3,6 +3,7 @@ import axios from "axios";
 import { ProjectCard } from "./ProjectCard";
 import "../AllStudents/AllStudents.scss";
 import { SortingNav } from "../SortingNav/SortingNav";
+import { Loader } from "../Loader/Loader";
 
 const AllProjects = () => {
     const [allProjects, setAllProjects] = useState([]);
@@ -69,13 +70,17 @@ const AllProjects = () => {
             <div className="container">
                 <div className="card-grid">
                     {isLoading ? (
-                        <p>Loading</p>
+                        <Loader />
                     ) : showProjects ? (
-                        showProjects.map((project, i) => (
-                            <ProjectCard key={i} project={project} />
-                        ))
+                        showProjects.length === 0 ? (
+                            <h3>No Projects from this course</h3>
+                        ) : (
+                            showProjects.map((project, i) => (
+                                <ProjectCard key={i} project={project} />
+                            ))
+                        )
                     ) : (
-                        "No Projects"
+                        ""
                     )}
                 </div>
             </div>

@@ -66,10 +66,14 @@ const EditProfilePhoto = (props) => {
                 </div>
             </div>
             <div className="form-row float-right">
-                <span className="mr-3" onClick={props.cancelHandler}>
+                <span
+                    className="mr-3 btn btn-outline-primary"
+                    role="button"
+                    onClick={props.cancelHandler}
+                >
                     Cancel
                 </span>
-                <button type="submit" className="button float-right">
+                <button type="submit" className="btn btn-primary float-right">
                     Save
                 </button>
             </div>

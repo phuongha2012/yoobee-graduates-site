@@ -1,10 +1,10 @@
-.students-banner{
+.students-banner {
     background: url("../../assets/CatalystImg3-min.png");
     background-size: cover;
     background-position: center;
 }
 
-.projects-banner{
+.projects-banner {
     background: url("../../assets/CatalystImg2-min.png");
     background-size: cover;
     background-position: center;
@@ -16,7 +16,7 @@
     grid-gap: 1rem;
 }
 
-.card{
+.card {
     border: none;
 }
 
@@ -34,17 +34,16 @@
     }
 }
 
-@media screen and (min-width:768px) {
-    .heading-banner{
-        padding: 8rem 2rem;
-    }
-    .students-banner{
+.loader-page {
+    grid-column-start: 2;
+}
+
+@media screen and (min-width: 768px) {
+    .students-banner {
         background-position: 0 40%;
     }
 
-    .projects-banner{
+    .projects-banner {
         background-position: 0 40%;
     }
 }
-
-

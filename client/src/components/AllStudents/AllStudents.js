@@ -3,6 +3,7 @@ import axios from "axios";
 import "./AllStudents.scss";
 import { StudentCard } from "./StudentCard";
 import { SortingNav } from "../SortingNav/SortingNav";
+import { Loader } from "../Loader/Loader";
 
 const AllStudents = () => {
     const [allStudents, setAllStudents] = useState([]);
@@ -69,11 +70,15 @@ const AllStudents = () => {
             <div className="container">
                 <div className="card-grid">
                     {isLoading ? (
-                        <p>Loading</p>
+                        <Loader />
                     ) : showStudents ? (
-                        showStudents.map((student, i) => (
-                            <StudentCard key={i} student={student} />
-                        ))
+                        showStudents.length === 0 ? (
+                            <h3>No students in this course</h3>
+                        ) : (
+                            showStudents.map((student, i) => (
+                                <StudentCard key={i} student={student} />
+                            ))
+                        )
                     ) : (
                         ""
                     )}
