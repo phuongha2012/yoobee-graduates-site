@@ -1,30 +1,26 @@
-.student-banner{
-    background: url("../../assets/CatalystImg5-min.png");
+.student-banner {
+    background: url("../../assets/catalystimg5-min.png");
     background-size: cover;
     background-position: center;
 }
 
-.project-banner{
+.project-banner {
     background: url("../../assets/CatalystImg4-min.png");
     background-size: cover;
     background-position: center;
 }
 
-.heading-course{
+.heading-course {
     color: #fff;
     margin-bottom: 0;
 }
 
-@media screen and (min-width:768px) {
-    .heading-banner{
-        padding: 8rem 2rem;
+@media screen and (min-width: 768px) {
+    .student-banner {
+        background-position: 0 40%;
     }
 
-    .student-banner{
-	    background-position: 0 40%;
-	}
-
-	.project-banner{
-	    background-position: 0 40%;
-	}
+    .project-banner {
+        background-position: 0 40%;
+    }
 }
