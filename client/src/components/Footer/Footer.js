@@ -13,7 +13,7 @@ export const Footer = () => {
     };
 
     return (
-        <footer>
+        <footer className="mt-5">
             <div className="footer-grid">
                 <ul className="footer-grid-section">
                     <li>
@@ -26,7 +26,7 @@ export const Footer = () => {
                         <Link to="/projects">Projects</Link>
                     </li>
                     <li>
-                        <Link to="/">About</Link>
+                        <Link to="/about">About</Link>
                     </li>
                 </ul>
                 <div className="footer-grid-section">

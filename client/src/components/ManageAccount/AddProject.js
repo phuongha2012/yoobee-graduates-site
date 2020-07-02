@@ -73,6 +73,8 @@ const AddProject = (props) => {
     };
 
     return (
+        <>
+        <div className="position-relative bg-dark py-5 mb-3"></div>
         <div className="col-lg-8 col-10 mx-auto">
             <h2 className="text-center mb-5 pt-5">Add a Project</h2>
 
@@ -170,6 +172,7 @@ const AddProject = (props) => {
                 </div>
             </form>
         </div>
+        </>
     );
 };
 

@@ -30,6 +30,8 @@ const RegisterPage = () => {
     };
 
     return (
+        <>
+        <div className="position-relative bg-dark py-5 mb-3"></div>
         <form
             className="col-lg-8 col-md-10 col-sm-10 mx-auto"
             onSubmit={onSubmitHandler}>
@@ -89,6 +91,7 @@ const RegisterPage = () => {
                 <button>Sign Up</button>
             </div>
         </form>
+        </>
     )
 }
 
