@@ -1,3 +1,11 @@
+.students-banner{
+    background: url("../../assets/CatalystImg3-min.png");
+}
+
+.projects-banner{
+    background: url("../../assets/CatalystImg2-min.png");
+}
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -9,7 +17,6 @@
 }
 
 .card-img-top {
-    // max-width: 250px;
     max-height: 350px;
     margin: auto;
     object-fit: contain;
@@ -20,6 +27,12 @@
     a {
         color: #000;
         text-decoration: none;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .heading-banner{
+        padding: 8rem 2rem;
     }
 }
 
