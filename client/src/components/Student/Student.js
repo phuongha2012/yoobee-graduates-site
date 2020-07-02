@@ -6,7 +6,6 @@ import {
     faUser,
     faEnvelope as faEmail,
 } from "@fortawesome/free-solid-svg-icons";
-
 import {
     faGithubSquare as faGithub,
     faLinkedin,

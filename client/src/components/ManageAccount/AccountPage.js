@@ -32,6 +32,10 @@ const AccountPage = () => {
         }
     };
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <>
             <div className="position-relative bg-dark py-5 mb-3"></div>

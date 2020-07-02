@@ -38,8 +38,11 @@ export const Footer = () => {
                                 <li>
                                     <Link to="/account">My Account</Link>
                                 </li>
-                                <li>
-                                    <p onClick={logoutHandler}>Logout</p>
+                                <li
+                                    className="btn-logout"
+                                    onClick={logoutHandler}
+                                >
+                                    Logout
                                 </li>
                             </>
                         ) : (

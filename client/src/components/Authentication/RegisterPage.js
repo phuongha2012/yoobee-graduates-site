@@ -83,7 +83,7 @@ const RegisterPage = () => {
                     ""
                 )}
                 <div className="text-center mt-3">
-                    <button>Sign Up</button>
+                    <button className="btn btn-primary">Sign Up</button>
                 </div>
             </form>
         </>

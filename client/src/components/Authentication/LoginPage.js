@@ -77,7 +77,7 @@ const LoginPage = () => {
                     ""
                 )}
                 <div className="text-center mt-3">
-                    <button>Login</button>
+                    <button className="btn btn-primary">Login</button>
                 </div>
             </form>
         </>

@@ -21,3 +21,10 @@ footer {
         grid-column: span 2;
     }
 }
+
+.btn-logout {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
