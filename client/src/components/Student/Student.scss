@@ -1,7 +1,25 @@
 .student-banner{
     background: url("../../assets/CatalystImg5-min.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .project-banner{
     background: url("../../assets/CatalystImg4-min.png");
+    background-size: cover;
+    background-position: center;
+}
+
+@media screen and (min-width:768px) {
+    .heading-banner{
+        padding: 8rem 2rem;
+    }
+
+    .student-banner{
+	    background-position: 0 40%;
+	}
+
+	.project-banner{
+	    background-position: 0 40%;
+	}
 }

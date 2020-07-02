@@ -1,9 +1,13 @@
 .students-banner{
     background: url("../../assets/CatalystImg3-min.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .projects-banner{
     background: url("../../assets/CatalystImg2-min.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .card-grid {
@@ -33,6 +37,13 @@
 @media screen and (min-width:768px) {
     .heading-banner{
         padding: 8rem 2rem;
+    }
+    .students-banner{
+        background-position: 0 40%;
+    }
+
+    .projects-banner{
+        background-position: 0 40%;
     }
 }
 
