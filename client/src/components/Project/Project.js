@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../Student/Student.scss";
 
 export const Project = ({ match }) => {
     const [project, setProject] = useState([]);
@@ -68,14 +69,18 @@ export const Project = ({ match }) => {
 
     console.log(project);
     return (
-        <div className="container">
-            <div className="jumbotron bg-transparent">
+        <>
+            <div className="heading-banner project-banner">
+            <div className="container">
                 <h1 className="single-heading">{title}</h1>
+                </div>
             </div>
+            <div className="container">
             <div className="project-content"></div>
             {/* <p>
                 By: <Link to={`/students/${student._id}`}>{student.name}</Link>
             </p> */}
         </div>
+        </>
     );
 };

@@ -74,8 +74,12 @@ export const Student = ({ match }) => {
     }, [match.params]);
 
     return (
-        <div className="container">
-            <h2 className="jumbotron bg-transparent text-center">{name}</h2>
+        <>
+            <div className="heading-banner student-banner">
+                <div className="container">
+                    <h1 className="single-heading">{name}</h1>
+                </div>
+            </div>
             <p>{course}</p>
             <p>{email}</p>
             <a href={github} target="_blank">
@@ -104,6 +108,6 @@ export const Student = ({ match }) => {
                     <p>No projects for this student</p>
                 )}
             </div>
-        </div>
+        </>
     );
 };

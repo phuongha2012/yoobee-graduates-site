@@ -62,7 +62,7 @@ const AllStudents = () => {
 
     return (
         <>
-            <div className="jumbotron bg-transparent text-center">
+            <div className="heading-banner students-banner text-center">
                 <h1 className="single-heading">Students</h1>
             </div>
             <SortingNav filter={filterCards} />
