@@ -10,7 +10,7 @@ const NavBar = () => {
             <div className="col-12 col-sm-4 d-flex justify-content-between">
                 <Link to="/students">Students</Link>
                 <Link to="/projects">Projects</Link>
-                <Link to="/">About</Link>
+                <Link to="/about">About</Link>
             </div>
         </nav>
     );

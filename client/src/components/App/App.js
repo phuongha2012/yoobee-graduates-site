@@ -3,6 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { UserContextProvider } from "../../contexts/UserContext";
 import Home from "../Home/Home";
+import About from "../About/About";
 import LoginPage from "../Authentication/LoginPage";
 import RegisterPage from "../Authentication/RegisterPage";
 import AccountPage from "../ManageAccount/AccountPage";
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/" component={NavBar} />
                 <Switch>
                     <Route path="/" exact component={Home} />
+                    <Route path="/about" component={About} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/account" exact component={AccountPage} />
