@@ -62,7 +62,7 @@ const AllProjects = () => {
 
     return (
         <>
-            <div className="heading-banner projects-banner text-center">
+            <div className="heading-banner projects-banner">
                 <h1 className="single-heading">Projects</h1>
             </div>
             <SortingNav filter={filterCards} />
