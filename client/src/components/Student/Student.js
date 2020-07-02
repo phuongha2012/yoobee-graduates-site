@@ -13,6 +13,7 @@ import {
     faBehance,
     faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import placeholder from "../../assets/avatar-placeholder.png";
 
 export const Student = ({ match }) => {
     const [student, setStudent] = useState([]);
@@ -101,11 +102,19 @@ export const Student = ({ match }) => {
             <div className="student-container pt-5">
                 <div className="student-grid">
                     <div className="student-image-div">
-                        <img
-                            className="student-image"
-                            src={photoUrl}
-                            alt={name}
-                        />
+                        {photoUrl ? (
+                            <img
+                                className="student-image"
+                                src={photoUrl}
+                                alt={name}
+                            />
+                        ) : (
+                            <img
+                                className="student-image"
+                                src={placeholder}
+                                alt={name}
+                            />
+                        )}
                     </div>
                     <p className="student-blurb">{blurb}</p>
                     <div className="contacts">
@@ -220,11 +229,15 @@ export const Student = ({ match }) => {
                 <h4 className="mt-3 p-3">Projects</h4>
                 <div className="card-grid">
                     {projects ? (
-                        projects.map((project, i) => (
-                            <ProjectCard key={i} project={project} />
-                        ))
+                        projects.length === 0 ? (
+                            <h5>No projects for this student</h5>
+                        ) : (
+                            projects.map((project, i) => (
+                                <ProjectCard key={i} project={project} />
+                            ))
+                        )
                     ) : (
-                        <p>No projects for this student</p>
+                        ""
                     )}
                 </div>
             </div>

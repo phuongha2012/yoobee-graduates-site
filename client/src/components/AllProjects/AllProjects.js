@@ -72,11 +72,15 @@ const AllProjects = () => {
                     {isLoading ? (
                         <Loader />
                     ) : showProjects ? (
-                        showProjects.map((project, i) => (
-                            <ProjectCard key={i} project={project} />
-                        ))
+                        showProjects.length === 0 ? (
+                            <h3>No Projects from this course</h3>
+                        ) : (
+                            showProjects.map((project, i) => (
+                                <ProjectCard key={i} project={project} />
+                            ))
+                        )
                     ) : (
-                        "No Projects"
+                        ""
                     )}
                 </div>
             </div>

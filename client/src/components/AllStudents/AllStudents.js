@@ -72,11 +72,15 @@ const AllStudents = () => {
                     {isLoading ? (
                         <Loader />
                     ) : showStudents ? (
-                        showStudents.map((student, i) => (
-                            <StudentCard key={i} student={student} />
-                        ))
+                        showStudents.length === 0 ? (
+                            <h3>No students in this course</h3>
+                        ) : (
+                            showStudents.map((student, i) => (
+                                <StudentCard key={i} student={student} />
+                            ))
+                        )
                     ) : (
-                        <p>No students in this course</p>
+                        ""
                     )}
                 </div>
             </div>
