@@ -68,21 +68,23 @@ const AllStudents = () => {
             </div>
             <SortingNav filter={filterCards} />
             <div className="container">
-                <div className="card-grid">
+                
                     {isLoading ? (
                         <Loader />
                     ) : showStudents ? (
                         showStudents.length === 0 ? (
-                            <h3>No students in this course</h3>
+                            <h3 className="text-center mt-5">No students in this course</h3>
                         ) : (
-                            showStudents.map((student, i) => (
-                                <StudentCard key={i} student={student} />
-                            ))
+                            <div className="card-grid">
+                                {showStudents.map((student, i) => (
+                                    <StudentCard key={i} student={student} />
+                                ))}
+                            </div>
                         )
                     ) : (
                         ""
                     )}
-                </div>
+                
             </div>
         </>
     );
