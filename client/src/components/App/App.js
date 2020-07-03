@@ -21,27 +21,30 @@ function App() {
     return (
         <UserContextProvider>
             <BrowserRouter>
-                <Route path="/" component={NavBar} />
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/about" component={About} />
-                    <Route path="/login" component={LoginPage} />
-                    <Route path="/register" component={RegisterPage} />
-                    <Route path="/account" exact component={AccountPage} />
-                    <Route path="/account/edit" component={EditProfilePage} />
-                    <Route
-                        path="/account/projects/add"
-                        component={AddProject}
-                    />
-                    <Route
-                        path="/account/projects/:id/edit"
-                        component={EditProject}
-                    />
-                    <Route path="/students" exact component={AllStudents} />
-                    <Route path="/students/:id" component={Student} />
-                    <Route path="/projects" exact component={AllProjects} />
-                    <Route path="/projects/:id" component={Project} />
-                </Switch>
+                <div className="page-wrap">
+                    <Route path="/" component={NavBar} />
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/about" component={About} />
+                        <Route path="/login" component={LoginPage} />
+                        <Route path="/register" component={RegisterPage} />
+                        <Route path="/account" exact component={AccountPage} />
+                        <Route path="/account/edit" component={EditProfilePage} />
+                        <Route
+                            path="/account/projects/add"
+                            component={AddProject}
+                        />
+                        <Route
+                            path="/account/projects/:id/edit"
+                            component={EditProject}
+                        />
+                        <Route path="/students" exact component={AllStudents} />
+                        <Route path="/students/:id" component={Student} />
+                        <Route path="/projects" exact component={AllProjects} />
+                        <Route path="/projects/:id" component={Project} />
+                    </Switch>
+                </div>
+                
                 <Route
                     path="/"
                     render={(props) =>

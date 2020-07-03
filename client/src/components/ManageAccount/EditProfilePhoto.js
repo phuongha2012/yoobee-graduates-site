@@ -52,7 +52,7 @@ const EditProfilePhoto = (props) => {
                         onChange={(e) => setFile(e.target.files[0])}
                     />
                     <small>
-                        PNG/JPG files under 500Mb and no space in name
+                        PNG/JPG files under 500kb and no space in name
                     </small>
                 </div>
                 <div className="col-5">
