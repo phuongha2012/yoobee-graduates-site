@@ -68,21 +68,22 @@ const AllProjects = () => {
             </div>
             <SortingNav filter={filterCards} />
             <div className="container">
-                <div className="card-grid">
                     {isLoading ? (
                         <Loader />
                     ) : showProjects ? (
                         showProjects.length === 0 ? (
-                            <h3>No Projects from this course</h3>
+                            <h3 className="text-center mt-5">No projects from this course</h3>
                         ) : (
-                            showProjects.map((project, i) => (
+                            <div className="card-grid">
+                            {showProjects.map((project, i) => (
                                 <ProjectCard key={i} project={project} />
-                            ))
+                            ))}
+                            </div>
                         )
                     ) : (
                         ""
                     )}
-                </div>
+                
             </div>
         </>
     );

@@ -25,9 +25,9 @@
 }
 
 .card-img-top {
-    max-height: 350px;
+    height: 350px;
     margin: auto;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .card-name {
