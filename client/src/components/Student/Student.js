@@ -229,7 +229,7 @@ export const Student = ({ match }) => {
                 <div className="card-grid">
                     {projects ? (
                         projects.length === 0 ? (
-                            <h5>No projects for this student</h5>
+                            <h5 className="pl-3">No projects for this student</h5>
                         ) : (
                             projects.map((project, i) => (
                                 <ProjectCard key={i} project={project} />
