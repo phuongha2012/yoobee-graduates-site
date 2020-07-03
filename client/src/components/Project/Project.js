@@ -82,7 +82,7 @@ export const Project = ({ match }) => {
             </div>
             <div className="container">
             <div className="project-content mt-5">
-                <div className="float-right">
+                <div className="editLink float-right">
                     {authorMode
                     ? <Link to={"/account/projects/" + project._id + "/edit"}>Edit Project</Link>
                     : ''}
@@ -99,7 +99,11 @@ export const Project = ({ match }) => {
                             <div className="mt-2" >{student.course}</div>
                         </div>
                         <div className="col-xs-12 col-md-8 projectDetails">
-                            <h5 className="projectCategory">{project.category} project</h5>
+                            {project.category 
+                                ? <h5 className="projectCategory">{project.category} project</h5>
+                                : ""
+                            }
+                            
                             <div>{project.description}</div>
                         </div>
                 </div>
