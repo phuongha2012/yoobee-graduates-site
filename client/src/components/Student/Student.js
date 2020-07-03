@@ -226,19 +226,19 @@ export const Student = ({ match }) => {
                     </div>
                 </div>
                 <h4 className="mt-3 p-3">Projects</h4>
-                <div className="card-grid">
                     {projects ? (
                         projects.length === 0 ? (
-                            <h5>No projects for this student</h5>
+                            <h5 className="mt-5 text-center">No projects for this student</h5>
                         ) : (
-                            projects.map((project, i) => (
-                                <ProjectCard key={i} project={project} />
-                            ))
+                            <div className="card-grid">
+                                {projects.map((project, i) => (
+                                    <ProjectCard key={i} project={project} />
+                                ))}
+                            </div>
                         )
                     ) : (
                         ""
                     )}
-                </div>
             </div>
         </>
     );
