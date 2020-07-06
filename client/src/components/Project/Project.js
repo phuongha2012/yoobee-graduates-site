@@ -12,7 +12,18 @@ export const Project = ({ match }) => {
     const [project, setProject] = useState([]);
     const [student, setStudent] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
-    const { title, course, duration, category, description, image } = project;
+    const {
+        title,
+        course,
+        duration,
+        category,
+        description,
+        image,
+        live,
+        github,
+    } = project;
+
+    console.log(project);
 
     useEffect(() => {
         getProject();
@@ -132,6 +143,31 @@ export const Project = ({ match }) => {
                             )}
 
                             <p>{description}</p>
+                            {live ? (
+                                <a
+                                    className="btn btn-outline-main mr-3"
+                                    href={live}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Live Project
+                                </a>
+                            ) : (
+                                ""
+                            )}
+
+                            {github ? (
+                                <a
+                                    className="btn btn-outline-main"
+                                    href={github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Source Code
+                                </a>
+                            ) : (
+                                ""
+                            )}
                         </div>
                     </div>
                 </div>
