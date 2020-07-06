@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
 const upload = require("../middlewares/multer");
+// const cloudinary = require("../middlewares/cloudinary");
+// const fs = require("fs");
 
 const Student = require("../models/Student.js");
 
@@ -140,10 +142,9 @@ module.exports = (app) => {
         upload.single("profilePhoto"),
         (req, res, next) => {
             const _studentId = req.params.id;
-            const base_url = "http://" + req.headers.host + "/";
 
             let newPhoto = req.file
-                ? base_url + req.file.path
+                ? req.file.path
                 : req.body.profilePhotoUrl;
 
             let updatedInfo = { photoUrl: newPhoto };
