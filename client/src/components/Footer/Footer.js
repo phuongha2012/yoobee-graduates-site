@@ -57,7 +57,7 @@ export const Footer = () => {
                         )}
                     </ul>
                 </div>
-                <p className="footer-grid-section text-center">
+                <p className="footer-grid-section text-center container">
                     &copy; Yoobee Colleges 2020 | All Rights Reserved | Designed
                     & Developed by Jacob Preston, Chikaylah Wellington, Sean
                     Reilly, Russell Johnson & Hayley Ha

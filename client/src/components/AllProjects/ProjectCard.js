@@ -7,9 +7,11 @@ import "../AllStudents/AllStudents.scss";
 export const ProjectCard = ({ project }) => {
     const [student, setStudent] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
+    const [categoryClass, setCategoryClass] = useState("");
 
     useEffect(() => {
         getStudent();
+        getClass();
     }, []);
 
     const getStudent = async () => {
@@ -37,8 +39,47 @@ export const ProjectCard = ({ project }) => {
         };
     };
 
+    const getClass = () => {
+        switch (project.category) {
+            case "Full-stack":
+                setCategoryClass("1");
+                break;
+            case "Front-end":
+                setCategoryClass("2");
+                break;
+            case "UX Design":
+                setCategoryClass("3");
+                break;
+            case "Photo Manipulation":
+                setCategoryClass("4");
+                break;
+            case "Typography":
+                setCategoryClass("5");
+                break;
+            case "Branding":
+                setCategoryClass("6");
+                break;
+            case "Packaging":
+                setCategoryClass("7");
+                break;
+            case "Photography":
+                setCategoryClass("8");
+                break;
+
+            default:
+                break;
+        }
+    };
+
     return (
         <div className="card">
+            {project.category ? (
+                <div className={"stripe stripe-" + categoryClass}>
+                    {project.category}
+                </div>
+            ) : (
+                ""
+            )}
             <Link to={`/projects/${project._id}`}>
                 {project.image ? (
                     <img
