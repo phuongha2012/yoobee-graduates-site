@@ -13,6 +13,8 @@ const AllProjects = () => {
 
     useEffect(() => {
         getData();
+        document.title = "Projects - Catalyst";
+        window.scroll(0, 0);
     }, []);
 
     useEffect(() => {

@@ -14,6 +14,24 @@ export const Project = ({ match }) => {
     const [isUnmounted, setIsUnmounted] = useState(false);
     const { title, course, duration, category, description, image } = project;
 
+    useEffect(() => {
+        getProject();
+    }, [match.params]);
+
+    useEffect(() => {
+        getStudent();
+        title
+            ? (document.title = `${title} - Catalyst`)
+            : (document.title = `Project - Catalyst`);
+        window.scroll(0, 0);
+        if (
+            userContext.state.user &&
+            userContext.state.user._id === project.studentId
+        ) {
+            setAuthorMode(true);
+        }
+    }, [project]);
+
     const getProject = async () => {
         let source = axios.CancelToken.source();
         try {
@@ -62,22 +80,6 @@ export const Project = ({ match }) => {
             source.cancel("Cancelling in cleanup");
         };
     };
-    useEffect(() => {
-        getProject();
-    }, [match.params]);
-
-    useEffect(() => {
-        getStudent();
-    }, [project]);
-
-    useEffect(() => {
-        if (
-            userContext.state.user &&
-            userContext.state.user._id === project.studentId
-        ) {
-            setAuthorMode(true);
-        }
-    }, [project]);
 
     return (
         <>

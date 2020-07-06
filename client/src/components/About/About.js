@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./About.scss";
 
 const About = () => {
+    useEffect(() => {
+        document.title = "About - Catalyst";
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <>
             <div className="heading-banner about-banner">

@@ -11,6 +11,11 @@ const LoginPage = () => {
     const { setAuthenticatedUser } = useContext(UserContext);
     const history = useHistory();
 
+    useEffect(() => {
+        document.title = "Login - Catalyst";
+        window.scroll(0, 0);
+    }, []);
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
@@ -35,10 +40,6 @@ const LoginPage = () => {
     const onInputChange = (setter) => (e) => {
         setter(e.target.value);
     };
-
-    useEffect(() => {
-        window.scroll(0, 0);
-    }, []);
 
     return (
         <>

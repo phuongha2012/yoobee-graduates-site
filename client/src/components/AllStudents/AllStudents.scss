@@ -1,3 +1,5 @@
+$card-img-size: 250px;
+
 .students-banner {
     background: url("../../assets/CatalystImg3-min.png");
     background-size: cover;
@@ -20,12 +22,12 @@
     border: none;
 }
 
-.card-image-div{
-    height: 350px;
+.card-image-div {
+    height: 320px;
 }
 
 .card-img-top {
-    height: 350px;
+    height: 320px;
     margin: auto;
     object-fit: cover;
 }
@@ -40,6 +42,18 @@
 
 .loader-page {
     grid-column-start: 2;
+}
+
+@media screen and (min-width: 481px) {
+    .card-image-div {
+        height: $card-img-size;
+    }
+    .card-img-top {
+        margin: auto;
+    }
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax($card-img-size, 1fr));
+    }
 }
 
 @media screen and (min-width: 768px) {

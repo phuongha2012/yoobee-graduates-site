@@ -18,6 +18,15 @@ const EditProject = ({ match }) => {
         onLoad();
     }, [userContext.state.user]); //trigger reload if userContext changes
 
+    useEffect(() => {
+        getProject();
+    }, [match.params]);
+
+    useEffect(() => {
+        document.title = "Register - Catalyst";
+        window.scroll(0, 0);
+    }, []);
+
     const onLoad = () => {
         if (!userContext.state.user) {
             history.push("/login");
@@ -48,10 +57,6 @@ const EditProject = ({ match }) => {
             source.cancel("Cancelling in cleanup");
         };
     };
-
-    useEffect(() => {
-        getProject();
-    }, [match.params]);
 
     const onTextInputChange = (e) => {
         setProject({

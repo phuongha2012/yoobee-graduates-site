@@ -13,6 +13,8 @@ const AccountPage = () => {
 
     useEffect(() => {
         onLoad(); //redirect to login page if user is not authenticated
+        document.title = "My Account - Catalyst";
+        window.scroll(0, 0);
     }, []);
 
     const onLoad = () => {
