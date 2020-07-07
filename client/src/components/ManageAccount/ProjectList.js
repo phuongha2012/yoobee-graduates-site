@@ -8,7 +8,7 @@ const ProjectList = ({ projects }) => {
             <h2 className="my-3">My Projects</h2>
             {projects ? (
                 projects.length === 0 ? (
-                    <h3>You have not uploaded any project</h3>
+                    <h4>You have not uploaded any project</h4>
                 ) : (
                     <div className="card-grid">
                         {projects.map((project) => (

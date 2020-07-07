@@ -12,7 +12,37 @@ export const Project = ({ match }) => {
     const [project, setProject] = useState([]);
     const [student, setStudent] = useState([]);
     const [isUnmounted, setIsUnmounted] = useState(false);
-    const { title, course, duration, category } = project;
+    const {
+        title,
+        course,
+        duration,
+        category,
+        description,
+        image,
+        live,
+        github,
+    } = project;
+
+    console.log(project);
+
+    useEffect(() => {
+        getProject();
+    }, [match.params]);
+
+    useEffect(() => {
+        getStudent();
+        title
+            ? (document.title = `${title} - Catalyst`)
+            : (document.title = `Project - Catalyst`);
+        window.scroll(0, 0);
+        if (
+            userContext.state.user &&
+            userContext.state.user._id === project.studentId
+        ) {
+            setAuthorMode(true);
+        }
+    }, [project]);
+
     const getProject = async () => {
         let source = axios.CancelToken.source();
         try {
@@ -61,50 +91,87 @@ export const Project = ({ match }) => {
             source.cancel("Cancelling in cleanup");
         };
     };
-    useEffect(() => {
-        getProject();
-    }, [match.params]);
-    useEffect(() => {
-        getStudent();
-    }, [project]);
-    useEffect(() => {
-        if (userContext.state.user && userContext.state.user._id === project.studentId) {
-            setAuthorMode(true);
-        }
-    }, [project]);
-  
+
     return (
         <>
             <div className="heading-banner project-banner">
-            <div className="container">
-                <h1 className="single-heading">{title}</h1>
+                <div className="container">
+                    <h1 className="single-heading">{title}</h1>
                 </div>
             </div>
             <div className="container">
-            <div className="project-content mt-5">
-                <div className="float-right">
-                    {authorMode
-                    ? <Link to={"/account/projects/" + project._id + "/edit"}>Edit Project</Link>
-                    : ''}
-                </div>
-                <div className="projectPhoto">
-                    <img src={project.image} className="mx-auto"></img>
-                </div>
-                <div className="row mt-5">
+                <div className="project-content mt-5">
+                    <div className="editLink float-right">
+                        {authorMode ? (
+                            <Link
+                                to={
+                                    "/account/projects/" + project._id + "/edit"
+                                }
+                            >
+                                Edit Project
+                            </Link>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                    <div className="projectPhoto">
+                        <img src={image} className="mx-auto"></img>
+                    </div>
+                    <div className="row mt-5">
                         <div className="col-xs-12 col-md-4 authorDetails mx-auto">
                             <Link to={"/students/" + student._id}>
-                                <div className="authorPhoto" style={{backgroundImage: "url(" + student.photoUrl + ")"}}></div>
+                                <div
+                                    className="authorPhoto"
+                                    style={{
+                                        backgroundImage:
+                                            "url(" + student.photoUrl + ")",
+                                    }}
+                                ></div>
                             </Link>
-                            <div className="text-uppercase mt-3">{student.name}</div>
-                            <div className="mt-2" >{student.course}</div>
+                            <div className="text-uppercase mt-3">
+                                {student.name}
+                            </div>
+                            <div className="mt-2">{student.course}</div>
                         </div>
                         <div className="col-xs-12 col-md-8 projectDetails">
-                            <h5 className="projectCategory">{project.category} project</h5>
-                            <div>{project.description}</div>
+                            {category ? (
+                                <h5 className="projectCategory">
+                                    {category} project
+                                </h5>
+                            ) : (
+                                ""
+                            )}
+
+                            <p>{description}</p>
+                            {live ? (
+                                <a
+                                    className="btn btn-outline-main mr-3"
+                                    href={live}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Live Project
+                                </a>
+                            ) : (
+                                ""
+                            )}
+
+                            {github ? (
+                                <a
+                                    className="btn btn-outline-main"
+                                    href={github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Source Code
+                                </a>
+                            ) : (
+                                ""
+                            )}
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     );
 };

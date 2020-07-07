@@ -39,7 +39,7 @@ export const StudentCard = ({ student }) => {
                 <p>{student.course}</p>
 
                 <Link
-                    className="btn btn-outline-info"
+                    className="btn btn-outline-main"
                     to={`/students/${student._id}`}
                 >
                     View Student

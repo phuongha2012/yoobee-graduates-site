@@ -13,10 +13,12 @@ const AllProjects = () => {
 
     useEffect(() => {
         getData();
+        document.title = "Projects - Catalyst";
+        window.scroll(0, 0);
     }, []);
 
     useEffect(() => {
-        setShowProjects(allProjects);
+        setShowProjects(shuffle(allProjects));
     }, [allProjects]);
 
     const getData = async () => {
@@ -61,6 +63,17 @@ const AllProjects = () => {
         }
     };
 
+    const shuffle = (arr) => {
+        var i, j, temp;
+        for (i = arr.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+        return arr;
+    };
+
     return (
         <>
             <div className="heading-banner projects-banner">
@@ -68,21 +81,23 @@ const AllProjects = () => {
             </div>
             <SortingNav filter={filterCards} />
             <div className="container">
-                <div className="card-grid">
-                    {isLoading ? (
-                        <Loader />
-                    ) : showProjects ? (
-                        showProjects.length === 0 ? (
-                            <h3>No Projects from this course</h3>
-                        ) : (
-                            showProjects.map((project, i) => (
-                                <ProjectCard key={i} project={project} />
-                            ))
-                        )
+                {isLoading ? (
+                    <Loader />
+                ) : showProjects ? (
+                    showProjects.length === 0 ? (
+                        <h3 className="text-center mt-5">
+                            No projects from this course
+                        </h3>
                     ) : (
-                        ""
-                    )}
-                </div>
+                        <div className="card-grid">
+                            {showProjects.map((project, i) => (
+                                <ProjectCard key={i} project={project} />
+                            ))}
+                        </div>
+                    )
+                ) : (
+                    ""
+                )}
             </div>
         </>
     );

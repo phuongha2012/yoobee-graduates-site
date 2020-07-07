@@ -13,6 +13,8 @@ const AllStudents = () => {
 
     useEffect(() => {
         getData();
+        document.title = "Students - Catalyst";
+        window.scroll(0, 0);
     }, []);
 
     useEffect(() => {
@@ -68,21 +70,23 @@ const AllStudents = () => {
             </div>
             <SortingNav filter={filterCards} />
             <div className="container">
-                <div className="card-grid">
-                    {isLoading ? (
-                        <Loader />
-                    ) : showStudents ? (
-                        showStudents.length === 0 ? (
-                            <h3>No students in this course</h3>
-                        ) : (
-                            showStudents.map((student, i) => (
-                                <StudentCard key={i} student={student} />
-                            ))
-                        )
+                {isLoading ? (
+                    <Loader />
+                ) : showStudents ? (
+                    showStudents.length === 0 ? (
+                        <h3 className="text-center mt-5">
+                            No students in this course
+                        </h3>
                     ) : (
-                        ""
-                    )}
-                </div>
+                        <div className="card-grid">
+                            {showStudents.map((student, i) => (
+                                <StudentCard key={i} student={student} />
+                            ))}
+                        </div>
+                    )
+                ) : (
+                    ""
+                )}
             </div>
         </>
     );

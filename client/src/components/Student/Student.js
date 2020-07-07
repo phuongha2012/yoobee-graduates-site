@@ -33,6 +33,18 @@ export const Student = ({ match }) => {
         skills,
     } = student;
 
+    useEffect(() => {
+        getStudent();
+        getProjects();
+    }, [match.params]);
+
+    useEffect(() => {
+        name
+            ? (document.title = `${name} - Catalyst`)
+            : (document.title = `Student - Catalyst`);
+        window.scroll(0, 0);
+    }, [student]);
+
     const getStudent = async () => {
         let source = axios.CancelToken.source();
         try {
@@ -82,15 +94,6 @@ export const Student = ({ match }) => {
             source.cancel("Cancelling in cleanup");
         };
     };
-
-    useEffect(() => {
-        getStudent();
-        getProjects();
-    }, [match.params]);
-
-    useEffect(() => {
-        window.scroll(0, 0);
-    }, []);
 
     return (
         <>
@@ -226,19 +229,21 @@ export const Student = ({ match }) => {
                     </div>
                 </div>
                 <h4 className="mt-3 p-3">Projects</h4>
-                <div className="card-grid">
-                    {projects ? (
-                        projects.length === 0 ? (
-                            <h5>No projects for this student</h5>
-                        ) : (
-                            projects.map((project, i) => (
-                                <ProjectCard key={i} project={project} />
-                            ))
-                        )
+                {projects ? (
+                    projects.length === 0 ? (
+                        <h5 className="mt-5 text-center">
+                            No projects for this student
+                        </h5>
                     ) : (
-                        ""
-                    )}
-                </div>
+                        <div className="card-grid">
+                            {projects.map((project, i) => (
+                                <ProjectCard key={i} project={project} />
+                            ))}
+                        </div>
+                    )
+                ) : (
+                    ""
+                )}
             </div>
         </>
     );

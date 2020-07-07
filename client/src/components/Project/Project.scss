@@ -2,7 +2,7 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-position: center;
+    background-size: cover;
 }
 
 .projectPhoto {
@@ -29,6 +29,10 @@
 
 .projectCategory {
     margin-bottom: 35px;
+}
+
+.editLink {
+    z-index: 5;
 }
 
 @media screen and (max-width: 768px) {

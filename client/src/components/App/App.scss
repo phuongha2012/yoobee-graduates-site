@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Girassol&family=Open+Sans:wght@400;700&display=swap");
+$btn-color: #482255;
 
 html,
 body {
@@ -10,7 +11,10 @@ body {
 }
 
 #root {
-    height: 100%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .single-heading {
@@ -28,6 +32,16 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+// global buttons
+.btn-outline-main{
+    color: $btn-color;
+    border-color: $btn-color;
+    &:hover{
+        color: #fff;
+        background: $btn-color;
+    }
 }
 
 // media queries

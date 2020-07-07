@@ -1,3 +1,13 @@
+$card-img-size: 250px;
+$stripe-col-1: #1aa650;
+$stripe-col-2: #2e85d1;
+$stripe-col-3: #b031c4;
+$stripe-col-4: #d45d02;
+$stripe-col-5: #e60321;
+$stripe-col-6: #9669a1;
+$stripe-col-7: #1a5567;
+$stripe-col-8: #40b5c7; // too similar
+
 .students-banner {
     background: url("../../assets/CatalystImg3-min.png");
     background-size: cover;
@@ -18,12 +28,17 @@
 
 .card {
     border: none;
+    overflow: hidden;
+}
+
+.card-image-div {
+    height: 320px;
 }
 
 .card-img-top {
-    max-height: 350px;
+    height: 320px;
     margin: auto;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .card-name {
@@ -34,8 +49,70 @@
     }
 }
 
+.stripe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: $stripe-col-6, $alpha: 0.8);
+    color: #fff;
+    position: absolute;
+    line-height: 1.2rem;
+    font-size: 0.75rem;
+    top: 2.4rem;
+    right: -1.95rem;
+    width: 160px;
+    height: 1.4rem;
+    text-align: center;
+    transform: rotate(45deg);
+}
+
+.stripe-1 {
+    background-color: rgba($color: $stripe-col-1, $alpha: 0.6);
+    color: #fff;
+}
+.stripe-2 {
+    background-color: rgba($color: $stripe-col-2, $alpha: 0.6);
+    color: #fff;
+}
+.stripe-3 {
+    background-color: rgba($color: $stripe-col-3, $alpha: 0.6);
+    color: #fff;
+}
+.stripe-4 {
+    background-color: rgba($color: $stripe-col-4, $alpha: 0.6);
+    color: #fff;
+}
+.stripe-5 {
+    background-color: rgba($color: $stripe-col-5, $alpha: 0.6);
+    color: #fff;
+}
+.stripe-6 {
+    background-color: rgba($color: $stripe-col-6, $alpha: 0.6);
+    color: #fff;
+}
+.stripe-7 {
+    background-color: rgba($color: $stripe-col-7, $alpha: 0.6);
+    color: #fff;
+}
+.stripe-8 {
+    background-color: rgba($color: $stripe-col-8, $alpha: 0.6);
+    color: #fff;
+}
+
 .loader-page {
     grid-column-start: 2;
+}
+
+@media screen and (min-width: 481px) {
+    .card-image-div {
+        height: $card-img-size;
+    }
+    .card-img-top {
+        margin: auto;
+    }
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax($card-img-size, 1fr));
+    }
 }
 
 @media screen and (min-width: 768px) {
