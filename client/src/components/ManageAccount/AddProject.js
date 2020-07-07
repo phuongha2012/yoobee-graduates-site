@@ -25,6 +25,11 @@ const AddProject = (props) => {
         onLoad();
     }, [userContext.state.user]); //trigger reload if userContext changes
 
+    useEffect(() => {
+        document.title = "Add Project - Catalyst";
+        window.scroll(0, 0);
+    }, []);
+
     const onLoad = () => {
         if (!userContext.state.user) {
             history.push("/login");
