@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
 const upload = require("../middlewares/multer");
-// const cloudinary = require("../middlewares/cloudinary");
-// const fs = require("fs");
 
 const Student = require("../models/Student.js");
 
