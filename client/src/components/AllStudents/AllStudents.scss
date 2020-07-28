@@ -9,13 +9,13 @@ $stripe-col-7: #1a5567;
 $stripe-col-8: #40b5c7; // too similar
 
 .students-banner {
-    background: url("../../assets/CatalystImg3-min.png");
+    // background: url("../../assets/CatalystImg3-min.png");
     background-size: cover;
     background-position: center;
 }
 
 .projects-banner {
-    background: url("../../assets/CatalystImg2-min.png");
+    // background: url("../../assets/CatalystImg2-min.png");
     background-size: cover;
     background-position: center;
 }
@@ -29,6 +29,7 @@ $stripe-col-8: #40b5c7; // too similar
 .card {
     border: none;
     overflow: hidden;
+    background: none;
 }
 
 .card-image-div {
@@ -39,12 +40,14 @@ $stripe-col-8: #40b5c7; // too similar
     height: 320px;
     margin: auto;
     object-fit: cover;
+    border: 2px solid yellow;
 }
 
 .card-name {
     text-transform: uppercase;
+    text-align: center;
     a {
-        color: #000;
+        color: #f3f3f3;
         text-decoration: none;
     }
 }

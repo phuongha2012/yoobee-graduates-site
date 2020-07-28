@@ -8,6 +8,8 @@ body {
 
 body {
     font-family: "Open Sans", sans-serif;
+    background: #161616;
+    color: #f3f3f3;
 }
 
 #root {
@@ -22,23 +24,22 @@ body {
     font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: 0.5rem;
-    color: #fff;
+    color: #f3f3f3;
 }
 
 .heading-banner {
     padding: 4rem 1rem 2rem;
     text-align: center;
-    background: #2d2d2d;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 // global buttons
-.btn-outline-main{
+.btn-outline-main {
     color: $btn-color;
     border-color: $btn-color;
-    &:hover{
+    &:hover {
         color: #fff;
         background: $btn-color;
     }

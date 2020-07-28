@@ -104,13 +104,6 @@ export const ProjectCard = ({ project }) => {
                 <small className="d-block pb-3 font-weight-bold">
                     {student.name}
                 </small>
-
-                <Link
-                    className="btn btn-outline-main"
-                    to={`/projects/${project._id}`}
-                >
-                    View Project
-                </Link>
             </div>
         </div>
     );

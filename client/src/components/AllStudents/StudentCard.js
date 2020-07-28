@@ -4,6 +4,16 @@ import placeholder from "../../assets/avatar-placeholder.png";
 import "./AllStudents.scss";
 
 export const StudentCard = ({ student }) => {
+    // var elems = document.getElementsByClassName("card-img-top"),
+    //     size = elems.length;
+
+    // for (var i = 0; i < size; i++) {
+    //     var box = elems[i];
+    //     var cw = box.getBoundingClientRect().width;
+    //     box.style.height = cw + "px";
+    //     console.log(cw, box.getBoundingClientRect().height);
+    // }
+
     return (
         <div className="card">
             <Link to={`/students/${student._id}`}>
@@ -36,14 +46,6 @@ export const StudentCard = ({ student }) => {
                         </Link>
                     </h4>
                 )}
-                <p>{student.course}</p>
-
-                <Link
-                    className="btn btn-outline-main"
-                    to={`/students/${student._id}`}
-                >
-                    View Student
-                </Link>
             </div>
         </div>
     );
