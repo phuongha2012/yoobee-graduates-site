@@ -16,6 +16,7 @@ export const StudentCard = ({ student }) => {
 
     return (
         <div className="card">
+            {/* <div className="card-image-div"> */}
             <Link to={`/students/${student._id}`}>
                 {student.photoUrl ? (
                     <img
@@ -31,6 +32,7 @@ export const StudentCard = ({ student }) => {
                     />
                 )}
             </Link>
+            {/* </div> */}
 
             <div className="card-body">
                 {student.name ? (

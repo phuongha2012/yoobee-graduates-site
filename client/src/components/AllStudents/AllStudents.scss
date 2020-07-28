@@ -34,13 +34,15 @@ $stripe-col-8: #40b5c7; // too similar
 
 .card-image-div {
     height: 320px;
+    // border: 2px solid #ffe152;
 }
 
 .card-img-top {
     height: 320px;
     margin: auto;
     object-fit: cover;
-    border: 2px solid yellow;
+    filter: grayscale(100%);
+    border: 2px solid #ffe152;
 }
 
 .card-name {
