@@ -1,4 +1,10 @@
 .sorting-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin-top: 10rem;
+    margin-bottom: 4rem;
+    background: #161616;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;

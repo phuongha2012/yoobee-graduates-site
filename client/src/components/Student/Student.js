@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ProjectCard } from "../AllProjects/ProjectCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faUser,
-    faEnvelope as faEmail,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-    faGithubSquare as faGithub,
-    faLinkedin,
-    faBehance,
-    faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
 import placeholder from "../../assets/avatar-placeholder.png";
+import NavBarAlt from "../NavBar/NavBarAlt";
 
 export const Student = ({ match }) => {
     const [student, setStudent] = useState([]);
@@ -97,139 +87,132 @@ export const Student = ({ match }) => {
 
     return (
         <>
-            <div className="heading-banner student-banner">
-                <h1 className="single-heading">{name ? name : username}</h1>
-                <p className="heading-course">{course}</p>
-            </div>
-            <div className="student-container pt-5">
-                <div className="student-grid">
-                    <div className="student-image-div">
-                        {photoUrl ? (
-                            <img
-                                className="student-image"
-                                src={photoUrl}
-                                alt={name}
-                            />
-                        ) : (
-                            <img
-                                className="student-image"
-                                src={placeholder}
-                                alt={name}
-                            />
-                        )}
-                    </div>
-                    <p className="student-blurb">{blurb}</p>
-                    <div className="contacts">
-                        <h4 className="student-subheading">Contacts</h4>
-                        <div className="contact-icons">
-                            {github ? (
-                                <a
-                                    className="contact-anchor"
-                                    href={github}
-                                    target="_blank"
-                                    title="GitHub"
-                                >
-                                    <FontAwesomeIcon
-                                        className={"contact-icon github-icon"}
-                                        icon={faGithub}
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
-                            {linkedIn ? (
-                                <a
-                                    className="contact-anchor"
-                                    href={linkedIn}
-                                    target="_blank"
-                                    title="LinkedIn"
-                                >
-                                    <FontAwesomeIcon
-                                        className={"contact-icon linked-icon"}
-                                        icon={faLinkedin}
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
-                            {behance ? (
-                                <a
-                                    className="contact-anchor"
-                                    href={behance}
-                                    target="_blank"
-                                    title="Behance"
-                                >
-                                    <FontAwesomeIcon
-                                        className={"contact-icon behance-icon"}
-                                        icon={faBehance}
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
-                            {instagram ? (
-                                <a
-                                    className="contact-anchor"
-                                    href={instagram}
-                                    target="_blank"
-                                    title="Instagram"
-                                >
-                                    <FontAwesomeIcon
-                                        className={"contact-icon insta-icon"}
-                                        icon={faInstagram}
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
+            <NavBarAlt />
+            <div className="student-wrapper">
+                <div className="heading-banner student-banner">
+                    <h1 className="single-heading">{name ? name : username}</h1>
+                    <p className="heading-course">{course}</p>
+                </div>
 
-                            {siteUrl ? (
-                                <a
-                                    className="contact-anchor"
-                                    href={siteUrl}
-                                    target="_blank"
-                                    title="Personal Website"
-                                >
-                                    <FontAwesomeIcon
-                                        className={"contact-icon user-icon"}
-                                        icon={faUser}
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
-                            {email ? (
-                                <a
-                                    className="contact-anchor"
-                                    href={"mailto:" + email}
-                                    target="_blank"
-                                    title="Email"
-                                >
-                                    <FontAwesomeIcon
-                                        className={"contact-icon mail-icon"}
-                                        icon={faEmail}
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
+                {/* <div className="swiper"></div> */}
+
+                <div className="student-blurb">
+                    <div className="student-container">{blurb}</div>
+                </div>
+
+                <div className="student-details">
+                    <div className="student-container">
+                        <div className="student-details-row">
+                            <div className="skills">
+                                <h5 className="student-subheading">Skills</h5>
+                                <ul className="student-skills">
+                                    {skills
+                                        ? skills.map((skill, i) => (
+                                              <li
+                                                  className="student-skill"
+                                                  key={i}
+                                              >
+                                                  {skill}
+                                              </li>
+                                          ))
+                                        : ""}
+                                </ul>
+                            </div>
+                            <div className="contacts">
+                                <h5 className="student-subheading">Skills</h5>
+                                <ul className="student-skills">
+                                    {github ? (
+                                        <li className="student-skill">
+                                            <a
+                                                className="contact-anchor"
+                                                href={github}
+                                                target="_blank"
+                                                title="GitHub"
+                                            >
+                                                Github
+                                            </a>
+                                        </li>
+                                    ) : (
+                                        ""
+                                    )}
+                                    {linkedIn ? (
+                                        <li className="student-skill">
+                                            <a
+                                                className="contact-anchor"
+                                                href={linkedIn}
+                                                target="_blank"
+                                                title="LinkedIn"
+                                            >
+                                                LinkedIn
+                                            </a>
+                                        </li>
+                                    ) : (
+                                        ""
+                                    )}
+                                    {behance ? (
+                                        <li className="student-skill">
+                                            <a
+                                                className="contact-anchor"
+                                                href={behance}
+                                                target="_blank"
+                                                title="Behance"
+                                            >
+                                                Behance
+                                            </a>
+                                        </li>
+                                    ) : (
+                                        ""
+                                    )}
+                                    {instagram ? (
+                                        <li className="student-skill">
+                                            <a
+                                                className="contact-anchor"
+                                                href={instagram}
+                                                target="_blank"
+                                                title="Instagram"
+                                            >
+                                                Instagram
+                                            </a>
+                                        </li>
+                                    ) : (
+                                        ""
+                                    )}
+
+                                    {siteUrl ? (
+                                        <li className="student-skill">
+                                            <a
+                                                className="contact-anchor"
+                                                href={siteUrl}
+                                                target="_blank"
+                                                title="Personal Website"
+                                            >
+                                                Personal Website
+                                            </a>
+                                        </li>
+                                    ) : (
+                                        ""
+                                    )}
+                                    {email ? (
+                                        <li className="student-skill">
+                                            <a
+                                                className="contact-anchor"
+                                                href={"mailto:" + email}
+                                                target="_blank"
+                                                title="Email"
+                                            >
+                                                Email
+                                            </a>
+                                        </li>
+                                    ) : (
+                                        ""
+                                    )}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div className="skills">
-                        <h4 className="student-subheading">Skills</h4>
-                        <ul className="student-skills">
-                            {skills
-                                ? skills.map((skill, i) => (
-                                      <li className="student-skill" key={i}>
-                                          {skill}
-                                      </li>
-                                  ))
-                                : ""}
-                        </ul>
-                    </div>
                 </div>
-                <h4 className="mt-3 p-3">Projects</h4>
-                {projects ? (
+
+                {/* {projects ? (
                     projects.length === 0 ? (
                         <h5 className="mt-5 text-center">
                             No projects for this student
@@ -243,7 +226,7 @@ export const Student = ({ match }) => {
                     )
                 ) : (
                     ""
-                )}
+                )} */}
             </div>
         </>
     );

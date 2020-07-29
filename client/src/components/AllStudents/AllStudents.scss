@@ -19,6 +19,13 @@ $stripe-col-8: #40b5c7; // too similar
     background-position: center;
 }
 
+.class-desc {
+    font-size: 0.7rem;
+    width: 80%;
+    margin: auto;
+    padding: 0 0 3rem;
+}
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, 300px);

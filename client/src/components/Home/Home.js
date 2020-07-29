@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
+import NavBar from "../NavBar/NavBar";
 
 const Home = () => {
     useEffect(() => {
@@ -8,26 +9,29 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="home-wrapper">
-            <div className="page-menu">
-                <div className="page-menu-div">
-                    <Link
-                        className="page-menu-div-inner single-heading"
-                        to="/students"
-                    >
-                        Students
-                    </Link>
-                </div>
-                <div className="page-menu-div">
-                    <Link
-                        className="page-menu-div-inner single-heading"
-                        to="/projects"
-                    >
-                        Projects
-                    </Link>
+        <>
+            <NavBar />
+            <div className="home-wrapper">
+                <div className="page-menu">
+                    <div className="page-menu-div">
+                        <Link
+                            className="page-menu-div-inner single-heading"
+                            to="/students"
+                        >
+                            Students
+                        </Link>
+                    </div>
+                    <div className="page-menu-div">
+                        <Link
+                            className="page-menu-div-inner single-heading"
+                            to="/projects"
+                        >
+                            Projects
+                        </Link>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

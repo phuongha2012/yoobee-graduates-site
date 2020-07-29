@@ -5,6 +5,7 @@ import "./ManageAccount.scss";
 import { UserContext } from "../../contexts/UserContext";
 import avatarPlaceholder from "../../assets/avatar-placeholder.png";
 import EditProfilePhoto from "./EditProfilePhoto";
+import NavBar from "../NavBar/NavBar";
 
 const EditProfilePage = (props) => {
     const history = useHistory();
@@ -96,6 +97,7 @@ const EditProfilePage = (props) => {
 
     return (
         <>
+            <NavBar />
             <div className="position-relative bg-dark py-5 mb-3"></div>
             <div className="col-lg-8 col-md-10 col-sm-10 mx-auto">
                 <h2 className="text-center mb-5 pt-5">Edit Profile</h2>
