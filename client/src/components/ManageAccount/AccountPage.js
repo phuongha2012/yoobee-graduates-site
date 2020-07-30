@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import AccountSummary from "./AccountSummary";
 import ProjectList from "./ProjectList";
+import NavBar from "../NavBar/NavBar";
 
 const AccountPage = () => {
     const userContext = useContext(UserContext);
@@ -40,6 +41,7 @@ const AccountPage = () => {
 
     return (
         <>
+            <NavBar />
             <div className="position-relative bg-dark py-5 mb-3"></div>
             <div className="container">
                 <h1>Manage Account</h1>

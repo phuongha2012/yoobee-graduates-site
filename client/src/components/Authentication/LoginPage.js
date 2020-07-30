@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import NavBar from "../NavBar/NavBar";
 
 const LoginPage = () => {
     const [hasLoginError, setHasLoginError] = useState("");
@@ -43,6 +44,7 @@ const LoginPage = () => {
 
     return (
         <>
+            <NavBar />
             <div className="position-relative bg-dark py-5 mb-3"></div>
             <form
                 className="col-lg-8 col-md-10 col-sm-10 mx-auto"

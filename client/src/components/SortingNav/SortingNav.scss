@@ -1,9 +1,14 @@
 .sorting-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin-top: 10rem;
+    margin-bottom: 4rem;
+    background: #161616;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
     text-align: center;
-    background: #2d2d2d;
     list-style: none;
 
     &::-webkit-scrollbar {
@@ -18,15 +23,15 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: #5411c0;
+        background-color: #565656;
         border-radius: 10px;
     }
 }
 
 .sorting-nav-item {
     display: inline-block;
-    margin: 0 1rem;
-    padding: 0.75rem 0.5rem;
+    margin: 0;
+    padding: 0.75rem 1.5rem;
     background: transparent;
     border: none;
     color: #fff;
@@ -34,15 +39,49 @@
     cursor: pointer;
 }
 
-.sorting-nav-item--active {
+.sorting-nav-item--active::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+    left: 0;
+    // background: #0388a6;
+}
+
+.sorting-nav-item--all {
     position: relative;
     &::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 5px;
-        bottom: 0;
-        left: 0;
-        background: #0388a6;
+        @extend .sorting-nav-item--active::after;
+        background: #ccc;
+    }
+}
+
+.sorting-nav-item--web {
+    position: relative;
+    &::after {
+        @extend .sorting-nav-item--active::after;
+        background: #ffe152;
+    }
+}
+.sorting-nav-item--design {
+    position: relative;
+    &::after {
+        @extend .sorting-nav-item--active::after;
+        background: #ee1e58;
+    }
+}
+.sorting-nav-item--3d {
+    position: relative;
+    &::after {
+        @extend .sorting-nav-item--active::after;
+        background: #00c2f3;
+    }
+}
+.sorting-nav-item--screen {
+    position: relative;
+    &::after {
+        @extend .sorting-nav-item--active::after;
+        background: #6bbe51;
     }
 }
