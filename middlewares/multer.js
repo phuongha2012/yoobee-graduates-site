@@ -1,29 +1,26 @@
 const multer = require("multer");
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const keys = require("../config/keys");
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./uploads/");
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
-    },
+cloudinary.config({
+    cloud_name: keys.CLOUD_NAME,
+    api_key: keys.CLOUDINARY_API_KEY,
+    api_secret: keys.CLOUDINARY_API_SECRET
 });
 
-const fileFilter = (req, file, cb) => {
-    // reject a file
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-};
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    folder: 'graduate-website',
+    allowedFormats: ['jpg', 'png']
+  });
 
 const upload = multer({
     storage: storage,
     limits: {
         fileSize: 1024 * 500,
-    },
-    fileFilter: fileFilter,
+    }
 });
 
 module.exports = upload;

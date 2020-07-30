@@ -140,10 +140,9 @@ module.exports = (app) => {
         upload.single("profilePhoto"),
         (req, res, next) => {
             const _studentId = req.params.id;
-            const base_url = "http://" + req.headers.host + "/";
 
             let newPhoto = req.file
-                ? base_url + req.file.path
+                ? req.file.path
                 : req.body.profilePhotoUrl;
 
             let updatedInfo = { photoUrl: newPhoto };

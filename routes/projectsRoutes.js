@@ -110,10 +110,9 @@ module.exports = (app) => {
     app.post("/projects/photo/getUrl", 
         upload.single("projectPhoto"),
         (req, res) => {
-            const base_url = "http://" + req.headers.host + "/";
 
             let newPhoto = req.file
-                ? base_url + req.file.path
+                ? req.file.path
                 : req.body.projectPhotoUrl;
 
             res.send(newPhoto);
