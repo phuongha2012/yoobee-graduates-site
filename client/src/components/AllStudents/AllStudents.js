@@ -52,8 +52,6 @@ const AllStudents = () => {
         };
     };
 
-    console.log(allStudents);
-
     const filterCards = (e) => {
         const target = e.target.innerText;
         const course = e.target.attributes[2].value;
