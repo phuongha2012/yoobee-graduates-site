@@ -23,12 +23,6 @@ export const Footer = () => {
                         <li>
                             <Link to="/students">Students</Link>
                         </li>
-                        <li>
-                            <Link to="/projects">Projects</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About</Link>
-                        </li>
                     </ul>
                 </div>
                 <div className="d-flex justify-content-sm-center px-5">
@@ -59,8 +53,8 @@ export const Footer = () => {
                 </div>
                 <p className="footer-grid-section text-center container">
                     &copy; Yoobee Colleges 2020 | All Rights Reserved | Designed
-                    & Developed by Jacob Preston, Chikaylah Wellington, Sean
-                    Reilly, Russell Johnson & Hayley Ha
+                    & Developed by Jacob Preston, Chikaylah Wellington, Candice
+                    Phelps, Sean Reilly, Russell Johnson & Hayley Ha
                 </p>
             </div>
         </footer>

@@ -20,7 +20,7 @@ $stripe-col-8: #40b5c7; // too similar
 }
 
 .class-desc {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     width: 80%;
     margin: auto;
     padding: 0 0 3rem;
@@ -41,8 +41,24 @@ $stripe-col-8: #40b5c7; // too similar
 
 .card-image-div {
     height: 304px;
-    border: 2px solid #ffe152;
+    border: 2px solid #fff;
     border-radius: 50%;
+}
+
+.card-image-div-web {
+    border: 2px solid #ffe152;
+}
+
+.card-image-div-design {
+    border: 2px solid #ee1e58;
+}
+
+.card-image-div-3d {
+    border: 2px solid #00c2f3;
+}
+
+.card-image-div-screen {
+    border: 2px solid #6bbe51;
 }
 
 .card-img-top {

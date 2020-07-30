@@ -9,7 +9,6 @@
 }
 
 .single-heading {
-    font-family: "Girassol", cursive;
     font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: 0.5rem;
@@ -26,6 +25,37 @@
     margin: 0 auto;
 }
 
+// swiper
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.student-project-img {
+    width: 70%;
+}
+
+.student-project-title {
+    padding: 1rem 0;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.student-blurb {
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    padding: 2rem;
+}
+
+.student-subheading {
+    padding: 0 0 0.5rem;
+    letter-spacing: 0.2rem;
+    color: #f3f3f3;
+    text-transform: uppercase;
+}
+
 .student-details {
     background: #161616;
 }
@@ -33,31 +63,25 @@
 .student-details-row {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    padding: 2rem;
 }
 
 .student-image-div {
-    display: flex;
-    justify-content: center;
-    background: rgba($color: #aaa, $alpha: 0.4);
-    max-height: 400px;
+    height: 224px;
+    width: 224px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    align-self: center;
 }
 
 .student-image {
+    height: 220px;
     width: 100%;
-    max-width: 100%;
-    max-height: 400px;
+    margin: auto;
     object-fit: cover;
-}
-
-.student-blurb {
-    font-size: 0.7rem;
-    white-space: pre-wrap;
-}
-
-.student-subheading {
-    padding: 0.5rem 0;
-    letter-spacing: 0.2rem;
-    color: #f3f3f3;
+    border-radius: 50%;
+    filter: grayscale(100%);
 }
 
 .student-skills {
@@ -68,14 +92,12 @@
     }
 }
 
-@media screen and (min-width: 768px) {
-    .student-banner {
-        background-position: 0 40%;
-    }
+.contact-anchor {
+    text-decoration: underline;
+    text-decoration-color: #fff;
+}
 
-    .project-banner {
-        background-position: 0 40%;
-    }
+@media screen and (min-width: 768px) {
     .student-container {
         width: 70%;
         max-width: 900px;
@@ -83,5 +105,13 @@
 
     .student-grid {
         grid-template-columns: 1fr 1fr;
+    }
+    .student-details-row {
+        flex-direction: row;
+        padding: 2rem 0;
+    }
+
+    .student-image-div {
+        align-self: flex-start;
     }
 }

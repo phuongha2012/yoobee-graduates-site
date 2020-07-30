@@ -1,44 +1,48 @@
 {
-  "name": "yoobee-graduates-site",
-  "version": "1.0.0",
-  "description": "A graduation website by Sean, Russell and Hayley (devs) and Shay, Jacob (designs) to showcase works of Yoobee students graduating in July 2020",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"nodemon index.js\" \"npm run start --prefix client\"",
-    "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/phuongha2012/yoobee-graduates-site.git"
-  },
-  "author": "Sean, Russell and Hayley",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/phuongha2012/yoobee-graduates-site/issues"
-  },
-  "homepage": "https://github.com/phuongha2012/yoobee-graduates-site#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.5.0",
-    "concurrently": "^5.2.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.9.15",
-    "multer": "^1.4.2",
-    "node-sass": "^4.14.1",
-    "path": "^0.12.7",
-    "sweetalert2": "^9.15.2",
-    "swiper": "^6.0.4"
-  },
-  "devDependencies": {
-    "grunt": "^1.1.0",
-    "grunt-contrib-jshint": "^2.1.0",
-    "grunt-contrib-uglify-es": "^3.3.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "nodemon": "^2.0.4"
-  }
+    "name": "yoobee-graduates-site",
+    "version": "1.0.0",
+    "description": "A graduation website by Sean, Russell and Hayley (devs) and Shay, Jacob (designs) to showcase works of Yoobee students graduating in July 2020",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "client": "npm run start --prefix client",
+        "dev": "concurrently \"nodemon index.js\" \"npm run start --prefix client\"",
+        "start": "node index.js",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/phuongha2012/yoobee-graduates-site.git"
+    },
+    "author": "Sean, Russell and Hayley",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/phuongha2012/yoobee-graduates-site/issues"
+    },
+    "homepage": "https://github.com/phuongha2012/yoobee-graduates-site#readme",
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.30",
+        "@fortawesome/free-solid-svg-icons": "^5.14.0",
+        "@fortawesome/react-fontawesome": "^0.1.11",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
+        "bootstrap": "^4.5.0",
+        "concurrently": "^5.2.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.9.15",
+        "multer": "^1.4.2",
+        "node-sass": "^4.14.1",
+        "path": "^0.12.7",
+        "react-sticky-mouse-tooltip": "0.0.1",
+        "sweetalert2": "^9.15.2",
+        "swiper": "^6.0.4"
+    },
+    "devDependencies": {
+        "grunt": "^1.1.0",
+        "grunt-contrib-jshint": "^2.1.0",
+        "grunt-contrib-uglify-es": "^3.3.0",
+        "grunt-contrib-watch": "^1.1.0",
+        "nodemon": "^2.0.4"
+    }
 }

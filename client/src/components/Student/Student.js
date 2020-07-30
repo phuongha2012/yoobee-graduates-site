@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ProjectCard } from "../AllProjects/ProjectCard";
 import placeholder from "../../assets/avatar-placeholder.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import NavBarAlt from "../NavBar/NavBarAlt";
+import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
 
 export const Student = ({ match }) => {
     const [student, setStudent] = useState([]);
@@ -85,6 +90,60 @@ export const Student = ({ match }) => {
         };
     };
 
+    const contacts = document.getElementsByClassName("contact-anchor");
+    const image = document.getElementsByClassName("student-image-div");
+
+    switch (course) {
+        case "Level 6 Web Development and UX Design":
+            for (let i = 0; i < contacts.length; i++) {
+                contacts[i].style.textDecorationColor = "#ffe152";
+            }
+            for (let i = 0; i < image.length; i++) {
+                image[i].style.border = "2px solid #ffe152";
+            }
+            break;
+        case "Level 6 Creative Digital Design":
+            for (let i = 0; i < contacts.length; i++) {
+                contacts[i].style.textDecorationColor = "#ee1e58";
+            }
+            for (let i = 0; i < image.length; i++) {
+                image[i].style.border = "2px solid #ee1e58";
+            }
+            break;
+        case "Level 6 Diploma in 3D Production":
+            for (let i = 0; i < contacts.length; i++) {
+                contacts[i].style.textDecorationColor = "#00c2f3";
+            }
+            for (let i = 0; i < image.length; i++) {
+                image[i].style.border = "2px solid #00c2f3";
+            }
+            break;
+        case "Level 7 Diploma in Advanced 3D Production":
+            for (let i = 0; i < contacts.length; i++) {
+                contacts[i].style.textDecorationColor = "#00c2f3";
+            }
+            for (let i = 0; i < image.length; i++) {
+                image[i].style.border = "2px solid #00c2f3";
+            }
+            break;
+        case "Level 6 Diploma in Screen Production":
+            for (let i = 0; i < contacts.length; i++) {
+                contacts[i].style.textDecorationColor = "#6bbe51";
+            }
+            for (let i = 0; i < image.length; i++) {
+                image[i].style.border = "2px solid #6bbe51";
+            }
+            break;
+        default:
+            for (let i = 0; i < contacts.length; i++) {
+                contacts[i].style.textDecorationColor = "#fff";
+            }
+            for (let i = 0; i < image.length; i++) {
+                image[i].style.border = "2px solid #fff";
+            }
+            break;
+    }
+
     return (
         <>
             <NavBarAlt />
@@ -93,8 +152,42 @@ export const Student = ({ match }) => {
                     <h1 className="single-heading">{name ? name : username}</h1>
                     <p className="heading-course">{course}</p>
                 </div>
-
-                {/* <div className="swiper"></div> */}
+                <div className="student-container">
+                    {projects ? (
+                        projects.length === 0 ? (
+                            <h5 className="mt-5 text-center">
+                                No projects for this student
+                            </h5>
+                        ) : (
+                            <Swiper
+                                spaceBetween={50}
+                                slidesPerView={1}
+                                navigation
+                                pagination={{ clickable: true }}
+                                scrollbar={{ draggable: true }}
+                                onSwiper={(swiper) => console.log(swiper)}
+                                onSlideChange={() =>
+                                    console.log("slide change")
+                                }
+                            >
+                                {projects.map((project, i) => (
+                                    <SwiperSlide key={i}>
+                                        <img
+                                            className="student-project-img"
+                                            src={project.image}
+                                            alt=""
+                                        />
+                                        <h4 className="student-project-title">
+                                            {project.title}
+                                        </h4>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        )
+                    ) : (
+                        ""
+                    )}
+                </div>
 
                 <div className="student-blurb">
                     <div className="student-container">{blurb}</div>
@@ -119,7 +212,7 @@ export const Student = ({ match }) => {
                                 </ul>
                             </div>
                             <div className="contacts">
-                                <h5 className="student-subheading">Skills</h5>
+                                <h5 className="student-subheading">Contact</h5>
                                 <ul className="student-skills">
                                     {github ? (
                                         <li className="student-skill">
@@ -208,25 +301,16 @@ export const Student = ({ match }) => {
                                     )}
                                 </ul>
                             </div>
+                            <div className="student-image-div">
+                                <img
+                                    className="student-image"
+                                    src={photoUrl}
+                                    alt=""
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                {/* {projects ? (
-                    projects.length === 0 ? (
-                        <h5 className="mt-5 text-center">
-                            No projects for this student
-                        </h5>
-                    ) : (
-                        <div className="card-grid">
-                            {projects.map((project, i) => (
-                                <ProjectCard key={i} project={project} />
-                            ))}
-                        </div>
-                    )
-                ) : (
-                    ""
-                )} */}
             </div>
         </>
     );

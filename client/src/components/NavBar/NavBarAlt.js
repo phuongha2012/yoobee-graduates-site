@@ -17,42 +17,7 @@ const NavBarAlt = () => {
             <Link className="logo" to="/">
                 catalyst
             </Link>
-            <div className="d-flex align-items-center col-sm-8 col-md-6 col-lg-5 justify-content-end pr-0">
-                {!showNav ? (
-                    <FontAwesomeIcon
-                        className="nav-bars"
-                        icon={faBars}
-                        onClick={handleChange}
-                    />
-                ) : (
-                    ""
-                )}
-                <div
-                    className={`nav-list d-flex justify-content-center justify-content-sm-between align-items-center flex-column flex-sm-row ${
-                        showNav ? "expanded" : ""
-                    }`}
-                >
-                    {showNav ? (
-                        <FontAwesomeIcon
-                            className="nav-bars nav-bars-close"
-                            icon={faTimes}
-                            onClick={handleChange}
-                        />
-                    ) : (
-                        ""
-                    )}
-
-                    <Link onClick={handleChange} to="/students">
-                        Students
-                    </Link>
-                    <Link onClick={handleChange} to="/projects">
-                        Projects
-                    </Link>
-                    <Link onClick={handleChange} to="/about">
-                        About
-                    </Link>
-                </div>
-            </div>
+            <Link to="/students">Portfolio</Link>
         </nav>
     );
 };

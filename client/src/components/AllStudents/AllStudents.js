@@ -52,13 +52,24 @@ const AllStudents = () => {
         };
     };
 
+    console.log(allStudents);
+
     const filterCards = (e) => {
         const target = e.target.innerText;
         const course = e.target.attributes[2].value;
-        console.log(target);
         if (target === "All") {
             setShowStudents(allStudents);
             setClassDesc(0);
+        } else if (target === "3D Production") {
+            const studentsClicked = allStudents.filter((student) => {
+                return (
+                    student.course === course ||
+                    student.course ===
+                        "Level 7 Diploma in Advanced 3D Production"
+                );
+            });
+            setShowStudents(studentsClicked);
+            setClassDesc(3);
         } else {
             const studentsClicked = allStudents.filter((student) => {
                 return student.course === course;
@@ -83,8 +94,6 @@ const AllStudents = () => {
             }
         }
     };
-
-    console.log(classDesc);
 
     return (
         <>
