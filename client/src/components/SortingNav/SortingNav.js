@@ -19,7 +19,7 @@ export const SortingNav = ({ filter }) => {
             <li
                 className={
                     "sorting-nav-item " +
-                    (activeItem === "0" ? "sorting-nav-item--active" : "")
+                    (activeItem === "0" ? "sorting-nav-item--all" : "")
                 }
                 data-index="0"
                 data-course="All"
@@ -30,7 +30,7 @@ export const SortingNav = ({ filter }) => {
             <li
                 className={
                     "sorting-nav-item " +
-                    (activeItem === "1" ? "sorting-nav-item--active" : "")
+                    (activeItem === "1" ? "sorting-nav-item--web" : "")
                 }
                 data-index="1"
                 data-course="Level 6 Web Development and UX Design"
@@ -41,7 +41,7 @@ export const SortingNav = ({ filter }) => {
             <li
                 className={
                     "sorting-nav-item " +
-                    (activeItem === "2" ? "sorting-nav-item--active" : "")
+                    (activeItem === "2" ? "sorting-nav-item--design" : "")
                 }
                 data-index="2"
                 data-course="Level 6 Creative Digital Design"
@@ -52,7 +52,7 @@ export const SortingNav = ({ filter }) => {
             <li
                 className={
                     "sorting-nav-item " +
-                    (activeItem === "3" ? "sorting-nav-item--active" : "")
+                    (activeItem === "3" ? "sorting-nav-item--3d" : "")
                 }
                 data-index="3"
                 data-course="Level 6 3D Production"
@@ -63,7 +63,7 @@ export const SortingNav = ({ filter }) => {
             <li
                 className={
                     "sorting-nav-item " +
-                    (activeItem === "4" ? "sorting-nav-item--active" : "")
+                    (activeItem === "4" ? "sorting-nav-item--screen" : "")
                 }
                 data-index="4"
                 data-course="Level 6 Screen Production"

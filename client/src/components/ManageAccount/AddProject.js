@@ -5,6 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import "./ManageAccount.scss";
 import EditProjectPhoto from "./EditProjectPhoto";
 import imagePlaceholder from "../../assets/image-placeholder.png";
+import NavBar from "../NavBar/NavBar";
 
 const AddProject = (props) => {
     const history = useHistory();
@@ -84,6 +85,7 @@ const AddProject = (props) => {
 
     return (
         <>
+            <NavBar />
             <div className="position-relative bg-dark py-5 mb-3"></div>
             <div className="col-lg-8 col-10 mx-auto">
                 <h2 className="text-center mb-5 pt-5">Add a Project</h2>

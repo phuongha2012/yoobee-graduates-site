@@ -1,12 +1,19 @@
 import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.scss";
 
-const NavBar = () => {
+const NavBarAlt = () => {
+    const [showNav, setShowNav] = useState(false);
+
+    const handleChange = () => {
+        setShowNav(!showNav);
+    };
+
     return (
-        <nav className="d-flex align-items-center justify-content-between">
+        <nav className="d-flex align-items-center justify-content-between navbar-alt">
             <Link className="logo" to="/">
                 catalyst
             </Link>
@@ -15,4 +22,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default NavBarAlt;

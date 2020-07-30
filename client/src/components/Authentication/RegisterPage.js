@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 const RegisterPage = () => {
     const [username, setUsername] = useState("");
@@ -39,6 +40,7 @@ const RegisterPage = () => {
 
     return (
         <>
+            <NavBar />
             <div className="position-relative bg-dark py-5 mb-3"></div>
             <form
                 className="col-lg-8 col-md-10 col-sm-10 mx-auto"
