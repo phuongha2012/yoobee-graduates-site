@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import placeholder from "../../assets/avatar-placeholder.png";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import SwiperCore, {
+    Navigation,
+    Pagination,
+    Scrollbar,
+    A11y,
+    Autoplay,
+} from "swiper";
 import NavBarAlt from "../NavBar/NavBarAlt";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
@@ -12,6 +18,7 @@ import "swiper/components/scrollbar/scrollbar.scss";
 export const Student = ({ match }) => {
     const [student, setStudent] = useState([]);
     const [projects, setProjects] = useState([]);
+    SwiperCore.use([Autoplay]);
     const [isUnmounted, setIsUnmounted] = useState(false);
     const {
         name,
@@ -163,6 +170,12 @@ export const Student = ({ match }) => {
                                 spaceBetween={50}
                                 slidesPerView={1}
                                 navigation
+                                mousewheel
+                                keyboard
+                                autoplay={{
+                                    delay: 2500,
+                                    disableOnInteraction: false,
+                                }}
                                 pagination={{ clickable: true }}
                                 scrollbar={{ draggable: true }}
                                 onSwiper={(swiper) => console.log(swiper)}
