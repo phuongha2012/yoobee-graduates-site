@@ -38,7 +38,7 @@
         "path": "^0.12.7",
         "react-sticky-mouse-tooltip": "0.0.1",
         "sweetalert2": "^9.15.2",
-        "swiper": "^6.0.4"
+        "swiper": "^6.5.1"
     },
     "devDependencies": {
         "grunt": "^1.1.0",
